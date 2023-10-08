@@ -293,7 +293,32 @@ return [
         [
             'text' => '商品一覧',
             'url'  => 'items',
-            'icon' => 'fas fa-gamepad',
+            'icon' => 'fas fa-cube',
+        ],
+        [
+            'text' => '顧客情報',
+            'url'  => 'items', // 顧客のページへのリンク customers
+            'icon' => 'fas fa-users', // 顧客のアイコン（FontAwesomeのアイコン名）
+        ],
+        [
+            'text' => '仕入先情報',
+            'url'  => 'items', // 仕入先情報ページへのリンク suppliers
+            'icon' => 'fas fa-truck', // アイコンをFontAwesomeのアイコン名で指定
+        ],
+        [
+            'text' => '見積作成',
+            'url'  => 'quotes/create',
+            'icon' => 'fas fa-file-alt',
+        ],
+        [
+            'text' => '見積一覧',
+            'url'  => 'quotes/index',
+            'icon' => 'fas fa-file-alt',
+        ],
+        [
+            'text' => '見積依頼',
+            'url'  => 'items', // 見積依頼ページへのリンク quote-requests
+            'icon' => 'fas fa-clipboard', // アイコンをFontAwesomeのアイコン名で指定
         ],
 
         // AdminLTEデフォルト

@@ -6,12 +6,32 @@
     <h1>商品一覧</h1>
 @stop
 
+
+
 @section('content')
     <div class="row">
         <div class="col-12">
+
+            @if (session('success'))
+            <div class="alert alert-primary">
+                {{ session('success') }}
+            </div>
+            @endif
+            @if (session('update'))
+            <div class="alert alert-success">
+                {{ session('update') }}
+            </div>
+            @endif
+            @if (session('delete'))
+            <div class="alert alert-danger">
+                {{ session('delete') }}
+            </div>
+            @endif
+
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">商品一覧</h3>
+
                     <div class="card-tools">
                         <div class="input-group input-group-sm">
                             <div class="input-group-append">

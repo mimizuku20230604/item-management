@@ -26,7 +26,7 @@ class ItemController extends Controller
         // 商品一覧取得
         $items = Item::all();
 
-        return view('item.index', compact('items'));
+        return view('items.index', compact('items'));
     }
 
     /**
@@ -49,9 +49,11 @@ class ItemController extends Controller
                 'detail' => $request->detail,
             ]);
 
-            return redirect('/items');
+            // return redirect('/items');
+            return redirect('/items')->with('success', '商品を追加しました');
+            // return redirect()->route('item.index')->with('success', '商品を追加しました');
         }
 
-        return view('item.add');
+        return view('items.add');
     }
 }
