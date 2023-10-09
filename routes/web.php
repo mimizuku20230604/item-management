@@ -33,7 +33,7 @@ Route::prefix('items')->group(function () {
 
 // 見積作成画面表示
 Route::group(['prefix' => 'quotes', 'as' => 'quote.'], function () {
-    Route::get('index', [QuoteController::class, 'index'])->name('index');
+    // Route::get('index', [QuoteController::class, 'index'])->name('index');
     Route::get('create', [QuoteController::class, 'create'])->name('create');
     Route::post('/', [QuoteController::class, 'store'])->name('store');
     // Route::get('{quote}', [QuoteController::class, 'show'])->name('show');
@@ -48,3 +48,6 @@ Route::group(['prefix' => 'quotes', 'as' => 'quote.'], function () {
     Route::post('store-confirmed', [QuoteController::class, 'storeConfirmed'])->name('storeConfirmed');
 
 });
+
+Route::get('quotes/index', [QuoteController::class, 'index'])->name('quote.index');
+Route::get('quotes/advancedSearch', [QuoteController::class, 'advancedSearch'])->name('quote.advancedSearch');
