@@ -41,9 +41,9 @@
                     </div>
                 </div>
                 <div class="card-body table-responsive p-0">
-                    <table class="table table-hover text-nowrap">
+                    <table class="table table-hover text-center">
                         <thead>
-                            <tr>
+                            <tr class="text-center table-secondary">
                                 <th>ID</th>
                                 <th>名前</th>
                                 <th>種別</th>
@@ -52,7 +52,7 @@
                         </thead>
                         <tbody>
                             @foreach ($items as $item)
-                                <tr>
+                                <tr class="table-bordered" onclick="location.href='{{route('item.show', $item)}}';">
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->type }}</td>

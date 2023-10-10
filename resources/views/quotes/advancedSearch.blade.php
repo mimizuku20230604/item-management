@@ -25,9 +25,8 @@
 
 <ul class="nav nav-tabs" id="myTabs" role="tablist">
   <li class="nav-item">
-    {{-- index.bladeでは、requestを「quotes/index」にする。上のタブ部分がアクティブになって下のタブ部分（あいまい検索部分）とくっつきます。 --}}
-    <a class="nav-link {{ request()->is('quotes/index') ? 'active' : '' }}" id="tab1" data-toggle="tab" href="#content1" role="tab" aria-controls="content1" aria-selected="{{ request()->is('quotes/index') ? 'true' : 'false' }}">あいまい検索</a>
-    {{-- <a class="nav-link {{ request()->is('quotes/ambiguousSearch') ? 'active' : '' }}" id="tab1" data-toggle="tab" href="#content1" role="tab" aria-controls="content1" aria-selected="{{ request()->is('quotes/ambiguousSearch') ? 'true' : 'false' }}">あいまい検索</a> --}}
+    {{-- ambiguousSearch.bladeでは、requestを「quotes/ambiguousSearch」にする。上のタブ部分がアクティブになって下のタブ部分（あいまい検索部分）とくっつきます。 --}}
+    <a class="nav-link {{ request()->is('quotes/ambiguousSearch') ? 'active' : '' }}" id="tab1" data-toggle="tab" href="#content1" role="tab" aria-controls="content1" aria-selected="{{ request()->is('quotes/ambiguousSearch') ? 'true' : 'false' }}">あいまい検索</a>
   </li>
   <li class="nav-item">
     <a class="nav-link {{ request()->is('quotes/advancedSearch') ? 'active' : '' }}" id="tab2" data-toggle="tab" href="#content2" role="tab" aria-controls="content2" aria-selected="{{ request()->is('quotes/advancedSearch') ? 'true' : 'false' }}">詳細検索</a>
@@ -35,12 +34,14 @@
 </ul>
 
 <div class="tab-content" id="myTabsContent">
-  {{-- index.bladeでは、requestを「quotes/index」にする。最初の表示ルートが「quotes/index」なので、「ambiguousSearch」にすると、タブ2をアクティブにしてからじゃないと、タブ1が読み込まれない（表示されない。）--}}
-    <div class="tab-pane fade {{ request()->is('quotes/index') ? 'active show' : '' }}" id="content1" role="tabpanel" aria-labelledby="tab1">
+  {{-- ambiguousSearch.bladeでは、requestを「quotes/ambiguousSearch」にする。最初の表示ルートが「quotes/ambiguousSearch」なので、「index」にすると、タブ2をアクティブにしてからじゃないと、タブ1が読み込まれない（表示されない。）--}}
+  <div class="tab-pane fade {{ request()->is('quotes/ambiguousSearch') ? 'active show' : '' }}" id="content1" role="tabpanel" aria-labelledby="tab1">
     <!-- あいまい検索フォーム -->
+
+
 <div class="card">
   <div class="card-header">
-  {{-- routeを「quotes/ambiguousSearch」にする。--}}
+    {{-- あいまい検索の画面に戻る。 --}}
     <form action="{{ route('quote.ambiguousSearch') }}" method="GET">
   @csrf
   <p>（検索対象：見積番号・ユーザー名・商品名・数量・単価・合計金額・備考）</p>
@@ -80,7 +81,6 @@
   </div>
     <div class="tab-pane fade {{ request()->is('quotes/advancedSearch') ? 'active show' : '' }}" id="content2" role="tabpanel" aria-labelledby="tab2">
     <!-- 詳細検索フォーム -->
-
 <div class="card">
   <div class="card-header">
       <form action="{{ route('quote.advancedSearch') }}" method="GET">

@@ -37,7 +37,7 @@
           <div class="col-md-4">
           <div class="form-group">
             <label for="unit_price">単価</label>
-            <input type="text" name="unit_price" class="form-control" id="unit_price" value="{{ number_format($quoteData['unit_price']) }}" readonly>
+            <input type="text" name="unit_price" class="form-control" id="unit_price" value="{{ number_format($quoteData['unit_price'], 2) }}" readonly>
           </div>
           </div>
           <div class="col-md-4">
