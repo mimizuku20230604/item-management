@@ -15,7 +15,9 @@
         <div class="card-header">
 
           <div class="form-group">
-            <label for="user_name">ユーザー名</label>
+            {{-- <label for="user_name">ユーザー名</label> --}}
+            <label for="user_name">customer名</label>
+            {{-- <input type="text" name="user_name" class="form-control" id="user_name" value="{{ $user->name }}" readonly> --}}
             <input type="text" name="user_name" class="form-control" id="user_name" value="{{ $user->name }}" readonly>
           </div>
           <div class="form-group">
@@ -91,8 +93,9 @@
     <form method="post" action="{{ route('quote.storeConfirmed') }}">
         @csrf
         <!-- フォームの入力内容を再度セット -->
-        <input type="hidden" name="user_id" value="{{ $quoteData['user_id'] }}">
         {{-- <input type="text" name="user_id" value="{{ $quoteData['user_id'] }}"> --}}
+        {{-- <input type="hidden" name="user_id" value="{{ $quoteData['user_id'] }}"> --}}
+        <input type="hidden" name="customer_id" value="{{ $quoteData['customer_id'] }}">
         <input type="hidden" name="item_id" value="{{ $quoteData['item_id'] }}">
         <input type="hidden" name="quantity" value="{{ $quoteData['quantity'] }}">
         <input type="hidden" name="unit_price" value="{{ $quoteData['unit_price'] }}">

@@ -23,7 +23,6 @@ return new class extends Migration
             $table->decimal('total_amount', 10, 2);  // 合計金額。
             $table->timestamps();
 
-
             // 外部キー制約（ユーザー情報）（ users テーブルの id カラムに関連付け）（->onDelete('cascade')は不要？）
             $table->foreign('user_id')->references('id')->on('users');
 

@@ -18,9 +18,9 @@
                 @csrf
 
                     <div class="form-group">
-                        <label for="user_id">ユーザー名</label>
-                        <select class="form-control" id="user_id" name="user_id">
-                        <option value="">ユーザーを選択してください</option>
+                        <label for="customer_id">顧客名</label>
+                        <select class="form-control" id="customer_id" name="customer_id">
+                        <option value="">顧客を選択してください</option>
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                         @endforeach
@@ -52,25 +52,6 @@
                             <div class="form-group">
                                 <label for="total_amount">合計金額</label>
                                 <input type="text" name="total_amount" class="form-control" id="total_amount" readonly>
-                                    {{-- <script>
-                                        // 数量と単価の入力フィールドの要素を取得
-                                        const quantityInput = document.getElementById('quantity');
-                                        const unitPriceInput = document.getElementById('unit_price');
-                                        const totalAmountInput = document.getElementById('total_amount');
-                                        // 数量と単価が変更されたときに合計金額を計算する関数
-                                        function calculateTotalAmount() {
-                                            const quantity = parseFloat(quantityInput.value) || 0; // 数量を数値に変換
-                                            const unitPrice = parseFloat(unitPriceInput.value) || 0; // 単価を数値に変換
-                                            let totalAmount = quantity * unitPrice; // 合計金額を計算
-                                            totalAmount = Math.round(totalAmount); // 合計金額を四捨五入
-                                            totalAmountInput.value = totalAmount; // 整数の合計金額を表示
-                                        }
-                                        // 数量と単価の入力フィールドにイベントリスナーを追加
-                                        quantityInput.addEventListener('input', calculateTotalAmount);
-                                        unitPriceInput.addEventListener('input', calculateTotalAmount);
-                                        // 初期状態で合計金額を計算
-                                        calculateTotalAmount();
-                                    </script> --}}
                             </div>
                         </div>
                     </div>
@@ -109,7 +90,7 @@
                     <div class="form-row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="expiration_date">見積期限</label>
+                                <label for="expiration_date">見積期限（デフォルト値:90日後）</label>
                                 <input type="date" name="expiration_date" class="form-control" id="expiration_date" value="{{ date('Y-m-d', strtotime('+90 days')) }}">
                             </div>
                         </div>

@@ -9,6 +9,9 @@ use App\Models\Item; // Itemモデルを使用するためにuse宣言
 use App\Models\User; // Userモデルを使用するためにuse宣言
 use Carbon\Carbon;
 
+use Illuminate\Support\Facades\Mail;  // メール機能
+use App\Mail\ContactForm;  // メール機能
+
 class QuoteController extends Controller
 {
     public function create()
@@ -48,7 +51,7 @@ class QuoteController extends Controller
         $quoteData = session('quote_data');
 
         // ユーザーを取得（ユーザー名を表示させるため）
-        $user = User::find($quoteData['user_id']);
+        $user = User::find($quoteData['customer_id']);
         // 商品を取得（商品名を表示させるため）
         $item = Item::find($quoteData['item_id']);
 
@@ -61,7 +64,9 @@ class QuoteController extends Controller
 
         // Quoteモデルの新しいインスタンスを作成し、データを設定
         $quote = new Quote();
-        $quote->user_id = $request->user_id;
+        $quote->user_id = auth()->user()->id;
+        // $quote->user_id = $request->user_id;
+        $quote->customer_id = $request->customer_id;
         $quote->item_id = $request->item_id;
         $quote->quantity = $request->quantity;
         $quote->unit_price = $request->unit_price;
@@ -102,6 +107,7 @@ class QuoteController extends Controller
             'min_id' => $request->input('min_id'),
             'max_id' => $request->input('max_id'),
             'user_name' => $request->input('user_name'),
+            'customer_name' => $request->input('customer_name'),
             'item_name' => $request->input('item_name'),
             'min_quantity' => $request->input('min_quantity'),
             'max_quantity' => $request->input('max_quantity'),
@@ -147,6 +153,9 @@ class QuoteController extends Controller
                 ->orWhereHas('user', function ($userQuery) use ($searchKeyword) {
                     $userQuery->where('name', 'like', "%$searchKeyword%");
                 }) //user_idではなくname
+                ->orWhereHas('customer', function ($customerQuery) use ($searchKeyword) {
+                    $customerQuery->where('name', 'like', "%$searchKeyword%");
+                }) //customer_idではなくname
                 ->orWhereHas('item', function ($itemQuery) use ($searchKeyword) {
                     $itemQuery->where('name', 'like', "%$searchKeyword%");
                 }) //item_idではなくname
@@ -187,11 +196,18 @@ class QuoteController extends Controller
         if (!empty($maxQuoteNumber)) {
             $query->where('id', '<=', $maxQuoteNumber);
         }
-        // ユーザー名の検索
+        // 登録者名の検索
         $userName = $request->input('user_name');
         if (!empty($userName)) {
             $query->whereHas('user', function ($q) use ($userName) {
                 $q->where('name', $userName);
+            });
+        }
+        // 顧客名の検索
+        $customerName = $request->input('customer_name');
+        if (!empty($customerName)) {
+            $query->whereHas('customer', function ($q) use ($customerName) {
+                $q->where('name', $customerName);
             });
         }
         // 商品名の検索
@@ -252,6 +268,7 @@ class QuoteController extends Controller
             'min_id' => $request->input('min_id'),
             'max_id' => $request->input('max_id'),
             'user_name' => $request->input('user_name'),
+            'customer_name' => $request->input('customer_name'),
             'item_name' => $request->input('item_name'),
             'min_quantity' => $request->input('min_quantity'),
             'max_quantity' => $request->input('max_quantity'),

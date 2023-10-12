@@ -51,6 +51,3 @@ Route::group(['prefix' => 'quotes', 'as' => 'quote.'], function () {
     // Route::patch('{quote}', [QuoteController::class, 'update'])->name('update');
     // Route::delete('{quote}', [QuoteController::class, 'destroy'])->name('destroy');
 });
-
-// Route::get('quotes/index', [QuoteController::class, 'index'])->name('quote.index');
-// Route::get('quotes/advancedSearch', [QuoteController::class, 'advancedSearch'])->name('quote.advancedSearch');
