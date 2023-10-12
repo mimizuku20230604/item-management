@@ -18,6 +18,7 @@ class Quote extends Model
         'quantity',
         'total_amount',
         'remarks',
+        'customer_id',
     ];
 
     // protected $dates = [
@@ -43,6 +44,11 @@ class Quote extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+    
+    public function customer()
+    {
+        return $this->belongsTo(User::class, 'customer_id');
     }
 
 }

@@ -56,4 +56,47 @@ class ItemController extends Controller
 
         return view('items.add');
     }
+
+    /**
+     * 商品詳細
+     */
+    public function show(Item $item)
+    {
+        return view('items/show', ['item' => $item]);
+    }
+
+    /**
+     * 商品編集
+     */
+    public function edit(Item $item)
+    {
+        return view('items/edit', ['item' => $item]);
+    }
+
+    /**
+     * 商品更新
+     */
+    public function update(Request $request, Item $item)
+    {
+        $inputs = $request->validate([
+            'name' => 'required|max:100',
+            'type' => 'required|max:100',
+            'detail' => 'required|max:500'
+        ]);
+
+        $item->name = $request->name;
+        $item->type = $request->type;
+        $item->detail = $request->detail;
+        $item->save();
+        return redirect()->route('item.index')->with('update', '商品を更新しました');
+    }
+
+    /**
+     * 商品削除
+     */ 
+    public function destroy(Item $item)
+    {
+        $item->delete();
+        return redirect()->route('item.index')->with('delete', '商品を削除しました');
+    }
 }
