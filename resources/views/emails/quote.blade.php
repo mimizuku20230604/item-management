@@ -37,8 +37,8 @@
 <p>{{ $quote->user->email }}</p>
 <p>ーーーーーーーーーーーーーーーーーーーーーー</p>
 <p>ご注文の際は、下記URLよりお願いいたします。</p>
-<p><a href="http://item-management20231012-de20a6daf45a.herokuapp.com/login">
-http://item-management20231012-de20a6daf45a.herokuapp.com/login</a></p>
+<p><a href="https://item-management20231012-de20a6daf45a.herokuapp.com/login">
+https://item-management20231012-de20a6daf45a.herokuapp.com/login</a></p>
 <p> </p>
 <p>＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝</p>
 <p>laravel社</p>
