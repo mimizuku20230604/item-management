@@ -34,6 +34,7 @@
 <p>{{ $quote->remarks }}</p>
 <p>見積発行者：</p>
 <p>{{ $quote->user->name }}</p>
+<p>{{ $quote->user->email }}</p>
 <p>ーーーーーーーーーーーーーーーーーーーーーー</p>
 <p>ご注文の際は、下記URLよりお願いいたします。</p>
 <p><a href="http://item-management20231012-de20a6daf45a.herokuapp.com/login">
