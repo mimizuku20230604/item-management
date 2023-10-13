@@ -14,7 +14,7 @@
             <thead>
               <tr class="text-center table-secondary">
                     <th class="font-weight-normal">見積番号</th>
-                    <th class="font-weight-normal">登録者名</th>
+                    <th class="font-weight-normal">見積発行者名</th>
                     <th class="font-weight-normal">顧客名</th>
                     <th class="font-weight-normal">商品名</th>
                     <th class="font-weight-normal">数量</th>
