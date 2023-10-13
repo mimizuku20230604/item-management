@@ -10,7 +10,7 @@ use App\Models\User; // Userモデルを使用するためにuse宣言
 use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Mail;  // メール機能
-use App\Mail\ContactForm;  // メール機能
+use App\Mail\QuoteForm;  // メール機能
 
 class QuoteController extends Controller
 {
@@ -76,7 +76,12 @@ class QuoteController extends Controller
         // データをquotesテーブルに保存
         $quote->save();
 
-        return redirect()->route('quote.index')->with('success', '見積書を作成しました');
+        // リレーションを通じてユーザー情報を取得
+        $customer = $quote->customer; // ここで $quote->customer が customer_id と関連づけられたユーザーを取得します
+        Mail::to(config('mail.admin'))->send(new QuoteForm($quote));
+        Mail::to($customer->email)->send(new QuoteForm($quote));
+
+        return redirect()->route('quote.index')->with('success', '見積書を作成しました・メールを送信しました');
     }
 
 
