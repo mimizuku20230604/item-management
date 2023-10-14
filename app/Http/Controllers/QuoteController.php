@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Quote;  // Quoteモデルのuse宣言
 use App\Models\Item; // Itemモデルを使用するためにuse宣言
 use App\Models\User; // Userモデルを使用するためにuse宣言
+use App\Models\Price; // Priceモデルを使用するためにuse宣言
 use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Mail;  // メール機能
@@ -18,7 +19,7 @@ class QuoteController extends Controller
     {
         $items = Item::all(); // itemsテーブルから全ての商品を取得
         $users = User::all(); // usersテーブルから全てのユーザーを取得
-        return view('quotes/create', compact('items', 'users'));
+        return view('quotes.create', compact('items', 'users'));
 
     }
 
@@ -50,7 +51,7 @@ class QuoteController extends Controller
         // セッションからフォームの入力内容を取得
         $quoteData = session('quote_data');
 
-        // ユーザーを取得（ユーザー名を表示させるため）
+        // ユーザーを取得（顧客名を表示させるため）
         $user = User::find($quoteData['customer_id']);
         // 商品を取得（商品名を表示させるため）
         $item = Item::find($quoteData['item_id']);

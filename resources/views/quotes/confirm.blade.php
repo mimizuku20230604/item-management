@@ -4,7 +4,7 @@
 @section('title', '見積確認')
 
 @section('content_header')
-    <h1>見積確認</h1>
+    <h1>見積作成確認</h1>
 @stop
 
 @section('content')

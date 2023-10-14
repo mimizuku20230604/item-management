@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-12">
 
-@include('quotes.include-alert')
+@include('includes.alert')
 
 <ul class="nav nav-tabs" id="myTabs" role="tablist">
   <li class="nav-item">
