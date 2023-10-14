@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\QuoteController;
-
+use App\Http\Controllers\PriceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +34,23 @@ Route::group(['prefix' => 'items', 'as' => 'item.'], function () {
     // Route::patch('{item}', [ItemController::class, 'update'])->name('update');
     // Route::delete('{item}', [ItemController::class, 'destroy'])->name('destroy');
 });
+
+
+// 単価画面表示
+Route::group(['prefix' => 'prices', 'as' => 'price.'], function () {
+    Route::get('index', [PriceController::class, 'index'])->name('index');
+    Route::get('create', [PriceController::class, 'create'])->name('create');
+    Route::post('/', [PriceController::class, 'store'])->name('store');
+    // 確認画面を表示するルートを追加
+    Route::get('confirm', [PriceController::class, 'confirm'])->name('confirm');
+    // 確認画面からデータを登録するルートを追加
+    Route::post('store-confirmed', [PriceController::class, 'storeConfirmed'])->name('storeConfirmed');
+    // Route::get('{price}', [PriceController::class, 'show'])->name('show');
+    // Route::get('{price}/edit', [PriceController::class, 'edit'])->name('edit');
+    // Route::patch('{price}', [PriceController::class, 'update'])->name('update');
+    // Route::delete('{price}', [PriceController::class, 'destroy'])->name('destroy');
+});
+
 
 // 見積作成画面表示
 Route::group(['prefix' => 'quotes', 'as' => 'quote.'], function () {

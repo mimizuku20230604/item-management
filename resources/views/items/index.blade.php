@@ -12,21 +12,7 @@
     <div class="row">
         <div class="col-12">
 
-            @if (session('success'))
-            <div class="alert alert-primary">
-                {{ session('success') }}
-            </div>
-            @endif
-            @if (session('update'))
-            <div class="alert alert-success">
-                {{ session('update') }}
-            </div>
-            @endif
-            @if (session('delete'))
-            <div class="alert alert-danger">
-                {{ session('delete') }}
-            </div>
-            @endif
+        @include('includes.alert')
 
             <div class="card">
                 <div class="card-header">

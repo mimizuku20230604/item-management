@@ -291,19 +291,29 @@ return [
 
     'menu' => [
         [
+            'text' => '商品登録',
+            'url'  => 'items/add',
+            'icon' => 'fas fa-cube',
+        ],
+        [
             'text' => '商品一覧',
             'url'  => 'items',
             'icon' => 'fas fa-cube',
         ],
         [
-            'text' => '顧客情報',
-            'url'  => 'items', // 顧客のページへのリンク customers
-            'icon' => 'fas fa-users', // 顧客のアイコン（FontAwesomeのアイコン名）
+            'text' => '単価登録',
+            'url'  => 'prices/create', 
+            'icon' => 'fas fa-tags', 
         ],
         [
-            'text' => '仕入先情報',
-            'url'  => 'items', // 仕入先情報ページへのリンク suppliers
-            'icon' => 'fas fa-truck', // アイコンをFontAwesomeのアイコン名で指定
+            'text' => '単価一覧',
+            'url'  => 'prices/index', // 顧客のページへのリンク prices
+            'icon' => 'fas fa-tags', // タグのアイコン（FontAwesomeのアイコン名）
+        ],
+        [
+            'text' => '発注登録',
+            'url'  => 'prices/index', // 顧客のページへのリンク prices
+            'icon' => 'fas fa-tags', // タグのアイコン（FontAwesomeのアイコン名）
         ],
         [
             'text' => '見積作成',
@@ -314,11 +324,6 @@ return [
             'text' => '見積一覧',
             'url'  => 'quotes/index',
             'icon' => 'fas fa-file-alt',
-        ],
-        [
-            'text' => '見積依頼',
-            'url'  => 'items', // 見積依頼ページへのリンク quote-requests
-            'icon' => 'fas fa-clipboard', // アイコンをFontAwesomeのアイコン名で指定
         ],
 
         // AdminLTEデフォルト
