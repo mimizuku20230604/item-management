@@ -8,14 +8,18 @@ use App\Models\Price;
 use App\Models\Item; // Itemモデルを使用するためにuse宣言
 use App\Models\User; // Userモデルを使用するためにuse宣言
 
+use Carbon\Carbon;
+
 use Illuminate\Support\Facades\Mail;  // メール機能
-use App\Mail\PriceForm;  // メール機能
+use App\Mail\PriceForm;  // 単価登録メール機能
+use App\Mail\UpdatePriceForm;  // 単価変更メール機能
+use App\Mail\DeletePriceForm;  // 単価変更メール機能
 
 
 class PriceController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 単価一覧
      */
     public function index()
     {
@@ -28,7 +32,7 @@ class PriceController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 単価登録
      */
     public function create()
     {
@@ -38,7 +42,7 @@ class PriceController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 単価登録保存
      */
     public function store(Request $request)
     {
@@ -65,6 +69,9 @@ class PriceController extends Controller
         return redirect()->route('price.confirm');
     }
 
+    /**
+     * 単価登録、一次保存
+     */
     public function confirm()
     {
         // セッションからフォームの入力内容を取得
@@ -78,6 +85,9 @@ class PriceController extends Controller
         return view('prices.confirm', compact('priceData', 'user', 'item'));
     }
 
+    /**
+     * 単価登録保存
+     */
     public function storeConfirmed(Request $request)
     {
         // dd($request);
@@ -116,34 +126,101 @@ class PriceController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 単価詳細画面表示
      */
     public function show(Price $price)
     {
-        //
+        // dd($price);
+        return view('prices.show', ['price' => $price]);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 単価編集画面表示
      */
     public function edit(Price $price)
     {
-        //
+        return view('prices.edit', compact('price'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * 単価編集内容、一次保存
+     */
+    public function updateConfirmed(Request $request, Price $price)
+    {
+        $price->user_id = auth()->user()->id;
+        $price->registration_price = $request->registration_price;
+        $price->deadline_date = $request->deadline_date;
+        $price->remarks = $request->remarks;
+        return view('prices.update-confirmed', compact('price'));
+    }
+
+    /**
+     * 単価編集内容、更新
      */
     public function update(Request $request, Price $price)
     {
-        //
+        // dd($price);
+        $request->validate([
+            'registration_price' => 'required|numeric|min:0',
+            'deadline_date' => 'date',
+            'remarks' => 'max:500',
+        ]);
+
+        $price->user_id = auth()->user()->id;
+        $price->registration_price = $request->registration_price;
+        $price->deadline_date = $request->deadline_date;
+        $price->remarks = $request->remarks;
+        // データをpricesテーブルに保存
+        $price->save();
+
+        // メールが送信されたかを追跡（デフォルトはfalse）
+        $mailSent = false;
+
+        // customer_idがnullでない場合にのみメール送信
+        if (!is_null($price->customer_id)) {
+            // リレーションを通じてユーザー情報を取得
+            $customer = $price->customer; // ここで $quote->customer が customer_id と関連づけられたユーザーを取得します
+            $user = $price->user; // ここで $quote->user が user_id と関連づけられたユーザーを取得します
+            Mail::to(config('mail.admin'))->send(new UpdatePriceForm($price));
+            Mail::to($customer->email)->send(new UpdatePriceForm($price));
+            Mail::to($user->email)->send(new UpdatePriceForm($price));
+            // メールが送信されたかを追跡（送信されたらtrue）
+            $mailSent = true;
+        }
+
+        if ($mailSent) {
+            return redirect()->route('price.index')->with('update', '単価を更新しました・メールを送信しました');
+        } else {
+            return redirect()->route('price.index')->with('update', '単価を更新しました');
+        }
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 単価削除
      */
     public function destroy(Price $price)
     {
-        //
+        $price->delete();
+
+        // メールが送信されたかを追跡（デフォルトはfalse）
+        $mailSent = false;
+
+        // customer_idがnullでない場合にのみメール送信
+        if (!is_null($price->customer_id)) {
+            // リレーションを通じてユーザー情報を取得
+            $customer = $price->customer; // ここで $quote->customer が customer_id と関連づけられたユーザーを取得します
+            $user = $price->user; // ここで $quote->user が user_id と関連づけられたユーザーを取得します
+            Mail::to(config('mail.admin'))->send(new DeletePriceForm($price));
+            Mail::to($customer->email)->send(new DeletePriceForm($price));
+            Mail::to($user->email)->send(new DeletePriceForm($price));
+            // メールが送信されたかを追跡（送信されたらtrue）
+            $mailSent = true;
+        }
+
+        if ($mailSent) {
+            return redirect()->route('price.index')->with('delete', '商品を削除しました・メールを送信しました');
+        } else {
+            return redirect()->route('price.index')->with('delete', '商品を削除しました');
+        }
     }
 }

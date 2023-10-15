@@ -8,6 +8,7 @@ use App\Models\Quote;  // Quoteモデルのuse宣言
 use App\Models\Item; // Itemモデルを使用するためにuse宣言
 use App\Models\User; // Userモデルを使用するためにuse宣言
 use App\Models\Price; // Priceモデルを使用するためにuse宣言
+
 use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Mail;  // メール機能

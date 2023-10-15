@@ -1,10 +1,10 @@
 
 @extends('adminlte::page')
 
-@section('title', '見積作成')
+@section('title', '発注登録')
 
 @section('content_header')
-    <h1>見積作成</h1>
+    <h1>発注登録</h1>
 @stop
 
 @section('content')
@@ -17,27 +17,19 @@
             <div class="card">
                 <div class="card-header">
 
-                <form method="post" action="{{ route('quote.store') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('order.store') }}" enctype="multipart/form-data">
                 @csrf
 
-                    <div class="form-group">
-                        <label for="customer_id">顧客名</label>
-                        <select class="form-control" id="customer_id" name="customer_id">
-                        <option value="">顧客を選択してください</option>
-                        @foreach ($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->name }}</option>
-                        @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="item_id">商品名</label>
-                        <select class="form-control" id="item_id" name="item_id">
-                        <option value="">商品を選択してください</option>
-                        @foreach ($items as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                        @endforeach
-                        </select>
-                    </div>
+<div class="form-group">
+    <label for="customer_id">顧客名</label>
+    <input type="text" class="form-control" id="customer_id" name="customer_id" value="{{ auth()->user()->name }}" readonly>
+</div>
+
+<div class="form-group">
+    <label for="item_id">商品名</label>
+    <input type="text" class="form-control" id="item_id" name="item_id" value="{{ $price->item->name }}" readonly>
+</div>
+
                     <div class="form-row">
                         <div class="col-md-4">
                             <div class="form-group">
@@ -45,12 +37,14 @@
                                 <input type="text" name="quantity" class="form-control" id="quantity" value="{{old('quantity')}}" placeholder="数量を入力してください">
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="unit_price">単価</label>
-                                <input type="text" name="unit_price" class="form-control" id="unit_price" value="{{old('unit_price')}}" placeholder="単価を入力してください">
-                            </div>
-                        </div>
+
+<div class="col-md-4">
+    <div class="form-group">
+        <label for="unit_price">単価</label>
+        <input type="text" name="unit_price" class="form-control" id="unit_price" value="{{ number_format($price->registration_price, 2) }}" readonly>
+    </div>
+</div>
+
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="total_amount">合計金額</label>
@@ -93,13 +87,13 @@
                     <div class="form-row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="expiration_date">見積期限（デフォルト値:90日後）</label>
-                                <input type="date" name="expiration_date" class="form-control" id="expiration_date" value="{{ date('Y-m-d', strtotime('+90 days')) }}">
+                                <label for="request_date">希望納期（デフォルト値:null）</label>
+                                <input type="date" name="request_date" class="form-control" id="request_date" value="{{ old('request_date', '') }}">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="today_date">作成日</label>
+                                <label for="today_date">発注日</label>
                                 <input type="date" name="today_date" class="form-control" id="today_date" value="{{ date('Y-m-d') }}" readonly>
                             </div>
                         </div>
@@ -125,5 +119,3 @@
 
 @section('js')
 @stop
-
-

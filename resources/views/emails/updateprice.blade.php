@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>【laravel社】より個別単価登録のご連絡</title> {{-- タイトルバーとして表示 --}}
+    <title>【laravel社】より個別単価変更のご連絡</title> {{-- タイトルバーとして表示 --}}
 <p> </p>{{-- p＋空白でないと改行として機能しないメールサービスがあるので入れておく。 --}}
 </head>
 <body>
@@ -12,12 +12,12 @@
 <p>{{ $price->customer->name }} 様</p>
 <p> </p>
 <p>いつもお世話になっております。</p>
-<p>下記の通り個別単価登録が完了しました。</p>
+<p>下記の通り個別単価変更が完了しました。</p>
 <p>ご確認の程、よろしくお願いいたします。</p>
 <p>ーーーーーーーーーーーーーーーーーーーーーー</p>
-<p>【個別単価登録内容】</p>
-<p>作成日：</p>
-<p>{{ $price->created_at->format('Y/m/d') }}</p>
+<p>【個別単価変更内容】</p>
+<p>変更日：</p>
+<p>{{ $price->updated_at->format('Y/m/d') }}</p>
 <p>適用期限：</p>
 <p>{{ date('Y/m/d', strtotime($price->deadline_date)) }}</p>
 <p>商品：</p>

@@ -23,13 +23,11 @@ return new class extends Migration
             $table->date('expiration_date');  // 有効期限
             $table->timestamps();
 
-            // 外部キー制約（ユーザー情報）（ users テーブルの id カラムに関連付け）（->onDelete('cascade')は不要？）
+            // 外部キー制約（ユーザー情報）（ users テーブルの id カラムに関連付け）
             $table->foreign('user_id')->references('id')->on('users');
-            
             // 外部キー制約（ユーザー情報を顧客idとして利用）（ users テーブルの id カラムに関連付け）
             $table->foreign('customer_id')->references('id')->on('users');
-
-            // 外部キー制約（商品情報）（ items テーブルの id カラムに関連付け）（->onDelete('cascade')は不要？）
+            // 外部キー制約（商品情報）（ items テーブルの id カラムに関連付け）
             $table->foreign('item_id')->references('id')->on('items');
 
         });

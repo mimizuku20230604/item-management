@@ -23,7 +23,6 @@ class Price extends Model
     {
         return $this->belongsTo(Item::class, 'item_id');
     }
-
     // Userモデルへのリレーションを設定
     public function user()
     {
