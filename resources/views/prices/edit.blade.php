@@ -18,7 +18,6 @@
         <div class="card-header">
           <form method="post" action="{{route('price.updateConfirmed', $price)}}" >
             @csrf
-            {{-- @method('patch') --}}
               <div class="form-group">
                 <label for="item_name">商品名</label>
                 <input type="text" name="item_name" class="form-control" id="item_name" value="{{ $price->item->name }}" readonly>

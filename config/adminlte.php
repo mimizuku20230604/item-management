@@ -311,8 +311,8 @@ return [
             'icon' => 'fas fa-tags', // タグのアイコン（FontAwesomeのアイコン名）
         ],
         [
-            'text' => '発注登録',
-            'url'  => 'prices/index', // 顧客のページへのリンク prices
+            'text' => '単価確認・ご発注',
+            'url'  => 'orders/index', // 顧客のページへのリンク prices
             'icon' => 'fas fa-tags', // タグのアイコン（FontAwesomeのアイコン名）
         ],
         [

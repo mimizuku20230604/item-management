@@ -35,7 +35,7 @@
                     <th class="font-weight-normal">適用期限</th>
                     <th class="font-weight-normal">作成日</th>
                     <th class="font-weight-normal">登録者名</th>
-                    <th class="font-weight-normal">発注画面へ</th>
+                    <th class="font-weight-normal">詳細画面へ</th>
                 </tr>
             </thead>
             <tbody>

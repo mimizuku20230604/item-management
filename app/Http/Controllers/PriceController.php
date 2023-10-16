@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Price;
 use App\Models\Item; // Itemモデルを使用するためにuse宣言
 use App\Models\User; // Userモデルを使用するためにuse宣言
+use App\Models\Order; // Orderモデルを使用するためにuse宣言
 
 use Carbon\Carbon;
 
