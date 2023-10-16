@@ -58,6 +58,8 @@ class OrderController extends Controller
     // フォームから送信されたデータを取得
     $formData = $request->all();
 
+
+
     // ユーザーを取得（顧客名を表示させるため）
     // $user = User::find($formData['customer_id']);
     // 商品を取得（商品名を表示させるため）
@@ -73,19 +75,42 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        $request->validate([
-            // バリデーション後から追加する
-            'registration_price' => 'required|numeric|min:0',
-            'remarks' => 'max:500',
-        ]);
+
+        // $request->validate([
+        //     // バリデーション後から追加する？？confirmでやってるなら不要かと。。。
+        //     'registration_price' => 'required|numeric|min:0',
+        //     'remarks' => 'max:500',
+        // ]);
 
         // フォームから送信されたデータを取得
         $formData = $request->all();
 
-        // フォームデータをセッションに保存
-        $request->session()->put('order_data', $formData);
+        // カンマを削除して数値に変換
+        $unit_Price = str_replace(',', '', $formData['registration_price']);
+        $quantity = str_replace(',', '', $formData['quantity']);
+        $total_amount = str_replace(',', '', $formData['total_amount']);
 
-        return redirect()->route('order.confirm');
+
+        // データベースに保存
+        $order = new Order;
+        $order->item_id = $formData['item_id'];
+        $order->customer_id = $formData['customer_id'];
+        $order->unit_price = $unit_Price;
+        $order->quantity = $quantity;
+        $order->total_amount = $total_amount;
+        $order->request_date = $formData['request_date'];
+        $order->remarks = $formData['remarks'];
+        $order->user_id = auth()->user()->id;;
+        $order->save();
+
+        // リレーションを通じてユーザー情報を取得
+        $customer = $order->customer; // ここで $order->customer が customer_id と関連づけられたユーザーを取得します
+        $user = $order->user; // ここで $order->user が user_id と関連づけられたユーザーを取得します
+        Mail::to(config('mail.admin'))->send(new OrderForm($order));
+        Mail::to($customer->email)->send(new OrderForm($order));
+        Mail::to($user->email)->send(new OrderForm($order));
+
+        return redirect()->route('order.index')->with('success', '発注を登録しました・メールを送信しました');
     }
 
     /**

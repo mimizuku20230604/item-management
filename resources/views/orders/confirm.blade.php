@@ -47,7 +47,14 @@
                       <label for="total_amount">合計金額</label>
                       {{-- <input type="text" name="total_amount" class="form-control" id="total_amount" value="{{ number_format($formData['total_amount']) }}" readonly> --}}
                       <input type="text" name="total_amount" class="form-control" id="total_amount" value="{{ $formData['total_amount'] }}" readonly>
-
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="request_date">希望着日（未入力の場合、最短対応）</label>
+                    <input type="date" name="request_date" class="form-control" id="request_date" value="{{ $formData['request_date'] }}" readonly> {{-- デフォルト値:null --}}
                   </div>
                 </div>
               </div>

@@ -49,6 +49,15 @@
                   </div>
                 </div>
               </div>
+              <div class="form-row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="request_date">希望着日（未入力の場合、最短対応）</label>
+                    <input type="date" name="request_date" class="form-control" id="request_date" value="{{ old('deadline_date', '') }}"> {{-- デフォルト値:null --}}
+                  </div>
+                </div>
+            </div>
+
               <div class="form-group">
                 <label for="remarks">備考</label>
                 <textarea name="remarks" class="form-control" id="remarks" cols="30" rows="5">{{ old('remarks', $price->remarks) }}</textarea>
