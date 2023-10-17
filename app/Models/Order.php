@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Quote extends Model
+class Order extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'expiration_date',
+        'customer_id',
         'item_id',
         'unit_price',
         'quantity',
         'total_amount',
+        'request_date',
         'remarks',
-        'customer_id',
+        'user_id',
     ];
 
     // Itemモデルへのリレーションを設定
@@ -35,7 +35,4 @@ class Quote extends Model
     {
         return $this->belongsTo(User::class, 'customer_id');
     }
-
 }
-
-

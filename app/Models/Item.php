@@ -17,7 +17,12 @@ class Item extends Model
         'type',
         'detail',
     ];
-
+    // Userモデルへのリレーションを設定
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    
     /**
      * The attributes that should be hidden for serialization.
      *

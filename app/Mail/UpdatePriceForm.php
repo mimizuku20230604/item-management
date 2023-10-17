@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class PriceForm extends Mailable
+class UpdatePriceForm extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,7 +29,7 @@ class PriceForm extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: '【laravel社】より個別単価登録のご連絡',
+            subject: '【laravel社】より個別単価変更のご連絡',
         );
     }
 
@@ -39,7 +39,7 @@ class PriceForm extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.price',
+            view: 'emails.updateprice',
         );
     }
 

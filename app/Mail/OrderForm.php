@@ -9,18 +9,18 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class PriceForm extends Mailable
+class OrderForm extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $price;
+    public $order;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($price)
+    public function __construct($order)
     {
-        $this->price = $price;
+        $this->order = $order;
     }
 
     /**
@@ -29,7 +29,7 @@ class PriceForm extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: '【laravel社】より個別単価登録のご連絡',
+            subject: '【laravel社】より発注登録のご連絡',
         );
     }
 
@@ -39,7 +39,7 @@ class PriceForm extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.price',
+            view: 'emails.order',
         );
     }
 

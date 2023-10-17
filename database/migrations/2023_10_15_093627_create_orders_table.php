@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('prices', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
+        Schema::create('orders', function (Blueprint $table) {
+            $table->id(); // 一意の識別子
+            $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('item_id');
-            $table->unsignedBigInteger('customer_id')->nullable(); // NULL許容
-            $table->decimal('registration_price', 10, 2);
-            $table->date('deadline_date')->nullable(); // NULL許容
-            $table->text('remarks')->nullable(); // NULL許容
-            $table->timestamps();
+            $table->decimal('unit_price', 10, 2);  // 単価。decimal は、10進数の数値を定義。10は合計桁数（整数部と小数部を合わせた桁数）2は小数部の桁数（小数点以下2桁まで）
+            $table->integer('quantity');  // 数量
+            $table->integer('total_amount'); // 合計金額
+            $table->date('request_date')->nullable(); // NULL許容; // 希望納期
+            $table->text('remarks')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable(); // NULL許容;
+            $table->timestamps(); // 作成日時と更新日時
 
             // 外部キー制約（ユーザー情報）（ users テーブルの id カラムに関連付け）
             $table->foreign('user_id')->references('id')->on('users');
@@ -27,10 +29,6 @@ return new class extends Migration
             $table->foreign('customer_id')->references('id')->on('users');
             // 外部キー制約（商品情報）（ items テーブルの id カラムに関連付け）
             $table->foreign('item_id')->references('id')->on('items');
-
-            // ユニーク制約（同じ商品・顧客の組合せ重複を防ぐ）
-            $table->unique(['item_id', 'customer_id']);
-
         });
     }
 
@@ -39,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('prices');
+        Schema::dropIfExists('orders');
     }
 };

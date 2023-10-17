@@ -11,6 +11,9 @@
 
     <div class="row">
         <div class="col-12">
+
+          @include('includes.alert')
+          
             <div class="card">
                 <div class="card-header">
 

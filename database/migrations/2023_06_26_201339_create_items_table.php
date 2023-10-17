@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned()->index();
+            $table->unsignedBigInteger('user_id');
             $table->string('name', 100)->index();
             $table->string('type', 100)->nullable();
             $table->string('detail', 500)->nullable();
             $table->timestamps();
+
+            // 外部キー制約（ユーザー情報）（ users テーブルの id カラムに関連付け）
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

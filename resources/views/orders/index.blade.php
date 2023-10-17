@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', '単価一覧')
+@section('title', '単価確認・ご発注')
 
 @section('content_header')
-    <h1>単価一覧</h1>
+    <h1>単価確認・ご発注</h1>
 @stop
 
 
@@ -20,7 +20,6 @@
             <h3 class="card-title">単価一覧</h3>
             <p class="card-text text-sm">（初期表示は期限内のもののみです。）
             <div class="card-tools ml-auto">
-                <a href="{{ url('prices/create') }}" class="btn btn-primary">単価登録</a>
             </div>
         </div>
     </div>
@@ -49,7 +48,7 @@
                         <td class="text-center">{{ $price->created_at->format('Y/m/d') }}</td>
                         <td class="text-left">{{ $price->user->name }}</td> {{-- userリレーションを介してnameを表示 --}}
                         <td>
-                            <a href="{{route('price.show', $price)}}">
+                            <a href="{{route('order.show', $price)}}">
                             <button class="btn btn-outline-success btn-sm">詳細画面へ</button>
                             </a>
                         </td>
