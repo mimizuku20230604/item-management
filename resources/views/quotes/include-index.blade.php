@@ -26,6 +26,8 @@
             </thead>
             <tbody>
                 @foreach ($quotes as $quote)
+                <!-- ログインユーザーによって表示制限($quote->customer->nameを使用) -->
+                @if ($quote->customer_id === auth()->user()->id)
                     <tr class="table-bordered">
                     {{-- <tr class="table-bordered" onclick="location.href='{{route('item.show', $item)}}';"> --}}
                         <td class="text-right">{{ $quote->id }}</td>
@@ -38,6 +40,7 @@
                         <td class="text-center">{{ $quote->created_at->format('Y/m/d') }}</td>
                         <td class="text-center">{{ date('Y/m/d', strtotime($quote->expiration_date)) }}</td>
                     </tr>
+                    @endif <!-- ユーザーによって表示制限 -->
                 @endforeach
             </tbody>
         </table>

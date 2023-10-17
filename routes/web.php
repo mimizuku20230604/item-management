@@ -77,12 +77,15 @@ Route::group(['prefix' => 'orders', 'as' => 'order.'], function () {
     Route::get('create/{price}', [OrderController::class, 'create'])->name('create');
     // 確認画面を表示するルートを追加
     Route::post('confirm', [OrderController::class, 'confirm'])->name('confirm');
+    Route::post('reconfirm', [OrderController::class, 'reconfirm'])->name('reconfirm');
+    Route::post('rereconfirm', [OrderController::class, 'rereconfirm'])->name('rereconfirm');
+    Route::post('recreate', [OrderController::class, 'recreate'])->name('recreate'); // 追加
     Route::post('/', [OrderController::class, 'store'])->name('store');
     
 
-    Route::get('{price}', [OrderController::class, 'show'])->name('show');
-    Route::get('{price}/edit', [OrderController::class, 'edit'])->name('edit');
+    Route::get('{order}', [OrderController::class, 'show'])->name('show');
+    Route::get('{order}/edit', [OrderController::class, 'edit'])->name('edit');
     // Route::post('{price}/update-confirmed', [OrderController::class, 'updateConfirmed'])->name('updateConfirmed'); // 編集確認画面を表示
-    Route::patch('{price}', [OrderController::class, 'update'])->name('update');
-    Route::delete('{price}', [OrderController::class, 'destroy'])->name('destroy');
+    Route::patch('{order}', [OrderController::class, 'update'])->name('update');
+    Route::delete('{order}', [OrderController::class, 'destroy'])->name('destroy');
 });

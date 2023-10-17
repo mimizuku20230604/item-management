@@ -18,72 +18,119 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 発注一覧
      */
     public function index()
     {
-        $items = Item::all();
-        $users = User::all();
-        $query = Price::query();
-        // idカラムで降順にソートしたデータを取得
-        $prices = $query->orderBy('id', 'desc')->get();
-        return view('orders.index', compact('prices', 'items', 'users'));
+    $items = Item::all();
+    $users = User::all();
+    $query = Order::query();
+    // idカラムで降順にソートしたデータを取得
+    $orders = $query->orderBy('id', 'desc')->get();
+    return view('orders.index', compact('orders', 'items', 'users'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 発注作成
      */
     public function create(Request $request,Price $price)
     {
         // dd($price);
         $items = Item::all();
         $users = User::all();
-        return view('orders.create', compact('price', 'items', 'users'));
+
+    // セッションからフォームデータを取得
+    // $formData = $request->session()->get('order_data', []);
+    // return view('orders.create', compact('price', 'items', 'users', 'formData'));
+
+
+    // $formData = json_decode($request->input('formData'), true);
+    // return view('orders.create', compact('price', 'formData', 'items', 'users'));
+
+
+    return view('orders.create', compact('price', 'items', 'users'));
+    }
+
+    /**
+     * 発注確認
+     */
+    public function confirm(Request $request)
+    {
+          // dd($request);
+
+        // ここでデータのバリデーションなどを実行
+        // $request->validate([
+            // // バリデーション後から追加する
+            // 'remarks' => 'max:5',
+        // ]);
+
+    // フォームから送信されたデータを取得
+    $formData = $request->all();
+
+    // フォームデータをセッションに保存
+    // $request->session()->put('order_data', $formData);
+
+      // confirm画面にフォームデータを渡し、ユーザーに確認させる
+        return view('orders.confirm', compact('formData'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function confirm(Request $request)
+    public function reconfirm(Request $request)
     {
-      // dd($request);
+        // dd($request);
 
-      // ここでデータのバリデーションなどを実行
-      // $request->validate([
-      // // バリデーション後から追加する
-      // 'registration_price' => 'required|numeric|min:0',
-      // 'remarks' => 'max:500',
+        // フォームから送信されたデータを取得
+        $formData = $request->all();
+
+        // confirm画面にフォームデータを渡し、ユーザーに確認させる
+        return view('orders.reconfirm', compact('formData'));
+    }
+
+  public function rereconfirm(Request $request)
+  {
+    // dd($request);
+
+    // ここでデータのバリデーションなどを実行
+    // $request->validate([
+    // // バリデーション後から追加する
+    // 'remarks' => 'max:5',
     // ]);
 
     // フォームから送信されたデータを取得
     $formData = $request->all();
 
-
-
-    // ユーザーを取得（顧客名を表示させるため）
-    // $user = User::find($formData['customer_id']);
-    // 商品を取得（商品名を表示させるため）
-    // $item = Item::find($formData['item_id']);
-
-      // confirm画面にフォームデータを渡し、ユーザーに確認させる
-      return view('orders.confirm', compact('formData'));
-    }
+    // confirm画面にフォームデータを渡し、ユーザーに確認させる
+    return view('orders.rereconfirm', compact('formData'));
+  }
 
     /**
-     * Store a newly created resource in storage.
+     * 発注保存
      */
     public function store(Request $request)
     {
-        // dd($request);
+    // dd($request);
 
-        // $request->validate([
-        //     // バリデーション後から追加する？？confirmでやってるなら不要かと。。。
-        //     'registration_price' => 'required|numeric|min:0',
-        //     'remarks' => 'max:500',
-        // ]);
+    // // ボタンが "back" の場合、直前の画面にリダイレクト
+    // if ($request->input('back') == 'back') {
+    //   return redirect()->route('order.create', ['price' => $request->input('price_id')])->withInput();
+    // }
+    // ボタンが "back" の場合、直前の画面にリダイレクト
+    // if ($request->input('back') == 'back') {
+    //   return redirect()->back()->withInput();
+    // }
 
         // フォームから送信されたデータを取得
         $formData = $request->all();
+
+    // // "修正する" ボタンがクリックされた場合
+    // if ($request->input('back') === 'back'
+    // ) {
+    //   $priceId = $formData['price_id'];
+    //   return redirect()->route('order.create', $priceId); // create ページにリダイレクト
+    // }
+
 
         // カンマを削除して数値に変換
         $unit_Price = str_replace(',', '', $formData['registration_price']);
@@ -110,16 +157,31 @@ class OrderController extends Controller
         Mail::to($customer->email)->send(new OrderForm($order));
         Mail::to($user->email)->send(new OrderForm($order));
 
+    // セッションのフォームデータを削除
+    // session()->forget('formData');
+
         return redirect()->route('order.index')->with('success', '発注を登録しました・メールを送信しました');
     }
+
+  public function recreate(Request $request)
+  {
+    $formData = $request->session()->get('orderFormData', []);
+
+    // ここで必要なデータを再表示するための変数を用意する
+
+    return view('orders.create', compact('formData'));
+  }
+
+
+  
 
     /**
      * Display the specified resource.
      */
-    public function show(Price $price)
+    public function show(Order $order)
     {
-        // dd($price);
-        return view('orders.show', ['price' => $price]);
+        // dd($order);
+        return view('orders.show', compact('order'));
     }
 
     /**
