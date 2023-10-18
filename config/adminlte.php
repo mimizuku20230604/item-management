@@ -306,12 +306,12 @@ return [
             'icon' => 'fas fa-tags', 
         ],
         [
-            'text' => '単価一覧',
+            'text' => '単価一覧・ご発注',
             'url'  => 'prices/index', // 顧客のページへのリンク prices
             'icon' => 'fas fa-tags', // タグのアイコン（FontAwesomeのアイコン名）
         ],
         [
-            'text' => '単価確認・ご発注',
+            'text' => '発注済一覧',
             'url'  => 'orders/index', // 顧客のページへのリンク prices
             'icon' => 'fas fa-tags', // タグのアイコン（FontAwesomeのアイコン名）
         ],

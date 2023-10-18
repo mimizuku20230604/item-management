@@ -31,6 +31,7 @@
                     <th class="font-weight-normal">登録番号</th>
                     <th class="font-weight-normal">商品名</th>
                     <th class="font-weight-normal">単価</th>
+                    {{-- <th class="font-weight-normal">顧客番号</th> --}}
                     <th class="font-weight-normal">顧客名</th>
                     <th class="font-weight-normal">適用期限</th>
                     <th class="font-weight-normal">作成日</th>
@@ -40,11 +41,25 @@
             </thead>
             <tbody>
                 @foreach ($prices as $price)
+
+                <!-- ユーザーによって表示制限 -->
+                  {{-- @php --}}
+                  {{-- $currentUser = auth()->user(); --}}
+                  {{-- @endphp --}}
+                  {{-- @if ($currentUser->role === 'admin' || ($currentUser->id === $price->customer_id || is_null($price->customer_id)))  --}}
+
+
+                  <!-- ユーザーによって表示制限 -->
+                  @php
+                  $customerId = $price->customer_id;
+                  @endphp
+                  @if ($customerId === null || $customerId === auth()->user()->id)
                     <tr class="table-bordered">
                         <td class="text-right">{{ $price->id }}</td>
                         <td class="text-left">{{ $price->item->name }}</td> {{-- アイテム名を表示 --}}
                         <td class="text-right">{{ number_format($price->registration_price, 2) }}</td> 
-                        <td class="text-left">{{ $price->customer ? $price->customer->name : '全ユーザー' }}</td> {{-- ustomer?でnullを許容 --}}
+                        {{-- <td class="text-left">{{ $price->customer ? $price->customer->name : '全ユーザー' }}</td> ustomer?でnullを許容 --}}
+                        <td class="text-left">{{ $customerId ? $price->customer->name : '全ユーザー' }}</td> <!-- ユーザーによって表示制限（customerId） -->
                         <td class="text-center">{{ date('Y/m/d', strtotime($price->deadline_date)) }}</td>
                         <td class="text-center">{{ $price->created_at->format('Y/m/d') }}</td>
                         <td class="text-left">{{ $price->user->name }}</td> {{-- userリレーションを介してnameを表示 --}}
@@ -54,6 +69,7 @@
                             </a>
                         </td>
                     </tr>
+                    @endif <!-- ユーザーによって表示制限 -->
                 @endforeach
             </tbody>
         </table>

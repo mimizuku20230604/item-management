@@ -295,4 +295,14 @@ class QuoteController extends Controller
         $quotes = $query->orderBy('id', 'desc')->get();
         return view('quotes.search', compact('quotes', 'items', 'users'));
     }
+
+    /**
+     * 見積詳細画面表示
+     */
+    public function show(Quote $quote)
+    {
+        // dd($quote);
+        return view('quotes.show', compact('quote'));
+    }
+
 }

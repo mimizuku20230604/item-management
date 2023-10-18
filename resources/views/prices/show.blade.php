@@ -45,9 +45,9 @@
             <label for="remarks">備考</label>
             <textarea name="remarks" class="form-control" id="remarks" readonly>{{ $price->remarks }}</textarea>
           </div>
-
+<button class="btn btn-outline-success mt-3" onclick="location.href='{{route('order.create', $price)}}';">発注画面へ</button>
+<br>
             <button class="btn btn-outline-success mt-3" onclick="location.href='{{route('price.edit', $price)}}';">編集</button>
-
             <form method="post" action="{{route('price.destroy', $price)}}">
               @csrf
               @method('delete')
