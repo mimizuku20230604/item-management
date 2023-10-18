@@ -50,6 +50,7 @@ class OrderController extends Controller
   public function confirm(Request $request)
   {
     dd($request);
+    dump('test');
     // ここでデータはバリデーションを実行しない！
     //（create画面のリクエストとリダイレクトで返すデータが異なるため。）
     $request = $request->all();
