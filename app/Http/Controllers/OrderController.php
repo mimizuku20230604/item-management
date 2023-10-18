@@ -22,12 +22,13 @@ class OrderController extends Controller
    */
   public function index()
   {
-    $items = Item::all();
-    $users = User::all();
+    // $items = Item::all();
+    // $users = User::all();
     $query = Order::query();
     // idカラムで降順にソートしたデータを取得
     $orders = $query->orderBy('id', 'desc')->get();
-    return view('orders.index', compact('orders', 'items', 'users'));
+    // return view('orders.index', compact('orders', 'items', 'users'));
+    return view('orders.index', compact('orders'));
   }
 
   /**
@@ -37,11 +38,11 @@ class OrderController extends Controller
   {
     // dd($price);
     // dd($request);
-    $items = Item::all();
-    $users = User::all();
+    // $items = Item::all();
+    // $users = User::all();
     $request = $request->all();
-    // return view('orders.create', compact('price', 'request'));
-    return view('orders.create', compact('price', 'items', 'users', 'request'));
+    return view('orders.create', compact('price', 'request'));
+    // return view('orders.create', compact('price', 'items', 'users', 'request'));
   }
 
   /**
@@ -49,11 +50,11 @@ class OrderController extends Controller
    */
   public function confirm(Request $request)
   {
-    dd($request);
-    dump('test');
+    // dd($request);
+    // dump('test');
     // ここでデータはバリデーションを実行しない！
     //（create画面のリクエストとリダイレクトで返すデータが異なるため。）
-    $request = $request->all();
+    // $request = $request->all();
     return view('orders.confirm', compact('request'));
   }
 

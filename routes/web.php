@@ -74,10 +74,11 @@ Route::group(['prefix' => 'quotes', 'as' => 'quote.'], function () {
 // 発注画面
 Route::group(['prefix' => 'orders', 'as' => 'order.'], function () {
     Route::get('index', [OrderController::class, 'index'])->name('index'); //発注済_一覧画面
-    Route::get('{order}', [OrderController::class, 'show'])->name('show'); //発注済_詳細画面
+    
     Route::get('create/{price}', [OrderController::class, 'create'])->name('create'); //作成画面（単価より）（getで！）
     Route::get('/confirm', [OrderController::class, 'confirm'])->name('confirm'); //確認画面（単価より）（getで！）
     Route::post('/', [OrderController::class, 'store'])->name('store'); //確定画面
+    Route::get('{order}', [OrderController::class, 'show'])->name('show'); //発注済_詳細画面
 
     // 見積画面からの発注作成
     Route::get('quoteCreate', [OrderController::class, 'quoteCreate'])->name('quoteCreate');
