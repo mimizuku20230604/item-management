@@ -50,8 +50,8 @@
               <div class="form-row">
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="request_date">希望着日（未入力の場合、最短対応）</label>
-                    <input type="date" name="request_date" class="form-control" id="request_date" value="{{ !empty($request["request_date"]) ? $request["request_date"] : old('request_date', '') }}"> {{-- デフォルト値:null --}}
+                    <label for="request_date">希望着日（未入力の場合、最短対応）</label> <!-- デフォルト値:null -->
+                    <input type="date" name="request_date" class="form-control" id="request_date" value="{{ !empty($request["request_date"]) ? $request["request_date"] : old('request_date', '') }}">
                   </div>
                 </div>
             </div>
@@ -59,15 +59,10 @@
                 <label for="remarks">備考</label>
                 <textarea name="remarks" class="form-control" id="remarks" cols="30" rows="5">{{ !empty($request["remarks"]) ? $request["remarks"] : old('remarks', $price->remarks) }}</textarea>
               </div>
-
-
-
             <button type="submit" class="btn btn-outline-success mt-3">確認</button>
           </form>
           <button class="btn btn-secondary mt-3" onclick="location.href='{{route('price.show', $price)}}';">詳細へ戻る</button><br>
           <button class="btn btn-secondary mt-3" onclick="location.href='{{route('order.index')}}';">一覧へ戻る</button>
-
-
         </div>
       </div>
     </div>
@@ -79,33 +74,33 @@
 @stop
 
 @section('js')
-                                        <script>
-                                            // 各フィールドの入力要素を取得
-                                            const quantityInput = document.getElementById('quantity');
-                                            const PriceInput = document.getElementById('registration_price');
-                                            const totalAmountInput = document.getElementById('total_amount');
+  <script>
+    // 各フィールドの入力要素を取得
+    const quantityInput = document.getElementById('quantity');
+    const PriceInput = document.getElementById('registration_price');
+    const totalAmountInput = document.getElementById('total_amount');
 
-                                            // 数値をフォーマットしてカンマを削除する関数
-                                            function formatAndRemoveCommas(value) {
-                                                // カンマを削除してから数値に変換
-                                                return parseFloat(value.replace(/,/g, ''));
-                                            }
+    // 数値をフォーマットしてカンマを削除する関数
+    function formatAndRemoveCommas(value) {
+      // カンマを削除してから数値に変換
+      return parseFloat(value.replace(/,/g, ''));
+    }
 
-                                            // 合計金額を計算して設定する関数
-                                            function calculateTotalAmount() {
-                                                const quantity = formatAndRemoveCommas(quantityInput.value) || 0;
-                                                const Price = formatAndRemoveCommas(PriceInput.value) || 0;
-                                                let totalAmount = quantity * Price;
-                                                totalAmount = Math.round(totalAmount);
-                                                // 数値を桁区切りスタイルにフォーマットして設定
-                                                totalAmountInput.value = totalAmount.toLocaleString();
-                                            }
+    // 合計金額を計算して設定する関数
+    function calculateTotalAmount() {
+      const quantity = formatAndRemoveCommas(quantityInput.value) || 0;
+      const Price = formatAndRemoveCommas(PriceInput.value) || 0;
+      let totalAmount = quantity * Price;
+      totalAmount = Math.round(totalAmount);
+      // 数値を桁区切りスタイルにフォーマットして設定
+      totalAmountInput.value = totalAmount.toLocaleString();
+    }
 
-                                            // 各フィールドの入力イベントにリスナーを追加
-                                            quantityInput.addEventListener('input', calculateTotalAmount);
-                                            PriceInput.addEventListener('input', calculateTotalAmount);
+    // 各フィールドの入力イベントにリスナーを追加
+    quantityInput.addEventListener('input', calculateTotalAmount);
+    PriceInput.addEventListener('input', calculateTotalAmount);
 
-                                            // 初期状態で合計金額を計算
-                                            calculateTotalAmount();
-                                            </script>
+    // 初期状態で合計金額を計算
+    calculateTotalAmount();
+  </script>
 @stop

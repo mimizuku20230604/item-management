@@ -22,39 +22,31 @@ class OrderController extends Controller
    */
   public function index()
   {
-    // $items = Item::all();
-    // $users = User::all();
     $query = Order::query();
     // idカラムで降順にソートしたデータを取得
     $orders = $query->orderBy('id', 'desc')->get();
-    // return view('orders.index', compact('orders', 'items', 'users'));
     return view('orders.index', compact('orders'));
   }
 
   /**
-   * 発注作成
+   * 発注作成（単価より）
    */
   public function create(Request $request, Price $price)
   {
     // dd($price);
     // dd($request);
-    // $items = Item::all();
-    // $users = User::all();
     $request = $request->all();
     return view('orders.create', compact('price', 'request'));
-    // return view('orders.create', compact('price', 'items', 'users', 'request'));
   }
 
   /**
-   * 発注確認
+   * 発注確認（単価より）
    */
   public function confirm(Request $request)
   {
     // dd($request);
-    // dump('test');
     // ここでデータはバリデーションを実行しない！
     //（create画面のリクエストとリダイレクトで返すデータが異なるため。）
-    // $request = $request->all();
     return view('orders.confirm', compact('request'));
   }
 
@@ -73,6 +65,65 @@ class OrderController extends Controller
     ]);
     // カンマを削除して数値に変換
     $unit_Price = str_replace(',', '', $request->registration_price);
+    $quantity = str_replace(',', '', $request->quantity);
+    $total_amount = str_replace(',', '', $request->total_amount);
+    // データベースに保存
+    $order = new Order;
+    $order->item_id = $request->item_id;
+    $order->customer_id = $request->customer_id;
+    $order->unit_price = $unit_Price;
+    $order->quantity = $quantity;
+    $order->total_amount = $total_amount;
+    $order->request_date = $request->request_date;
+    $order->remarks = $request->remarks;
+    $order->user_id = auth()->user()->id;;
+    $order->save();
+    // リレーションを通じてユーザー情報を取得
+    $customer = $order->customer; // ここで $order->customer が customer_id と関連づけられたユーザーを取得
+    $user = $order->user; // ここで $order->user が user_id と関連づけられたユーザーを取得
+    Mail::to(config('mail.admin'))->send(new OrderForm($order));
+    Mail::to($customer->email)->send(new OrderForm($order));
+    Mail::to($user->email)->send(new OrderForm($order));
+    return redirect()->route('order.index')->with('success', '発注を登録しました・メールを送信しました');
+  }
+
+  /**
+   * 発注作成（見積より）
+   */
+  public function quoteCreate(Request $request, Quote $quote)
+  {
+    // dd($price);
+    // dd($request);
+    $request = $request->all();
+    return view('orders.quoteCreate', compact('quote', 'request'));
+  }
+
+  /**
+   * 発注確認（見積より）
+   */
+  public function quoteConfirm(Request $request)
+  {
+    // dd($request);
+    // ここでデータはバリデーションを実行しない！
+    //（create画面のリクエストとリダイレクトで返すデータが異なるため。）
+    return view('orders.quoteConfirm', compact('request'));
+  }
+
+  /**
+   * 発注保存（見積より）
+   */
+  public function quoteStore(Request $request)
+  {
+    // dd($request);
+    // dump('test');
+    // ここでバリデーションを実行。
+    // エラーになった場合、「入力画面に戻る」と案内すること。
+    $request->validate([
+      // バリデーション後から追加する
+      'remarks' => 'max:5',
+    ]);
+    // カンマを削除して数値に変換
+    $unit_Price = str_replace(',', '', $request->unit_price);
     $quantity = str_replace(',', '', $request->quantity);
     $total_amount = str_replace(',', '', $request->total_amount);
     // データベースに保存

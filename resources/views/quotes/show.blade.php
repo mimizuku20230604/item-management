@@ -1,10 +1,10 @@
 
 @extends('adminlte::page')
 
-@section('title', '見積確認')
+@section('title', '見積詳細')
 
 @section('content_header')
-    <h1>見積作成確認</h1>
+    <h1>見積詳細</h1>
 @stop
 
 @section('content')
@@ -13,8 +13,8 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-    <form method="post" action="{{ route('order.quoteCreate') }}" enctype="multipart/form-data">
-      @csrf
+    {{-- <form method="get" action="{{ route('order.quoteCreate') }}" enctype="multipart/form-data"> --}}
+      {{-- @csrf --}}
           <div class="form-group">
             <label for="user_name">顧客名</label>
             <input type="text" name="user_name" class="form-control" id="user_name" value="{{ $quote->customer->name }}" readonly>
@@ -30,14 +30,14 @@
           <div class="form-row">
             <div class="col-md-4">
               <div class="form-group">
-                <label for="quantity">数量</label>
-                <input type="text" name="quantity" class="form-control" id="quantity" value="{{ number_format($quote['quantity']) }}" readonly>
+                <label for="unit_price">単価</label>
+                <input type="text" name="unit_price" class="form-control" id="unit_price" value="{{ number_format($quote['unit_price'], 2) }}" readonly>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label for="unit_price">単価</label>
-                <input type="text" name="unit_price" class="form-control" id="unit_price" value="{{ number_format($quote['unit_price'], 2) }}" readonly>
+                <label for="quantity">数量</label>
+                <input type="text" name="quantity" class="form-control" id="quantity" value="{{ number_format($quote['quantity']) }}" readonly>
               </div>
             </div>
             <div class="col-md-4">
@@ -57,7 +57,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="today_date">作成日</label>
-                <input type="date" name="today_date" class="form-control" id="today_date" value="{{ $quote['today_date'] }}" readonly>
+                <input type="date" name="today_date" class="form-control" id="today_date" value="{{ $quote->created_at->format('Y-m-d') }}" readonly>
               </div>
             </div>
           </div>
@@ -65,8 +65,11 @@
             <label for="remarks">備考</label>
             <textarea name="remarks" class="form-control" id="remarks" readonly>{{ $quote['remarks'] }}</textarea>
           </div>
-    <button type="submit" class="btn btn-primary">発注画面へ</button>
-    </form>
+    {{-- <button type="submit" class="btn btn-primary">発注画面へ</button> --}}
+    {{-- </form> --}}
+    <button class="btn btn-outline-success mt-3" onclick="location.href='{{route('order.quoteCreate', $quote)}}';">発注画面へ</button>
+    <br>
+    <button class="btn btn-secondary mt-3" onclick="location.href='{{route('quote.index')}}';">一覧へ戻る</button>
         </div>
 
       </div>

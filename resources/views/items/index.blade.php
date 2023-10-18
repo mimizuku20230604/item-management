@@ -14,9 +14,9 @@
 
         @include('includes.alert')
 
+
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">商品一覧</h3>
 
                     <div class="card-tools">
                         <div class="input-group">
