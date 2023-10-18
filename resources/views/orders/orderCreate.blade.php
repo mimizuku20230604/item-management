@@ -1,10 +1,10 @@
 
 @extends('adminlte::page')
 
-@section('title', '修正画面')
+@section('title', '発注登録')
 
 @section('content_header')
-    <h1>修正画面</h1>
+    <h1>発注登録</h1>
 @stop
 
 @section('content')
@@ -16,35 +16,36 @@
 
       <div class="card">
         <div class="card-header">
-          <form method="post" action="{{route('order.rereconfirm')}}" >
+          <form method="post" action="{{route('order.confirm')}}" >
             @csrf
               <div class="form-group">
+                <input type="hidden" name="price_id" value="{{ $price->id }}">
                 <label for="item_id">商品名</label>
-                <input type="hidden" name="item_id" value="{{ $formData['item_id'] }}">
-                <input type="text" class="form-control" name="item_name" id="item_name" value="{{ $formData['item_name'] }}" readonly>
+                <input type="hidden" name="item_id" value="{{ $price->item->id }}">
+                <input type="text" class="form-control" name="item_name" id="item_name" value="{{ $price->item->name }}" readonly>
               </div>
               <div class="form-group">
                   <label for="customer_id">顧客名</label>
-                  <input type="hidden" name="customer_id" value="{{ $formData['customer_id'] }}">
-                  <input type="text" class="form-control" name="customer_name" id="customer_name" value="{{ $formData['customer_name'] }}" readonly>
+                  <input type="hidden" name="customer_id" value="{{ auth()->user()->id }}">
+                  <input type="text" class="form-control" name="customer_name" id="customer_name" value="{{ auth()->user()->name }}" readonly>
               </div>
               <div class="form-row">
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="registration_price">単価</label>
-                    <input type="text" name="registration_price" class="form-control" id="registration_price" value="{{ $formData['registration_price'] }}" readonly>
+                    <input type="text" name="registration_price" class="form-control" id="registration_price" value="{{ number_format($price->registration_price, 2) }}" readonly>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                       <label for="quantity">数量</label>
-                      <input type="text" name="quantity" class="form-control" id="quantity" value="{{ number_format($formData['quantity']) }}">
+                      <input type="text" name="quantity" class="form-control" id="quantity" value="{{old('quantity')}}" placeholder="数量を入力してください">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                       <label for="total_amount">合計金額</label>
-                      <input type="text" name="total_amount" class="form-control" id="total_amount" value="{{ $formData['total_amount'] }}" readonly>
+                      <input type="text" name="total_amount" class="form-control" id="total_amount" readonly>
                   </div>
                 </div>
               </div>
@@ -52,18 +53,23 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="request_date">希望着日（未入力の場合、最短対応）</label>
-                    <input type="date" name="request_date" class="form-control" id="request_date" value="{{ $formData['request_date'] }}"> {{-- デフォルト値:null --}}
+                    <input type="date" name="request_date" class="form-control" id="request_date" value="{{ old('request_date', '') }}"> {{-- デフォルト値:null --}}
                   </div>
                 </div>
-              </div>
+            </div>
               <div class="form-group">
                 <label for="remarks">備考</label>
-                <textarea name="remarks" class="form-control" id="remarks">{{ $formData['remarks'] }}</textarea>
+                <textarea name="remarks" class="form-control" id="remarks" cols="30" rows="5">{{ old('remarks', $price->remarks) }}</textarea>
               </div>
+
+
+
             <button type="submit" class="btn btn-outline-success mt-3">確認</button>
           </form>
-          <br>
+          <button class="btn btn-secondary mt-3" onclick="location.href='{{route('order.show', $price)}}';">詳細へ戻る</button><br>
           <button class="btn btn-secondary mt-3" onclick="location.href='{{route('order.index')}}';">一覧へ戻る</button>
+
+
         </div>
       </div>
     </div>
@@ -75,23 +81,7 @@
 @stop
 
 @section('js')
-  <script>
-    // 高さを自動調整する関数
-    function autoResizeTextarea(element) {
-      element.style.height = "1px";
-      element.style.height = (element.scrollHeight) + "px";
-    }
-    // ページ読み込み時に実行
-    document.addEventListener("DOMContentLoaded", function () {
-      const textarea = document.getElementById("remarks");
-      autoResizeTextarea(textarea);
-      // ウィンドウのリサイズ時にも実行
-      window.addEventListener("resize", function () {
-      autoResizeTextarea(textarea);
-      });
-    });
-  </script>
-                                          <script>
+                                        <script>
                                             // 各フィールドの入力要素を取得
                                             const quantityInput = document.getElementById('quantity');
                                             const PriceInput = document.getElementById('registration_price');
