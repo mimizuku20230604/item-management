@@ -38,17 +38,9 @@ class OrderController extends Controller
         // dd($price);
         $items = Item::all();
         $users = User::all();
+    $request = $request->all();
 
-    // セッションからフォームデータを取得
-    // $formData = $request->session()->get('order_data', []);
-    // return view('orders.create', compact('price', 'items', 'users', 'formData'));
-
-
-    // $formData = json_decode($request->input('formData'), true);
-    // return view('orders.create', compact('price', 'formData', 'items', 'users'));
-
-
-    return view('orders.create', compact('price', 'items', 'users'));
+    return view('orders.create', compact('price', 'items','users', 'request'));
     }
 
     /**
@@ -58,52 +50,13 @@ class OrderController extends Controller
     {
           // dd($request);
 
-        // ここでデータのバリデーションなどを実行
-        // $request->validate([
-            // // バリデーション後から追加する
-            // 'remarks' => 'max:5',
-        // ]);
-
     // フォームから送信されたデータを取得
     $formData = $request->all();
-
-    // フォームデータをセッションに保存
-    // $request->session()->put('order_data', $formData);
 
       // confirm画面にフォームデータを渡し、ユーザーに確認させる
         return view('orders.confirm', compact('formData'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function reconfirm(Request $request)
-    {
-        // dd($request);
-
-        // フォームから送信されたデータを取得
-        $formData = $request->all();
-
-        // confirm画面にフォームデータを渡し、ユーザーに確認させる
-        return view('orders.reconfirm', compact('formData'));
-    }
-
-  public function rereconfirm(Request $request)
-  {
-    // dd($request);
-
-    // ここでデータのバリデーションなどを実行
-    // $request->validate([
-    // // バリデーション後から追加する
-    // 'remarks' => 'max:5',
-    // ]);
-
-    // フォームから送信されたデータを取得
-    $formData = $request->all();
-
-    // confirm画面にフォームデータを渡し、ユーザーに確認させる
-    return view('orders.rereconfirm', compact('formData'));
-  }
 
     /**
      * 発注保存
@@ -111,25 +64,18 @@ class OrderController extends Controller
     public function store(Request $request)
     {
     // dd($request);
+    // dump('test');
+    // ここでバリデーションを実行。
+    // エラーになった場合、「入力画面に戻る」と案内すること。
+    $request->validate([
+      // バリデーション後から追加する
+      'remarks' => 'max:5',
+    ]);
 
-    // // ボタンが "back" の場合、直前の画面にリダイレクト
-    // if ($request->input('back') == 'back') {
-    //   return redirect()->route('order.create', ['price' => $request->input('price_id')])->withInput();
-    // }
-    // ボタンが "back" の場合、直前の画面にリダイレクト
-    // if ($request->input('back') == 'back') {
-    //   return redirect()->back()->withInput();
-    // }
 
         // フォームから送信されたデータを取得
         $formData = $request->all();
 
-    // // "修正する" ボタンがクリックされた場合
-    // if ($request->input('back') === 'back'
-    // ) {
-    //   $priceId = $formData['price_id'];
-    //   return redirect()->route('order.create', $priceId); // create ページにリダイレクト
-    // }
 
 
         // カンマを削除して数値に変換

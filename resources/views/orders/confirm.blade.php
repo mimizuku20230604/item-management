@@ -63,10 +63,9 @@
 
             <button type="submit" class="btn btn-outline-success mt-3">確定</button>
 
-            <button type="submit" name="back" value="back" class="btn btn-secondary">戻る（テスト1（store））</button>
-
           </form>
-                  <form method="post" action="{{ route('order.reconfirm') }}">
+                  {{-- <form method="post" action="{{ route('order.reconfirm') }}"> --}}
+                    <form method="get" action="/orders/create/{{ $formData['price_id'] }}">
                   @csrf
                     {{-- <input type="text" name="item_id" value="{{ $formData['item_id'] }}"> --}}
                     <input type="hidden" name="item_id" value="{{ $formData['item_id'] }}">
@@ -81,31 +80,6 @@
                   <button type="submit" class="btn btn-secondary mt-3">入力画面に戻る</button>
                   </form>
                   <button class="btn btn-secondary mt-3" onclick="location.href='{{route('order.index')}}';">一覧へ戻る</button>
-
-
-
-          <button type="button" class="btn btn-outline-secondary mt-3" onclick="window.history.back();">戻る（テスト2（back））</button>
-          <button class="btn btn-secondary mt-3" onclick="location.href='{{ route('order.recreate') }}';">戻る（テスト2（recreate））</button>
-
-
-
-{{-- <form method="post" action="{{ route('order.create', $price) }}">
-    @csrf
-    <button type="submit" class="btn btn-secondary mt-3">修正する</button>
-</form> --}}
-
-{{-- <form method="post" action="{{ route('order.create') }}">
-    @csrf
-    <input type="hidden" name="formData" value="{{ json_encode($formData) }}">
-    <button type="submit" class="btn btn-secondary mt-3">修正する</button>
-</form> --}}
-
-{{-- <form method="post" action="{{ route('order.create') }}">
-    @csrf
-    <button type="submit" class="btn btn-secondary mt-3">修正する</button>
-</form> --}}
-
-
 
         </div>
       </div>
