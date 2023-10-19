@@ -59,7 +59,7 @@ class OrderController extends Controller
    */
   public function store(Request $request)
   {
-    dd($request);
+    // dd($request);
     // dump('test');
     // ここでバリデーションを実行。
     // エラーになった場合、「入力画面に戻る」と案内すること。
