@@ -35,7 +35,10 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="quantity">数量</label>
-                    <input type="text" name="quantity" class="form-control" id="quantity" value="{{ number_format($request->quantity) }}" readonly>
+                    <input type="text" name="quantity" class="form-control @if($errors->has('quantity')) is-invalid @endif" id="quantity" value="{{ number_format($request->quantity) }}" readonly>
+                    @if($errors->has('quantity'))
+                      <div class="invalid-feedback">必須項目（数字のみ・1以上・10桁以内）</div>
+                    @endif
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -49,13 +52,19 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="request_date">希望着日（未入力の場合、最短対応）</label> <!-- デフォルト値:null -->
-                    <input type="date" name="request_date" class="form-control" id="request_date" value="{{ $request->request_date }}" readonly>
+                    <input type="date" name="request_date" class="form-control @if($errors->has('request_date')) is-invalid @endif" id="request_date" value="{{ $request->request_date }}" readonly>
+                    @if($errors->has('request_date'))
+                      <div class="invalid-feedback">指定する場合、翌日以降</div>
+                    @endif
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label for="remarks">備考</label>
-                <textarea name="remarks" class="form-control" id="remarks" readonly>{{ $request->remarks }}</textarea>
+                <textarea name="remarks" class="form-control @if($errors->has('remarks')) is-invalid @endif" id="remarks" readonly>{{ $request->remarks }}</textarea>
+                @if($errors->has('remarks'))
+                  <div class="invalid-feedback">500文字以内</div>
+                @endif
               </div>
             <button type="submit" class="btn btn-outline-success mt-3">確定</button>
           </form>

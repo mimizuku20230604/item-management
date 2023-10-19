@@ -37,7 +37,10 @@
                 <div class="col-md-4">
                   <div class="form-group">
                       <label for="quantity">数量</label>
-                      <input type="text" name="quantity" class="form-control" id="quantity" value="{{ !empty($request["quantity"]) ? $request["quantity"] : old('quantity') }}" placeholder="数量を入力してください">
+                      <input type="text" name="quantity" class="form-control @if($errors->has('quantity')) is-invalid @endif" id="quantity" value="{{ !empty($request["quantity"]) ? $request["quantity"] : old('quantity') }}" placeholder="数量を入力してください">
+                      @if($errors->has('quantity'))
+                        <div class="invalid-feedback">必須項目です（数字のみ・1以上・10桁以内）</div>
+                      @endif
                   </div>
                 </div>
                 <div class="col-md-4">
