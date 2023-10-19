@@ -37,10 +37,9 @@
                 <div class="col-md-4">
                   <div class="form-group">
                       <label for="quantity">数量</label>
-                      <input type="text" name="quantity" class="form-control @if($errors->has('quantity')) is-invalid @endif" id="quantity" value="{{ !empty($request["quantity"]) ? $request["quantity"] : old('quantity') }}" placeholder="数量を入力してください">
-                      @if($errors->has('quantity'))
-                        <div class="invalid-feedback">必須項目です（数字のみ・1以上・10桁以内）</div>
-                      @endif
+                      <input type="text" name="quantity" class="form-control" id="quantity" value="{{ !empty($request["quantity"]) ? $request["quantity"] : old('quantity') }}" placeholder="数量を入力してください">
+                      {{-- <input type="text" name="quantity" class="form-control" id="quantity" value="{{ !empty($request["quantity"]) ? $request["quantity"] : old('quantity') }}" placeholder="数量を入力してください" oninput="validateNumber(this)"> --}}
+                      {{-- <div id="quantityError" style="color: red;"></div> --}}
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -78,32 +77,80 @@
 
 @section('js')
   <script>
+    // // 各フィールドの入力要素を取得
+    // const quantityInput = document.getElementById('quantity');
+    // const PriceInput = document.getElementById('registration_price');
+    // const totalAmountInput = document.getElementById('total_amount');
+
+    // // 数値をフォーマットしてカンマを削除する関数
+    // function formatAndRemoveCommas(value) {
+    //   // カンマを削除してから数値に変換
+    //   return parseFloat(value.replace(/,/g, ''));
+    // }
+
+    // // 合計金額を計算して設定する関数
+    // function calculateTotalAmount() {
+    //   const quantity = formatAndRemoveCommas(quantityInput.value) || 0;
+    //   const Price = formatAndRemoveCommas(PriceInput.value) || 0;
+    //   let totalAmount = quantity * Price;
+    //   totalAmount = Math.round(totalAmount);
+    //   // 数値を桁区切りスタイルにフォーマットして設定
+    //   totalAmountInput.value = totalAmount.toLocaleString();
+    // }
+
+    // // 各フィールドの入力イベントにリスナーを追加
+    // quantityInput.addEventListener('input', calculateTotalAmount);
+    // PriceInput.addEventListener('input', calculateTotalAmount);
+
+    // // 初期状態で合計金額を計算
+    // calculateTotalAmount();
+
+
     // 各フィールドの入力要素を取得
-    const quantityInput = document.getElementById('quantity');
-    const PriceInput = document.getElementById('registration_price');
-    const totalAmountInput = document.getElementById('total_amount');
+const quantityInput = document.getElementById('quantity');
+const PriceInput = document.getElementById('registration_price');
+const totalAmountInput = document.getElementById('total_amount');
 
-    // 数値をフォーマットしてカンマを削除する関数
-    function formatAndRemoveCommas(value) {
-      // カンマを削除してから数値に変換
-      return parseFloat(value.replace(/,/g, ''));
-    }
+// 数値をフォーマットしてカンマを削除する関数
+function formatAndRemoveCommas(value) {
+  // カンマを削除してから数値に変換
+  return parseFloat(value.replace(/,/g, ''));
+}
 
-    // 合計金額を計算して設定する関数
-    function calculateTotalAmount() {
-      const quantity = formatAndRemoveCommas(quantityInput.value) || 0;
-      const Price = formatAndRemoveCommas(PriceInput.value) || 0;
-      let totalAmount = quantity * Price;
-      totalAmount = Math.round(totalAmount);
-      // 数値を桁区切りスタイルにフォーマットして設定
-      totalAmountInput.value = totalAmount.toLocaleString();
-    }
+// 合計金額を計算して設定する関数
+function calculateTotalAmount() {
+  let quantity = formatAndRemoveCommas(quantityInput.value) || 0;
+  const Price = formatAndRemoveCommas(PriceInput.value) || 0;
+  
+  // 小数点以下を切り捨てる
+  quantity = Math.floor(quantity);
 
-    // 各フィールドの入力イベントにリスナーを追加
-    quantityInput.addEventListener('input', calculateTotalAmount);
-    PriceInput.addEventListener('input', calculateTotalAmount);
+  let totalAmount = quantity * Price;
+  totalAmount = Math.round(totalAmount);
 
-    // 初期状態で合計金額を計算
-    calculateTotalAmount();
+  // 数値を桁区切りスタイルにフォーマットして設定
+  totalAmountInput.value = totalAmount.toLocaleString();
+}
+
+// 各フィールドの入力イベントにリスナーを追加
+quantityInput.addEventListener('input', calculateTotalAmount);
+PriceInput.addEventListener('input', calculateTotalAmount);
+
+// 初期状態で合計金額を計算
+calculateTotalAmount();
+
+
+
+    // function validateNumber(input) {
+    // const value = input.value;
+    // const isNumeric = /^[0-9]*$/.test(value); // 数字のみかどうかをチェック
+    // if (!isNumeric) {
+    //     document.getElementById('quantityError').textContent = '数字以外は入力できません';
+    // } else {
+    //     document.getElementById('quantityError').textContent = ''; // エラーメッセージをクリア
+    // }
+// }
+
+
   </script>
 @stop

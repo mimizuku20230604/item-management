@@ -62,24 +62,28 @@ class OrderController extends Controller
   {
     // dd($request);
     // dump('test');
+
     // ここでバリデーションを実行。
     $request->validate([
       // バリデーション後から追加する
       'quantity' => 'integer|digits_between:1,10|min:1',
-      'request_date' => 'nullable|date|after_or_equal:today',
-      'remarks' => 'max:5',
+      'request_date' => 'nullable|date|after_or_equal:tomorrow',
+      // 'remarks' => 'max:500',
+      'remarks' => 'max:7',
     ]);
 
     // カンマを削除して数値に変換
     $unit_Price = str_replace(',', '', $request->registration_price);
-    $quantity = str_replace(',', '', $request->quantity);
+    // $quantity = str_replace(',', '', $request->quantity);
     $total_amount = str_replace(',', '', $request->total_amount);
+
     // データベースに保存
     $order = new Order;
     $order->item_id = $request->item_id;
     $order->customer_id = $request->customer_id;
     $order->unit_price = $unit_Price;
-    $order->quantity = $quantity;
+    // $order->quantity = $quantity;
+    $order->quantity = $request->quantity;
     $order->total_amount = $total_amount;
     $order->request_date = $request->request_date;
     $order->remarks = $request->remarks;
