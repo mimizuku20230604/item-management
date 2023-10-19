@@ -35,7 +35,8 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="quantity">数量</label>
-                    <input type="hidden" name="quantity" value="{{ floor(str_replace(',', '', $request->quantity)) }}">
+                    {{-- <input type="hidden" name="quantity" value="{{ floor(str_replace(',', '', $request->quantity)) }}"> --}}
+                    <input type="hidden" name="quantity" value="{{ is_numeric($request->quantity) ? floor(str_replace(',', '', $request->quantity)) : '' }}">
                     <input type="text" class="form-control @if($errors->has('quantity')) is-invalid @endif" id="quantity" value="{{ is_numeric($request->quantity) ? number_format($request->quantity) : $request->quantity }}" readonly>
                     @if($errors->has('quantity'))
                       <div class="invalid-feedback">必須項目です（数字のみ・1以上・10桁以内）</div>
@@ -80,7 +81,6 @@
             <input type="hidden" name="customer_id" value="{{ $request->customer_id }}">
             <input type="hidden" name="customer_name" value="{{ $request->customer_name }}">
             <input type="hidden" name="registration_price" value="{{ $request->registration_price }}">
-            {{-- <input type="hidden" name="quantity" value="{{ number_format($request->quantity) }}"> --}}
             <input type="hidden" name="quantity" value="{{ is_numeric($request->quantity) ? number_format($request->quantity) : $request->quantity }}">
             <input type="hidden" name="total_amount" value="{{ $request->total_amount }}">
             <input type="hidden" name="request_date" value="{{ $request->request_date }}">
