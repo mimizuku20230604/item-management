@@ -65,7 +65,6 @@ class OrderController extends Controller
 
     // ここでバリデーションを実行。
     $request->validate([
-      // バリデーション後から追加する
       'quantity' => 'integer|digits_between:1,10|min:1',
       'request_date' => 'nullable|date|after_or_equal:tomorrow',
       // 'remarks' => 'max:500',
@@ -89,6 +88,7 @@ class OrderController extends Controller
     $order->remarks = $request->remarks;
     $order->user_id = auth()->user()->id;;
     $order->save();
+
     // リレーションを通じてユーザー情報を取得
     $customer = $order->customer; // ここで $order->customer が customer_id と関連づけられたユーザーを取得
     $user = $order->user; // ここで $order->user が user_id と関連づけられたユーザーを取得
@@ -127,12 +127,14 @@ class OrderController extends Controller
   {
     // dd($request);
     // dump('test');
+
     // ここでバリデーションを実行。
-    // エラーになった場合、「入力画面に戻る」と案内すること。
     $request->validate([
-      // バリデーション後から追加する
-      'remarks' => 'max:5',
+      'request_date' => 'nullable|date|after_or_equal:tomorrow',
+      // 'remarks' => 'max:500',
+      'remarks' => 'max:7',
     ]);
+
     // カンマを削除して数値に変換
     $unit_Price = str_replace(',', '', $request->unit_price);
     $quantity = str_replace(',', '', $request->quantity);
@@ -148,6 +150,7 @@ class OrderController extends Controller
     $order->remarks = $request->remarks;
     $order->user_id = auth()->user()->id;;
     $order->save();
+
     // リレーションを通じてユーザー情報を取得
     $customer = $order->customer; // ここで $order->customer が customer_id と関連づけられたユーザーを取得
     $user = $order->user; // ここで $order->user が user_id と関連づけられたユーザーを取得

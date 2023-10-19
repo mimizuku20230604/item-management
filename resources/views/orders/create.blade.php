@@ -77,35 +77,6 @@
 
 @section('js')
   <script>
-    // // 各フィールドの入力要素を取得
-    // const quantityInput = document.getElementById('quantity');
-    // const PriceInput = document.getElementById('registration_price');
-    // const totalAmountInput = document.getElementById('total_amount');
-
-    // // 数値をフォーマットしてカンマを削除する関数
-    // function formatAndRemoveCommas(value) {
-    //   // カンマを削除してから数値に変換
-    //   return parseFloat(value.replace(/,/g, ''));
-    // }
-
-    // // 合計金額を計算して設定する関数
-    // function calculateTotalAmount() {
-    //   const quantity = formatAndRemoveCommas(quantityInput.value) || 0;
-    //   const Price = formatAndRemoveCommas(PriceInput.value) || 0;
-    //   let totalAmount = quantity * Price;
-    //   totalAmount = Math.round(totalAmount);
-    //   // 数値を桁区切りスタイルにフォーマットして設定
-    //   totalAmountInput.value = totalAmount.toLocaleString();
-    // }
-
-    // // 各フィールドの入力イベントにリスナーを追加
-    // quantityInput.addEventListener('input', calculateTotalAmount);
-    // PriceInput.addEventListener('input', calculateTotalAmount);
-
-    // // 初期状態で合計金額を計算
-    // calculateTotalAmount();
-
-
     // 各フィールドの入力要素を取得
 const quantityInput = document.getElementById('quantity');
 const PriceInput = document.getElementById('registration_price');
@@ -140,7 +111,6 @@ PriceInput.addEventListener('input', calculateTotalAmount);
 calculateTotalAmount();
 
 
-
     // function validateNumber(input) {
     // const value = input.value;
     // const isNumeric = /^[0-9]*$/.test(value); // 数字のみかどうかをチェック
@@ -149,8 +119,7 @@ calculateTotalAmount();
     // } else {
     //     document.getElementById('quantityError').textContent = ''; // エラーメッセージをクリア
     // }
-// }
-
+    // }
 
   </script>
 @stop
