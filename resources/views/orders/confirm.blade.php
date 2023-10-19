@@ -35,9 +35,10 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="quantity">数量</label>
-                    <input type="text" name="quantity" class="form-control @if($errors->has('quantity')) is-invalid @endif" id="quantity" value="{{ number_format($request->quantity) }}" readonly>
+                    <input type="hidden" name="quantity" value="{{ floor(str_replace(',', '', $request->quantity)) }}">
+                    <input type="text" class="form-control @if($errors->has('quantity')) is-invalid @endif" id="quantity" value="{{ is_numeric($request->quantity) ? number_format($request->quantity) : $request->quantity }}" readonly>
                     @if($errors->has('quantity'))
-                      <div class="invalid-feedback">必須項目（数字のみ・1以上・10桁以内）</div>
+                      <div class="invalid-feedback">必須項目です（数字のみ・1以上・10桁以内）</div>
                     @endif
                   </div>
                 </div>
@@ -54,7 +55,7 @@
                     <label for="request_date">希望着日（未入力の場合、最短対応）</label> <!-- デフォルト値:null -->
                     <input type="date" name="request_date" class="form-control @if($errors->has('request_date')) is-invalid @endif" id="request_date" value="{{ $request->request_date }}" readonly>
                     @if($errors->has('request_date'))
-                      <div class="invalid-feedback">指定する場合、翌日以降</div>
+                      <div class="invalid-feedback">指定する場合、翌日以降です</div>
                     @endif
                   </div>
                 </div>
@@ -63,7 +64,7 @@
                 <label for="remarks">備考</label>
                 <textarea name="remarks" class="form-control @if($errors->has('remarks')) is-invalid @endif" id="remarks" readonly>{{ $request->remarks }}</textarea>
                 @if($errors->has('remarks'))
-                  <div class="invalid-feedback">500文字以内</div>
+                  <div class="invalid-feedback">500文字以内です</div>
                 @endif
               </div>
             <button type="submit" class="btn btn-outline-success mt-3">確定</button>
@@ -79,7 +80,8 @@
             <input type="hidden" name="customer_id" value="{{ $request->customer_id }}">
             <input type="hidden" name="customer_name" value="{{ $request->customer_name }}">
             <input type="hidden" name="registration_price" value="{{ $request->registration_price }}">
-            <input type="hidden" name="quantity" value="{{ number_format($request->quantity) }}">
+            {{-- <input type="hidden" name="quantity" value="{{ number_format($request->quantity) }}"> --}}
+            <input type="hidden" name="quantity" value="{{ is_numeric($request->quantity) ? number_format($request->quantity) : $request->quantity }}">
             <input type="hidden" name="total_amount" value="{{ $request->total_amount }}">
             <input type="hidden" name="request_date" value="{{ $request->request_date }}">
             <input type="hidden" name="remarks" value="{{ $request->remarks }}">
