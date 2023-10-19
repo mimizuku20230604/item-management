@@ -75,20 +75,15 @@ Route::group(['prefix' => 'quotes', 'as' => 'quote.'], function () {
 Route::group(['prefix' => 'orders', 'as' => 'order.'], function () {
     Route::get('index', [OrderController::class, 'index'])->name('index'); //発注済_一覧画面
     Route::get('create/{price}', [OrderController::class, 'create'])->name('create'); //作成画面（単価より）
-    Route::get('/confirm', [OrderController::class, 'confirm'])->name('confirm'); //確認画面（単価より）（getで！）
-    Route::post('/', [OrderController::class, 'store'])->name('store'); //確定画面
-
-    // 見積画面からの発注作成
     Route::get('quoteCreate/{quote}', [OrderController::class, 'quoteCreate'])->name('quoteCreate'); //作成画面（見積より）
+    Route::get('/confirm', [OrderController::class, 'confirm'])->name('confirm'); //確認画面（単価より）（getで！）
     Route::get('/quoteConfirm', [OrderController::class, 'quoteConfirm'])->name('quoteConfirm'); //確認画面（見積より）（getで！）
+    Route::post('/', [OrderController::class, 'store'])->name('store'); //確定画面
     Route::post('/', [OrderController::class, 'quoteStore'])->name('quoteStore'); //確定画面（見積より）
-
     Route::get('{order}', [OrderController::class, 'show'])->name('show'); //発注済_詳細画面
-    
-    Route::get('{order}/edit', [OrderController::class, 'edit'])->name('edit');
-    // Route::post('{price}/update-confirmed', [OrderController::class, 'updateConfirmed'])->name('updateConfirmed'); // 編集確認画面を表示
-    Route::patch('{order}', [OrderController::class, 'update'])->name('update');
-    Route::delete('{order}', [OrderController::class, 'destroy'])->name('destroy');
+    // Route::get('{order}/edit', [OrderController::class, 'edit'])->name('edit');
+    // Route::patch('{order}', [OrderController::class, 'update'])->name('update');
+    // Route::delete('{order}', [OrderController::class, 'destroy'])->name('destroy');
 
 
 

@@ -10,10 +10,14 @@ use App\Models\Price; // Priceモデルを使用するためにuse宣言
 
 use Carbon\Carbon;
 
+use Illuminate\Validation\ValidationException;
+
+
 use Illuminate\Support\Facades\Mail; // メール機能
 use App\Mail\OrderForm; // メール機能
 
 use Illuminate\Http\Request;
+
 
 class OrderController extends Controller
 {
@@ -55,14 +59,25 @@ class OrderController extends Controller
    */
   public function store(Request $request)
   {
-    // dd($request);
+    dd($request);
     // dump('test');
     // ここでバリデーションを実行。
     // エラーになった場合、「入力画面に戻る」と案内すること。
-    $request->validate([
-      // バリデーション後から追加する
-      'remarks' => 'max:5',
-    ]);
+    // $request->validate([
+    //   // バリデーション後から追加する
+    //   'remarks' => 'max:5',
+    // ]);
+
+    // try {
+    //   $request->validate([
+    //     'remarks' => 'max:5',
+    //   ]);
+    // } catch (ValidationException $e) {
+    //   return redirect()->back()->with('error', '戻るボタンで戻ってください');
+    // }
+
+
+
     // カンマを削除して数値に変換
     $unit_Price = str_replace(',', '', $request->registration_price);
     $quantity = str_replace(',', '', $request->quantity);
