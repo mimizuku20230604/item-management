@@ -25,7 +25,10 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">名前</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="名前">
+                            <input type="text" class="form-control @if($errors->has('name')) is-invalid @endif" id="name" name="name" placeholder="名前">
+                            @if($errors->has('name'))
+                                <div class="invalid-feedback">必須項目です（数字のみ・1以上・10桁以内）</div>
+                            @endif
                         </div>
 
                         <div class="form-group">

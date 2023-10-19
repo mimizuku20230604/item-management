@@ -8,9 +8,9 @@
 @stop
 
 @section('content')
-
   <div class="row">
     <div class="col-12">
+      @include('includes.alert')
       <div class="card">
         <div class="card-header">
           <div class="form-group">
@@ -63,7 +63,6 @@
             <label for="remarks">備考</label>
             <textarea name="remarks" class="form-control" id="remarks" readonly>{{ $quoteData['remarks'] }}</textarea>
           </div>
-
           <form method="post" action="{{ route('quote.storeConfirmed') }}">
             @csrf
             <!-- フォームの入力内容を再度セット -->
@@ -81,7 +80,6 @@
       </div>
     </div>
   </div>
-  
 @endsection
 
 @section('css')
