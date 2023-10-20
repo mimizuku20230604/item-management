@@ -39,7 +39,7 @@ class OrderController extends Controller
   {
     // dd($price);
     // dd($request);
-    $request = $request->all();
+    // $request = $request->all();
     return view('orders.create', compact('price', 'request'));
   }
 
