@@ -292,12 +292,12 @@ return [
     'menu' => [
         [
             'text' => '商品登録',
-            'url'  => 'items/add',
-            'icon' => 'fas fa-cube',
+            'url'  => 'items/create',
+            'icon' => 'fas fa-cube',// タグのアイコン（FontAwesomeのアイコン名）
         ],
         [
             'text' => '商品一覧',
-            'url'  => 'items',
+            'url'  => 'items/index',
             'icon' => 'fas fa-cube',
         ],
         [
@@ -307,13 +307,13 @@ return [
         ],
         [
             'text' => '単価一覧・ご発注',
-            'url'  => 'prices/index', // 顧客のページへのリンク prices
-            'icon' => 'fas fa-tags', // タグのアイコン（FontAwesomeのアイコン名）
+            'url'  => 'prices/index',
+            'icon' => 'fas fa-tags',
         ],
         [
             'text' => '発注済一覧',
-            'url'  => 'orders/index', // 顧客のページへのリンク prices
-            'icon' => 'fas fa-tags', // タグのアイコン（FontAwesomeのアイコン名）
+            'url'  => 'orders/index',
+            'icon' => 'fas fa-tags',
         ],
         [
             'text' => '見積作成',

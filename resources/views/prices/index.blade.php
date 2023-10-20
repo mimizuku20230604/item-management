@@ -17,10 +17,10 @@
   <div class="card">
     <div class="card-header">
         <div class="input-group">
-            <p class="card-text text-sm">（初期表示は期限内のもののみです。）
-            <div class="card-tools ml-auto">
-                <a href="{{ url('prices/create') }}" class="btn btn-primary">単価登録</a>
-            </div>
+          <p class="card-text text-sm">（初期表示は期限内のもののみです。）
+          <div class="card-tools ml-auto">
+            <a href="{{ url('prices/create') }}" class="btn btn-primary">単価登録</a>
+          </div>
         </div>
     </div>
     <div class="card-body table-responsive p-0">

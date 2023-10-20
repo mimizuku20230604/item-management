@@ -25,19 +25,21 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// 商品画面表示
+
+// 商品画面
 Route::group(['prefix' => 'items', 'as' => 'item.'], function () {
-    Route::get('/', [ItemController::class, 'index'])->name('index');
-    Route::get('/add', [ItemController::class, 'add'])->name('get_add');
-    Route::post('/add', [ItemController::class, 'add'])->name('post_add');
+    Route::get('index', [ItemController::class, 'index'])->name('index');
+    Route::get('create', [ItemController::class, 'create'])->name('create');
+    Route::get('confirm', [ItemController::class, 'confirm'])->name('confirm');
+    Route::post('store', [ItemController::class, 'store'])->name('store');
     Route::get('{item}', [ItemController::class, 'show'])->name('show');
-    // Route::get('{item}/edit', [ItemController::class, 'edit'])->name('edit');
-    // Route::patch('{item}', [ItemController::class, 'update'])->name('update');
-    // Route::delete('{item}', [ItemController::class, 'destroy'])->name('destroy');
+    Route::get('{item}/edit', [ItemController::class, 'edit'])->name('edit');
+    Route::patch('{item}', [ItemController::class, 'update'])->name('update');
+    Route::delete('{item}', [ItemController::class, 'destroy'])->name('destroy');
 });
 
 
-// 単価画面表示
+// 単価画面
 Route::group(['prefix' => 'prices', 'as' => 'price.'], function () {
     Route::get('index', [PriceController::class, 'index'])->name('index');
     Route::get('create', [PriceController::class, 'create'])->name('create');
@@ -54,7 +56,7 @@ Route::group(['prefix' => 'prices', 'as' => 'price.'], function () {
 });
 
 
-// 見積作成画面表示
+// 見積作成画面
 Route::group(['prefix' => 'quotes', 'as' => 'quote.'], function () {
     Route::get('index', [QuoteController::class, 'index'])->name('index');
     Route::get('ambiguousSearch', [QuoteController::class, 'ambiguousSearch'])->name('ambiguousSearch');
