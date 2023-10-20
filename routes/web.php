@@ -31,10 +31,11 @@ Route::group(['prefix' => 'items', 'as' => 'item.'], function () {
     Route::get('index', [ItemController::class, 'index'])->name('index');
     Route::get('create', [ItemController::class, 'create'])->name('create');
     Route::get('confirm', [ItemController::class, 'confirm'])->name('confirm');
+    Route::get('editConfirm', [ItemController::class, 'editConfirm'])->name('editConfirm');
     Route::post('store', [ItemController::class, 'store'])->name('store');
     Route::get('{item}', [ItemController::class, 'show'])->name('show');
-    Route::get('{item}/edit', [ItemController::class, 'edit'])->name('edit');
-    Route::patch('{item}', [ItemController::class, 'update'])->name('update');
+    Route::get('edit/{item}', [ItemController::class, 'edit'])->name('edit');
+    Route::patch('update/{item}', [ItemController::class, 'update'])->name('update');
     Route::delete('{item}', [ItemController::class, 'destroy'])->name('destroy');
 });
 
