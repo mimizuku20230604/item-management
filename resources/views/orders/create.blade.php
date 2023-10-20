@@ -37,7 +37,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                     <label for="quantity">数量</label>
-                    <input type="text" name="quantity" class="form-control" id="quantity" value="{{ !empty($request["quantity"]) ? $request["quantity"] : old('quantity') }}" placeholder="数量を入力してください">
+                    <input type="number" name="quantity" class="form-control" id="quantity" value="{{ !empty($request["quantity"]) ? $request["quantity"] : old('quantity') }}" placeholder="数量を入力してください">
                     {{-- <input type="text" name="quantity" class="form-control" id="quantity" value="{{ !empty($request["quantity"]) ? $request["quantity"] : old('quantity') }}" placeholder="数量を入力してください" oninput="validateNumber(this)"> --}}
                     {{-- <div id="quantityError" style="color: red;"></div> --}}
                 </div>

@@ -43,7 +43,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="quantity">数量</label>
-                  <input type="text" name="quantity" class="form-control" id="quantity" value="{{old('quantity')}}" placeholder="数量を入力してください">
+                  <input type="number" name="quantity" class="form-control" id="quantity" value="{{old('quantity')}}" placeholder="数量を入力してください">
                 </div>
               </div>
               <div class="col-md-4">

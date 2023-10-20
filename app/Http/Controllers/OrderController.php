@@ -174,7 +174,7 @@ class OrderController extends Controller
    */
   public function edit(Order $order)
   {
-      //
+    //
   }
 
   /**
@@ -182,7 +182,7 @@ class OrderController extends Controller
    */
   public function update(Request $request, Order $order)
   {
-      //
+    //
   }
 
   /**
@@ -190,7 +190,7 @@ class OrderController extends Controller
    */
   public function destroy(Order $order)
   {
-      //
+    //
   }
 
 

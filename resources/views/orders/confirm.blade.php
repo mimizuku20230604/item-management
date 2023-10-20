@@ -36,10 +36,12 @@
                   <div class="form-group">
                     <label for="quantity">数量</label>
                     {{-- <input type="hidden" name="quantity" value="{{ floor(str_replace(',', '', $request->quantity)) }}"> --}}
-                    <input type="hidden" name="quantity" value="{{ is_numeric($request->quantity) ? floor(str_replace(',', '', $request->quantity)) : '' }}">
-                    <input type="text" class="form-control @if($errors->has('quantity')) is-invalid @endif" id="quantity" value="{{ is_numeric($request->quantity) ? number_format($request->quantity) : $request->quantity }}" readonly>
+                    {{-- <input type="hidden" name="quantity" value="{{ is_numeric($request->quantity) ? floor(str_replace(',', '', $request->quantity)) : '' }}"> --}}
+                    <input type="hidden" name="quantity" value="{{ $request->quantity }}">
+                    {{-- <input type="text" class="form-control @if($errors->has('quantity')) is-invalid @endif" id="quantity" value="{{ is_numeric($request->quantity) ? number_format($request->quantity) : $request->quantity }}" readonly> --}}
+                    <input type="text" class="form-control @if($errors->has('quantity')) is-invalid @endif" id="quantity" value="{{ number_format($request->quantity) }}" readonly>
                     @if($errors->has('quantity'))
-                      <div class="invalid-feedback">必須項目です（数字のみ・1以上・10桁以内）</div>
+                      <div class="invalid-feedback">必須項目です（整数のみ・1以上・10桁以内）</div>
                     @endif
                   </div>
                 </div>
@@ -68,7 +70,8 @@
                   <div class="invalid-feedback">500文字以内です</div>
                 @endif
               </div>
-            <button type="submit" class="btn btn-outline-success mt-3">確定</button>
+            <button type="submit" class="btn btn-outline-success mt-3">確定する</button>
+            <p class="card-text text-sm">（確定後、お客様へメール配信します。）
           </form>
             <!-- a hrefだと、未入力の初期画面に戻る。 -->
             {{-- <a href="/orders/create/{{ $request->price_id }}">戻る</a> --}}
@@ -81,7 +84,8 @@
             <input type="hidden" name="customer_id" value="{{ $request->customer_id }}">
             <input type="hidden" name="customer_name" value="{{ $request->customer_name }}">
             <input type="hidden" name="registration_price" value="{{ $request->registration_price }}">
-            <input type="hidden" name="quantity" value="{{ is_numeric($request->quantity) ? number_format($request->quantity) : $request->quantity }}">
+            {{-- <input type="hidden" name="quantity" value="{{ is_numeric($request->quantity) ? number_format($request->quantity) : $request->quantity }}"> --}}
+            <input type="hidden" name="quantity" value="{{ $request->quantity }}">
             <input type="hidden" name="total_amount" value="{{ $request->total_amount }}">
             <input type="hidden" name="request_date" value="{{ $request->request_date }}">
             <input type="hidden" name="remarks" value="{{ $request->remarks }}">
