@@ -14,12 +14,12 @@
       <div class="card">
         <div class="card-header">
           <div class="form-group">
-            <label for="item_id">商品名</label>
-            <input type="text" class="form-control" name="item_name" id="item_name" value="{{ $order->item->name }}" readonly>
-          </div>
-          <div class="form-group">
             <label for="customer_id">顧客名</label>
             <input type="text" class="form-control" name="customer_name" id="customer_name" value="{{ $order->customer->name }}" readonly>
+          </div>
+          <div class="form-group">
+            <label for="item_id">商品名</label>
+            <input type="text" class="form-control" name="item_name" id="item_name" value="{{ $order->item->name }}" readonly>
           </div>
           <div class="form-row">
             <div class="col-md-4">
@@ -48,11 +48,19 @@
                 <input type="date" name="request_date" class="form-control" id="request_date" value="{{ $order->request_date }}" readonly>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="created_at">作成日</label>
-                <input type="date" name="created_at" class="form-control" id="created_at" value="{{ $order->created_at->format('Y-m-d') }}" readonly>
-              </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="created_at">登録日</label>
+              <input type="date" class="form-control" id="created_at" name="created_at" value="{{ $order->created_at->format('Y-m-d') }}" readonly>
+            </div>
+            <div class="form-group  col-md-4">
+              <label for="updated_at">更新日</label>
+              <input type="date" class="form-control" id="updated_at" name="updated_at" value="{{ $order->updated_at->format('Y-m-d') }}" readonly>
+            </div>
+            <div class="form-group  col-md-4">
+              <label for="user_name">登録者（最終更新者）</label>
+              <input type="text" class="form-control" id="user_name" name="user_name" value="{{$order->user->name }}" readonly>
             </div>
           </div>
           <div class="form-group">

@@ -11,12 +11,9 @@
 
   <div class="row">
     <div class="col-12">
-
       @include('includes.alert')
-
       <div class="card">
         <div class="card-header">
-          {{-- <form method="get" action="{{route('price.editConfirm', $price)}}" > --}}
           <form method="get" action="{{route('price.editConfirm', $price)}}" >
               <input type="hidden" name="price_id" value="{{ $price->id }}">
               <div class="form-group">
@@ -37,20 +34,16 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="deadline_date">適用期限</label> <!-- デフォルト値:null -->
-                    {{-- <input type="date" name="deadline_date" class="form-control" id="deadline_date" value="{{ $price->deadline_date }}"> --}}
-                    {{-- <input type="date" name="deadline_date" class="form-control" id="deadline_date" value="{{ !empty($request->deadline_date) ? $request->deadline_date : $price->deadline_date, '' }}" min="{{ date('Y-m-d') }}"> --}}
-                    {{-- <input type="date" name="deadline_date" class="form-control" id="deadline_date" value="{{ !empty($request->deadline_date) ? $request->deadline_date : '' }}" min="{{ date('Y-m-d') }}"> --}}
-                    <input type="date" name="deadline_date" class="form-control" id="deadline_date" value="{{ $request->deadline_date ? $request->deadline_date : ($price->deadline_date ? $price->deadline_date : '') }}" min="{{ date('Y-m-d') }}">
-
-
+                    {{-- <input type="date" name="deadline_date" class="form-control" id="deadline_date" value="{{ $request->deadline_date ? $request->deadline_date : ($price->deadline_date ? $price->deadline_date : '') }}" min="{{ date('Y-m-d') }}"> --}}
+                    <input type="date" name="deadline_date" class="form-control" id="deadline_date" value="{{ !empty($request->deadline_date) ? $request->deadline_date : (!empty($price->deadline_date) ? $price->deadline_date : '') }}" min="{{ date('Y-m-d') }}">
                   </div>
                 </div>
-                <div class="col-md-4">
+                {{-- <div class="col-md-4">
                   <div class="form-group">
                     <label for="created_at">作成日</label>
                     <input type="date" name="created_at" class="form-control" id="created_at" value="{{ $price->created_at->format('Y-m-d') }}" readonly>
                   </div>
-                </div>
+                </div> --}}
               </div>
               <div class="form-group">
                 <label for="remarks">備考</label>

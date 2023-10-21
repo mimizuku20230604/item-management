@@ -57,7 +57,7 @@
             </div>
               <div class="form-group">
                 <label for="remarks">備考</label>
-                <textarea name="remarks" class="form-control" id="remarks" cols="30" rows="5">{{ !empty($request["remarks"]) ? $request["remarks"] : old('remarks', $price->remarks) }}</textarea>
+                <textarea name="remarks" class="form-control" id="remarks" cols="30" rows="5" maxlength="500">{{ !empty($request["remarks"]) ? $request["remarks"] : old('remarks', $price->remarks) }}</textarea>
               </div>
             <button type="submit" class="btn btn-outline-success mt-3">確認</button>
           </form>

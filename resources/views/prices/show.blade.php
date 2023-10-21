@@ -18,8 +18,8 @@
             <input type="text" name="item_name" class="form-control" id="item_name" value="{{ $price->item->name }}" readonly>
           </div>
           <div class="form-group">
-            <label for="user_name">顧客名</label>
-            <input type="text" name="user_name" class="form-control" id="user_name" value="{{ $price->customer ? $price->customer->name : '全ユーザー' }}" readonly>
+            <label for="customer_name">顧客名</label>
+            <input type="text" name="customer_name" class="form-control" id="customer_name" value="{{ $price->customer ? $price->customer->name : '全ユーザー' }}" readonly>
           </div>
           <div class="form-row">
             <div class="col-md-4">
@@ -28,17 +28,27 @@
                 <input type="text" name="registration_price" class="form-control" id="registration_price" value="{{ number_format($price->registration_price, 2) }}" readonly>
               </div>
             </div>
+          </div>
+          <div class="form-row">
             <div class="col-md-4">
               <div class="form-group">
                 <label for="deadline_date">適用期限</label>
                 <input type="date" name="deadline_date" class="form-control" id="deadline_date" value="{{ $price->deadline_date ? date('Y-m-d', strtotime($price->deadline_date)) : '' }}" readonly>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="today_date">作成日</label>
-                <input type="date" name="today_date" class="form-control" id="today_date" value="{{ $price->created_at->format('Y-m-d') }}" readonly>
-              </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="created_at">登録日</label>
+              <input type="date" class="form-control" id="created_at" name="created_at" value="{{ $price->created_at->format('Y-m-d') }}" readonly>
+            </div>
+            <div class="form-group  col-md-4">
+              <label for="updated_at">更新日</label>
+              <input type="date" class="form-control" id="updated_at" name="updated_at" value="{{ $price->updated_at->format('Y-m-d') }}" readonly>
+            </div>
+            <div class="form-group  col-md-4">
+              <label for="user_name">登録者（最終更新者）</label>
+              <input type="text" class="form-control" id="user_name" name="user_name" value="{{$price->user->name }}" readonly>
             </div>
           </div>
           <div class="form-group">
