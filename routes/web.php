@@ -45,7 +45,6 @@ Route::group(['prefix' => 'prices', 'as' => 'price.'], function () {
     Route::get('index', [PriceController::class, 'index'])->name('index');
     Route::get('create', [PriceController::class, 'create'])->name('create');
     Route::post('store', [PriceController::class, 'store'])->name('store');
-    // 確認画面を表示するルートを追加
     Route::get('confirm', [PriceController::class, 'confirm'])->name('confirm');
     // 確認画面からデータを登録するルートを追加
     Route::post('store-confirmed', [PriceController::class, 'storeConfirmed'])->name('storeConfirmed');
