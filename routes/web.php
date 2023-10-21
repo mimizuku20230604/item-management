@@ -48,11 +48,11 @@ Route::group(['prefix' => 'prices', 'as' => 'price.'], function () {
     Route::get('confirm', [PriceController::class, 'confirm'])->name('confirm');
     // 確認画面からデータを登録するルートを追加
     Route::post('store-confirmed', [PriceController::class, 'storeConfirmed'])->name('storeConfirmed');
-    Route::get('{price}', [PriceController::class, 'show'])->name('show');
-    Route::get('{price}/edit', [PriceController::class, 'edit'])->name('edit');
-    Route::post('{price}/update-confirmed', [PriceController::class, 'updateConfirmed'])->name('updateConfirmed'); // 編集確認画面を表示
-    Route::patch('{price}', [PriceController::class, 'update'])->name('update');
-    Route::delete('{price}', [PriceController::class, 'destroy'])->name('destroy');
+    Route::get('show/{price}', [PriceController::class, 'show'])->name('show');
+    Route::get('edit/{price}', [PriceController::class, 'edit'])->name('edit');
+    Route::get('editConfirm/{price}', [PriceController::class, 'editConfirm'])->name('editConfirm');
+    Route::patch('update/{price}', [PriceController::class, 'update'])->name('update');
+    Route::delete('destroy/{price}', [PriceController::class, 'destroy'])->name('destroy');
 });
 
 
@@ -89,5 +89,3 @@ Route::group(['prefix' => 'orders', 'as' => 'order.'], function () {
 
 
 });
-
-
