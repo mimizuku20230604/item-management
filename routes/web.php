@@ -33,10 +33,10 @@ Route::group(['prefix' => 'items', 'as' => 'item.'], function () {
     Route::get('confirm', [ItemController::class, 'confirm'])->name('confirm');
     Route::get('editConfirm', [ItemController::class, 'editConfirm'])->name('editConfirm');
     Route::post('store', [ItemController::class, 'store'])->name('store');
-    Route::get('{item}', [ItemController::class, 'show'])->name('show');
+    Route::get('show/{item}', [ItemController::class, 'show'])->name('show');
     Route::get('edit/{item}', [ItemController::class, 'edit'])->name('edit');
     Route::patch('update/{item}', [ItemController::class, 'update'])->name('update');
-    Route::delete('{item}', [ItemController::class, 'destroy'])->name('destroy');
+    Route::delete('destroy/{item}', [ItemController::class, 'destroy'])->name('destroy');
 });
 
 
@@ -63,15 +63,12 @@ Route::group(['prefix' => 'quotes', 'as' => 'quote.'], function () {
     Route::get('ambiguousSearch', [QuoteController::class, 'ambiguousSearch'])->name('ambiguousSearch');
     Route::get('advancedSearch', [QuoteController::class, 'advancedSearch'])->name('advancedSearch');
     Route::get('create', [QuoteController::class, 'create'])->name('create');
-    Route::post('store', [QuoteController::class, 'store'])->name('store');
-    // 確認画面を表示するルートを追加
     Route::get('confirm', [QuoteController::class, 'confirm'])->name('confirm');
-    // 確認画面からデータを登録するルートを追加
-    Route::post('store-confirmed', [QuoteController::class, 'storeConfirmed'])->name('storeConfirmed');
-    Route::get('{quote}', [QuoteController::class, 'show'])->name('show');
-    // Route::get('{quote}/edit', [QuoteController::class, 'edit'])->name('edit');
-    // Route::patch('{quote}', [QuoteController::class, 'update'])->name('update');
-    // Route::delete('{quote}', [QuoteController::class, 'destroy'])->name('destroy');
+    Route::post('store', [QuoteController::class, 'store'])->name('store');
+    Route::get('show/{quote}', [QuoteController::class, 'show'])->name('show');
+    // Route::get('edit/{quote}', [QuoteController::class, 'edit'])->name('edit');
+    // Route::patch('update/{quote}', [QuoteController::class, 'update'])->name('update');
+    // Route::delete('destroy/{quote}', [QuoteController::class, 'destroy'])->name('destroy');
 });
 
 // 発注画面(Controller順にする)
