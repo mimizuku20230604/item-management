@@ -190,12 +190,4 @@ class OrderController extends Controller
     //
   }
 
-
-  public function orderCreate()
-  {
-    // dd($request);
-    $items = Item::all(); // itemsテーブルから全ての商品を取得
-    $users = User::all(); // usersテーブルから全てのユーザーを取得
-    return view('orders.orderCreate', compact('items', 'users'));
-  }
 }

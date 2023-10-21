@@ -38,7 +38,7 @@
                 <div class="invalid-feedback">50文字以内です</div>
               @endif
             </div>
-            <button type="submit" class="btn btn-primary">更新</button>
+            <button type="submit" class="btn btn-primary">更新する</button>
           </form>
           <form method="get" action="/items/edit/{{ $request->item_id }}">
             <input type="hidden" name="item_id" value="{{ $request->item_id }}">

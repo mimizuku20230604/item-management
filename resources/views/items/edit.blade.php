@@ -14,7 +14,6 @@
       <div class="card">
         <div class="card-header">
           <form method="get" action="{{route('item.editConfirm')}}" >
-            @csrf
             <input type="hidden" name="item_id" value="{{ $item->id }}">
             <div class="form-group">
               <label for="name">名前</label>

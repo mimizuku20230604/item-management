@@ -30,7 +30,7 @@
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label for="deadline_date">適用期限</label>
+                <label for="deadline_date">適用期限</label> <!-- デフォルト値:null -->
                 <input type="date" name="deadline_date" class="form-control" id="deadline_date" value="{{ $priceData['deadline_date'] }}" readonly>
               </div>
             </div>
@@ -56,6 +56,7 @@
             <input type="hidden" name="deadline_date" value="{{ $priceData['deadline_date'] }}">
             <input type="hidden" name="remarks" value="{{ $priceData['remarks'] }}">
             <button type="submit" class="btn btn-primary" onclick="return confirm('本当に登録しますか？\nお客様が指定されている場合、\n確定するとお客様へメール送信されます。');">確定する</button>
+            <p class="card-text text-sm">（更新後、お客様指定の場合メール配信します。）
           </form>
         </div>
       </div>

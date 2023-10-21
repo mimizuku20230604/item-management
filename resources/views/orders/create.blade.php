@@ -18,14 +18,14 @@
             @csrf
             <input type="hidden" name="price_id" value="{{ $price->id }}">
             <div class="form-group">
+              <label for="customer_id">顧客名</label>
+              <input type="hidden" name="customer_id" value="{{ auth()->user()->id }}">
+              <input type="text" class="form-control" name="customer_name" id="customer_name" value="{{ auth()->user()->name }}" readonly>
+            </div>
+            <div class="form-group">
               <label for="item_id">商品名</label>
               <input type="hidden" name="item_id" value="{{ $price->item->id }}">
               <input type="text" class="form-control" name="item_name" id="item_name" value="{{ $price->item->name }}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="customer_id">顧客名</label>
-                <input type="hidden" name="customer_id" value="{{ auth()->user()->id }}">
-                <input type="text" class="form-control" name="customer_name" id="customer_name" value="{{ auth()->user()->name }}" readonly>
             </div>
             <div class="form-row">
               <div class="col-md-4">
@@ -36,8 +36,8 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                    <label for="quantity">数量</label>
-                    <input type="number" name="quantity" class="form-control" id="quantity" value="{{ !empty($request["quantity"]) ? $request["quantity"] : old('quantity') }}" placeholder="数量を入力してください" required>
+                  <label for="quantity">数量</label>
+                  <input type="number" name="quantity" class="form-control" id="quantity" value="{{ !empty($request["quantity"]) ? $request["quantity"] : old('quantity') }}" placeholder="数量を入力してください" required>
                 </div>
               </div>
               <div class="col-md-4">
