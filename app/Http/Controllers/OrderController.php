@@ -130,33 +130,30 @@ class OrderController extends Controller
 
     // ここでバリデーションを実行。
     $request->validate([
+      'customer_id' => 'required',
+      'item_id' => 'required',
+      'unit_price' => 'required|numeric|regex:/^\d{1,8}(\.\d{1,2})?$/',
+      'quantity' => 'required|numeric|regex:/^\d{1,10}$/',
+      'total_amount' => 'required|numeric|regex:/^\d{1,10}$/',
       'request_date' => 'nullable|date|after_or_equal:tomorrow',
       // 'remarks' => 'max:500',
       'remarks' => 'max:7',
     ]);
 
-    // カンマを削除して数値に変換
-    $unit_Price = str_replace(',', '', $request->unit_price);
-    $quantity = str_replace(',', '', $request->quantity);
-    $total_amount = str_replace(',', '', $request->total_amount);
-    // データベースに保存
     $order = new Order;
-    $order->item_id = $request->item_id;
     $order->customer_id = $request->customer_id;
-    $order->unit_price = $unit_Price;
-    $order->quantity = $quantity;
-    $order->total_amount = $total_amount;
+    $order->item_id = $request->item_id;
+    $order->unit_price = $request->unit_price;
+    $order->quantity = $request->quantity;
+    $order->total_amount = $request->total_amount;
     $order->request_date = $request->request_date;
     $order->remarks = $request->remarks;
     $order->user_id = auth()->user()->id;;
     $order->save();
 
-    // リレーションを通じてユーザー情報を取得
-    $customer = $order->customer; // ここで $order->customer が customer_id と関連づけられたユーザーを取得
-    $user = $order->user; // ここで $order->user が user_id と関連づけられたユーザーを取得
     Mail::to(config('mail.admin'))->send(new OrderForm($order));
-    Mail::to($customer->email)->send(new OrderForm($order));
-    Mail::to($user->email)->send(new OrderForm($order));
+    Mail::to($order->customer->email)->send(new OrderForm($order));
+    Mail::to($order->user->email)->send(new OrderForm($order));
     return redirect()->route('order.index')->with('success', '発注を登録しました・メールを送信しました');
   }
 

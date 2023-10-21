@@ -52,8 +52,8 @@ class QuoteController extends Controller
     $quote = new Quote();
     $quote->customer_id = $request->customer_id;
     $quote->item_id = $request->item_id;
-    $quote->quantity = $request->quantity;
     $quote->unit_price = $request->unit_price;
+    $quote->quantity = $request->quantity;
     $quote->total_amount = $request->total_amount;
     $quote->expiration_date = $request->expiration_date;
     $quote->remarks = $request->remarks;
