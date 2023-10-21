@@ -17,7 +17,7 @@
             @csrf
             <div class="form-group">
               <label for="name">名前</label>
-              <input type="text" class="form-control" id="name" name="name" value="{{ !empty($request["name"]) ? $request["name"] : old('name', '') }}" placeholder="名前">
+              <input type="text" class="form-control" id="name" name="name" value="{{ !empty($request["name"]) ? $request["name"] : old('name', '') }}" placeholder="名前" required>
             </div>
             <div class="form-group">
               <label for="type">種別</label>

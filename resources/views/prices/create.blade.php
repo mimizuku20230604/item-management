@@ -21,7 +21,7 @@
 
                       <div class="form-group">
                         <label for="item_id">商品名</label>
-                        <select class="form-control" id="item_id" name="item_id">
+                        <select class="form-control" id="item_id" name="item_id" required>
                         <option value="">商品を選択してください</option>
                         @foreach ($items as $item)
                         <option value="{{ $item->id }}" @if(old('item_id', isset($priceData['item_id']) ? $priceData['item_id'] : null) == $item->id) selected @endif>{{ $item->name }}</option>
@@ -41,7 +41,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="registration_price">単価</label>
-                                <input type="text" name="registration_price" class="form-control" id="registration_price" value="{{old('registration_price')}}" placeholder="単価を入力してください">
+                                <input type="text" name="registration_price" class="form-control" id="registration_price" value="{{old('registration_price')}}" placeholder="単価を入力してください" required>
                             </div>
                         </div>
                     </div>

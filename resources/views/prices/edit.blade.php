@@ -30,13 +30,15 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="registration_price">単価</label>
-                    <input type="text" name="registration_price" class="form-control" id="registration_price" value="{{ number_format($price->registration_price, 2) }}">
+                    <input type="text" name="registration_price" class="form-control" id="registration_price" value="{{ number_format($price->registration_price, 2) }}" required>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="deadline_date">適用期限</label>
-                    <input type="date" name="deadline_date" class="form-control" id="deadline_date" value="{{ date('Y-m-d', strtotime($price->deadline_date)) }}">
+                    <input type="date" name="deadline_date" class="form-control" id="deadline_date" value="{{ $price['deadline_date'] }}">
+                    {{-- <input type="date" name="deadline_date" class="form-control" id="deadline_date" value="{{ $price->deadline_date ? date('Y-m-d', strtotime($price->deadline_date)) : '' }}"> --}}
+                    {{-- <input type="date" name="deadline_date" class="form-control" id="deadline_date" value="{{ $priceData['deadline_date'] }}" readonly> --}}
                   </div>
                 </div>
                 <div class="col-md-4">

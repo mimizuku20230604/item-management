@@ -33,7 +33,8 @@
               </div>
               <div class="form-group">
                   <label for="deadline_date">適用期限</label>
-                  <input type="date" name="deadline_date" class="form-control" id="deadline_date" value="{{ date('Y-m-d', strtotime($price->deadline_date)) }}" readonly>
+                  {{-- <input type="date" name="deadline_date" class="form-control" id="deadline_date" value="{{ date('Y-m-d', strtotime($price->deadline_date)) }}" readonly> --}}
+                  <input type="date" name="deadline_date" class="form-control" id="deadline_date" value="{{ $price['deadline_date'] }}" readonly>
               </div>
               <div class="form-group">
                   <label for="today_date">作成日</label>

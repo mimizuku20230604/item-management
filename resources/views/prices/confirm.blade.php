@@ -55,7 +55,7 @@
             <input type="hidden" name="registration_price" value="{{ $priceData['registration_price'] }}">
             <input type="hidden" name="deadline_date" value="{{ $priceData['deadline_date'] }}">
             <input type="hidden" name="remarks" value="{{ $priceData['remarks'] }}">
-            <button type="submit" class="btn btn-primary">確定する</button>
+            <button type="submit" class="btn btn-primary" onclick="return confirm('本当に登録しますか？\nお客様が指定されている場合、\n確定するとお客様へメール送信されます。');">確定する</button>
           </form>
         </div>
       </div>

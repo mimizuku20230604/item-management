@@ -43,7 +43,7 @@
           <form method="post" action="{{route('item.destroy', $item)}}">
             @csrf
             @method('delete')
-            <button class="btn btn-outline-danger mt-3" onClick="return confirm('本当に削除しますか？');">削除</button>
+            <button class="btn btn-outline-danger mt-3" onclick="return confirm('本当に削除しますか？');">削除</button>
           </form>
           <button class="btn btn-secondary mt-3" onclick="location.href='{{route('item.index')}}';">一覧へ戻る</button>
         </div>

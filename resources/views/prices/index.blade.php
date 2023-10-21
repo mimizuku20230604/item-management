@@ -59,7 +59,12 @@
                         <td class="text-right">{{ number_format($price->registration_price, 2) }}</td> 
                         {{-- <td class="text-left">{{ $price->customer ? $price->customer->name : '全ユーザー' }}</td> ustomer?でnullを許容 --}}
                         <td class="text-left">{{ $customerId ? $price->customer->name : '全ユーザー' }}</td> <!-- ユーザーによって表示制限（customerId） -->
-                        <td class="text-center">{{ date('Y/m/d', strtotime($price->deadline_date)) }}</td>
+                        {{-- <td class="text-center">{{ date('Y/m/d', strtotime($price->deadline_date)) }}</td> --}}
+                        <td class="text-center">
+                          @if ($price->deadline_date)
+                              {{ date('Y/m/d', strtotime($price->deadline_date)) }}
+                          @endif
+                        </td>
                         <td class="text-center">{{ $price->created_at->format('Y/m/d') }}</td>
                         <td class="text-left">{{ $price->user->name }}</td> {{-- userリレーションを介してnameを表示 --}}
                         <td>

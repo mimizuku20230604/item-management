@@ -35,7 +35,7 @@ class ItemController extends Controller
 
   public function store(Request $request)
   {
-    $request->validate([
+    $inputs = $request->validate([
         'name' => 'required|max:50',
         'type' => 'max:50',
         'detail' => 'max:50',
