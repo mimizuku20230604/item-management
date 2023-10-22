@@ -35,7 +35,7 @@ class EventServiceProvider extends ServiceProvider
     // });
     Event::listen(BuildingMenu::class, function (BuildingMenu $event) {
       $user = auth()->user();
-      if ($user->roles->contains('id', 2)) {
+      if ($user->roles->contains('id', 1)) {
         $event->menu->remove('items_create_admin_only');
         $event->menu->remove('items_index_admin_only');
         $event->menu->remove('prices_create_admin_only');

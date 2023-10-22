@@ -57,15 +57,17 @@
           </div>
 <button class="btn btn-outline-success mt-3" onclick="location.href='{{route('order.create', $price)}}';">発注画面へ</button>
 <br>
+            @can('admin')
             <button class="btn btn-outline-success mt-3" onclick="location.href='{{route('price.edit', $price)}}';">編集</button>
+            @endcan
+            @can('admin')
             <form method="post" action="{{route('price.destroy', $price)}}">
               @csrf
               @method('delete')
               <button class="btn btn-outline-danger mt-3" onClick="return confirm('本当に削除しますか？');">削除</button>
             </form>
-
+            @endcan
             <button class="btn btn-secondary mt-3" onclick="location.href='{{route('price.index')}}';">一覧へ戻る</button>
-
           </div>
         </div>
       </div>
