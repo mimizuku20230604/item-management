@@ -43,7 +43,7 @@
                     <td class="text-right">{{ number_format($order->unit_price, 2) }}</td> 
                     <td class="text-right">{{ number_format($order->quantity) }}</td> 
                     <td class="text-right">{{ number_format($order->total_amount) }}</td> 
-                    <td class="text-center">{{ date('Y/m/d', strtotime($order->request_date)) }}</td>
+                    <td class="text-center">{{ $order->request_date ? date('Y/m/d', strtotime($order->request_date)) : '' }}</td>
                     <td class="text-center">{{ $order->created_at->format('Y/m/d') }}</td>
                     <td class="text-left">{{ $order->user->name }}</td> <!-- user_idから -->
                     <td>

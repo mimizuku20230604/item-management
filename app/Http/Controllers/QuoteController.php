@@ -3,30 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Models\Quote;  // Quoteモデルのuse宣言
-use App\Models\Item; // Itemモデルを使用するためにuse宣言
-use App\Models\User; // Userモデルを使用するためにuse宣言
-use App\Models\Price; // Priceモデルを使用するためにuse宣言
-
+use App\Models\Quote;
+use App\Models\Item;
+use App\Models\User;
+use App\Models\Price;
 use Carbon\Carbon;
-
-use Illuminate\Support\Facades\Mail;  // メール機能
-use App\Mail\QuoteForm;  // メール機能
+use Illuminate\Support\Facades\Mail;
+use App\Mail\QuoteForm;
+use Illuminate\Support\Facades\Gate;
 
 class QuoteController extends Controller
 {
   public function create(Request $request)
   {
     // dd($request);
-    $items = Item::all(); // itemsテーブルから全ての商品を取得
-    $users = User::all(); // usersテーブルから全てのユーザーを取得
+    Gate::authorize('admin');
+    $items = Item::all();
+    $users = User::all();
     return view('quotes.create', compact('items', 'users', 'request'));
   }
 
   public function confirm(Request $request)
   {
     // dd($request);
+    Gate::authorize('admin');
     // ここでデータはバリデーションを実行しない！
     //（create画面のリクエストとリダイレクトで返すデータが異なるため。）
     $customer = User::find($request['customer_id']); // ユーザーを取得（顧客名を表示させるため）
@@ -37,7 +37,7 @@ class QuoteController extends Controller
   public function store(Request $request)
   {
     // dd($request);
-
+    Gate::authorize('admin');
     $inputs = $request->validate([
       'customer_id' => 'required',
       'item_id' => 'required',

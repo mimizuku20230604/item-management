@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\Item;
+use Illuminate\Support\Facades\Gate;
 
 class ItemController extends Controller
 {
 
   public function index()
   {
+    Gate::authorize('admin');
     $query = Item::query();
     // idカラムで降順にソートしたデータを取得
     $items = $query->orderBy('id', 'desc')->get();
@@ -20,21 +21,22 @@ class ItemController extends Controller
   public function create(Request $request)
   {
     // dd($request);
-    // $request = $request->all();
+    Gate::authorize('admin');
     return view( 'items/create', compact('request'));
   }
 
   public function confirm(Request $request)
   {
     // dd($request);
+    Gate::authorize('admin');
     // ここでデータはバリデーションを実行しない！
     //（create画面のリクエストとリダイレクトで返すデータが異なるため。）
-
     return view('items.confirm', compact('request'));
   }
 
   public function store(Request $request)
   {
+    Gate::authorize('admin');
     $inputs = $request->validate([
         'name' => 'required|max:50',
         'type' => 'max:50',
@@ -52,6 +54,7 @@ class ItemController extends Controller
 
   public function show(Item $item)
   {
+    Gate::authorize('admin');
     return view('items.show', compact('item'));
   }
 
@@ -59,6 +62,7 @@ class ItemController extends Controller
   {
     // dd($item);
     // dd($request);
+    Gate::authorize('admin');
     return view('items.edit', compact('request', 'item'));
   }
 
@@ -66,6 +70,7 @@ class ItemController extends Controller
   {
     // dd($item);
     // dd($request);
+    Gate::authorize('admin');
     // ここでデータはバリデーションを実行しない！
     //（create画面のリクエストとリダイレクトで返すデータが異なるため。）
 
@@ -76,6 +81,7 @@ class ItemController extends Controller
   {
     // dd($item);
     // dd($request);
+    Gate::authorize('admin');
     // updateのバリデーションは $inputs にしないと機能しない。
     $inputs = $request->validate([
       'name' => 'required|max:50',
@@ -93,6 +99,7 @@ class ItemController extends Controller
 
   public function destroy(Item $item)
   {
+    Gate::authorize('admin');
     $item->delete();
     return redirect()->route('item.index')->with('delete', '商品を削除しました');
   }

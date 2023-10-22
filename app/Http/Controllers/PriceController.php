@@ -3,18 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\Price;
-use App\Models\Item; // Itemモデルを使用するためにuse宣言
-use App\Models\User; // Userモデルを使用するためにuse宣言
-use App\Models\Order; // Orderモデルを使用するためにuse宣言
-
+use App\Models\Item;
+use App\Models\User;
+use App\Models\Order;
 use Carbon\Carbon;
-
-use Illuminate\Support\Facades\Mail;  // メール機能
-use App\Mail\PriceForm;  // 単価登録メール
-use App\Mail\UpdatePriceForm;  // 単価変更メール
-use App\Mail\DeletePriceForm;  // 単価削除メール
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PriceForm;
+use App\Mail\UpdatePriceForm;
+use App\Mail\DeletePriceForm;
+use Illuminate\Support\Facades\Gate;
 
 
 class PriceController extends Controller
@@ -37,8 +35,9 @@ class PriceController extends Controller
    */
   public function create(Request $request)
   {
-    $items = Item::all(); // itemsテーブルから全ての商品を取得
-    $users = User::all(); // usersテーブルから全てのユーザーを取得
+    Gate::authorize('admin');
+    $items = Item::all();
+    $users = User::all();
     return view('prices.create', compact('items', 'users', 'request'));
   }
 
@@ -48,6 +47,7 @@ class PriceController extends Controller
   public function confirm(Request $request)
   {
     // dd($request);
+    Gate::authorize('admin');
     // ここでデータはバリデーションを実行しない！
     //（create画面のリクエストとリダイレクトで返すデータが異なるため。）
     $customer = User::find($request['customer_id']); // ユーザーを取得（顧客名を表示させるため）
@@ -69,6 +69,7 @@ class PriceController extends Controller
   public function store(Request $request)
   {
     // dd($request);
+    Gate::authorize('admin');
     $request->validate([
       'item_id' => 'required',
       'customer_id' => 'nullable',
@@ -121,6 +122,7 @@ class PriceController extends Controller
   {
     // dd($price);
     // dd($request);
+    Gate::authorize('admin');
     return view('prices.edit', compact('request', 'price'));
   }
 
@@ -131,6 +133,7 @@ class PriceController extends Controller
   {
     // dd($price);
     // dd($request);
+    Gate::authorize('admin');
     return view('prices.editConfirm', compact('request', 'price'));
   }
 
@@ -140,6 +143,7 @@ class PriceController extends Controller
   public function update(Request $request, Price $price)
   {
     // dd($price);
+    Gate::authorize('admin');
     $request->validate([
     'registration_price' => 'required|numeric|regex:/^\d{1,8}(\.\d{1,2})?$/',
     'deadline_date' => 'nullable|date|after_or_equal:today',
@@ -176,11 +180,10 @@ class PriceController extends Controller
    */
   public function destroy(Price $price)
   {
+    Gate::authorize('admin');
     $price->delete();
-
     // メールが送信されたかを追跡（デフォルトはfalse）
     $mailSent = false;
-
     // customer_idがnullでない場合にのみメール送信
     if (!is_null($price->customer_id)) {
       // リレーションを通じてユーザー情報を取得

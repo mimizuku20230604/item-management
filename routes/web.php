@@ -5,6 +5,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\PriceController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,14 @@ use App\Http\Controllers\PriceController;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::middleware(['auth', 'can:admin'])->group(function () {
+    Route::get('profile/index', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile',[ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 
 // 商品画面
@@ -70,17 +79,21 @@ Route::group(['prefix' => 'quotes', 'as' => 'quote.'], function () {
 
 // 発注画面(Controller順にする)
 Route::group(['prefix' => 'orders', 'as' => 'order.'], function () {
-    Route::get('index', [OrderController::class, 'index'])->name('index'); //発注済_一覧画面
-    Route::get('create/{price}', [OrderController::class, 'create'])->name('create'); //作成画面（単価より）
-    Route::get('quoteCreate/{quote}', [OrderController::class, 'quoteCreate'])->name('quoteCreate'); //作成画面（見積より）
-    Route::get('confirm', [OrderController::class, 'confirm'])->name('confirm'); //確認画面（単価より）（getで！）
-    Route::get('quoteConfirm', [OrderController::class, 'quoteConfirm'])->name('quoteConfirm'); //確認画面（見積より）（getで！）
-    Route::post('store', [OrderController::class, 'store'])->name('store'); //確定画面
-    Route::post('quoteStore', [OrderController::class, 'quoteStore'])->name('quoteStore'); //確定画面（見積より）
-    Route::get('{order}', [OrderController::class, 'show'])->name('show'); //発注済_詳細画面
+    Route::get('index', [OrderController::class, 'index'])->name('index');
+    Route::get('create/{price}', [OrderController::class, 'create'])->name('create');
+    Route::get('quoteCreate/{quote}', [OrderController::class, 'quoteCreate'])->name('quoteCreate');
+    Route::get('confirm', [OrderController::class, 'confirm'])->name('confirm');
+    Route::get('quoteConfirm', [OrderController::class, 'quoteConfirm'])->name('quoteConfirm');
+    Route::post('store', [OrderController::class, 'store'])->name('store');
+    Route::post('quoteStore', [OrderController::class, 'quoteStore'])->name('quoteStore');
+    Route::get('{order}', [OrderController::class, 'show'])->name('show');
     // Route::get('{order}/edit', [OrderController::class, 'edit'])->name('edit');
     // Route::patch('{order}', [OrderController::class, 'update'])->name('update');
     // Route::delete('{order}', [OrderController::class, 'destroy'])->name('destroy');
+
+
+
+
 
 
 
