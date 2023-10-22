@@ -17,3 +17,7 @@
 @section('js')
     <script> console.log('Hi!'); </script>
 @stop
+
+@section('footer')
+    Copyright © {{ date('Y') }} ○○○○ All Rights Reserved.
+@endsection

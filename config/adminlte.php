@@ -109,7 +109,8 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            // 'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'img/logo1.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
@@ -194,7 +195,8 @@ return [
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-primary elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    // 'classes_topnav' => 'navbar-white navbar-light', //ナビゲーションバーの色
+    'classes_topnav' => 'navbar navbar-light bg-info',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -408,6 +410,7 @@ return [
                 ],
             ],
         ],
+        
         ['header' => 'labels'],
         [
             'text'       => 'important',

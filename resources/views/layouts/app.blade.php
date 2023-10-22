@@ -15,6 +15,25 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    {{-- AdminLTE ログイン画面にフッター追加(style) --}}
+    <style>
+    footer{
+        position: absolute;
+        bottom: 0;
+    }
+    .footer01 {
+        color: #FFF;
+        background: #4a949d;
+        text-align: center;
+        padding: 30px;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+
 </head>
 <body>
     <div id="app">
@@ -35,6 +54,7 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -57,7 +77,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                    document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -76,5 +96,13 @@
             @yield('content')
         </main>
     </div>
+
+    {{-- AdminLTE ログイン画面にフッター追加(footer) --}}
+    <footer class="footer01">
+    <div style="text-align: center;">
+        <p style="margin-top: 15px;">copyright © {{ date('Y') }} example</p>
+    </div>
+</footer>
+
 </body>
 </html>
