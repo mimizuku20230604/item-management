@@ -35,7 +35,8 @@ class EventServiceProvider extends ServiceProvider
     // });
     Event::listen(BuildingMenu::class, function (BuildingMenu $event) {
       $user = auth()->user();
-      if ($user->roles->contains('id', 1)) {
+      // ログインしているユーザーが「user(adminで無い)」の場合、下記のメニューを非表示。
+      if ($user->roles->contains('id', 2)) {
         $event->menu->remove('items_create_admin_only');
         $event->menu->remove('items_index_admin_only');
         $event->menu->remove('prices_create_admin_only');
