@@ -76,7 +76,7 @@ Route::group(['prefix' => 'quotes', 'as' => 'quote.'], function () {
   Route::get('create', [QuoteController::class, 'create'])->name('create');
   Route::get('confirm', [QuoteController::class, 'confirm'])->name('confirm');
   Route::post('store', [QuoteController::class, 'store'])->name('store');
-  Route::get('show/{quote}', [QuoteController::class, 'show'])->name('show');
+  Route::get('show/{quote}', [QuoteController::class, 'show'])->name('show')->middleware('can:view,quote');
   // Route::get('edit/{quote}', [QuoteController::class, 'edit'])->name('edit');
   // Route::patch('update/{quote}', [QuoteController::class, 'update'])->name('update');
   // Route::delete('destroy/{quote}', [QuoteController::class, 'destroy'])->name('destroy');

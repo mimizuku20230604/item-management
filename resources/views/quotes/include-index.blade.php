@@ -26,14 +26,13 @@
       </thead>
       <tbody>
         @foreach ($quotes as $quote)
-          <!-- ログインユーザーによって表示制限($quote->customer->nameを使用) -->
-          @if ($quote->customer_id === auth()->user()->id)
+          <!-- Gate::allows('admin') で管理者の場合は全て表示。それ以外は customer_id とログインユーザーの id が一致する場合、該当見積を表示 -->
+          @if (Gate::allows('admin') || $quote->customer_id === auth()->user()->id)
             <tr class="table-bordered">
-              {{-- <tr class="table-bordered" onclick="location.href='{{route('item.show', $item)}}';"> --}}
               <td class="text-right">{{ $quote->id }}</td>
-              <td class="text-left">{{ $quote->user->name }}</td> {{-- userリレーションを介してnameを表示 --}}
+              <td class="text-left">{{ $quote->user->name }}</td>
               <td class="text-left">{{ $quote->customer->name }}</td>
-              <td class="text-left">{{ $quote->item->name }}</td> {{-- アイテム名を表示 --}}
+              <td class="text-left">{{ $quote->item->name }}</td>
               <td class="text-right">{{ number_format($quote->unit_price, 2) }}</td> 
               <td class="text-right">{{ number_format($quote->quantity) }}</td>
               <td class="text-right">{{ number_format($quote->total_amount) }}</td>
@@ -45,7 +44,7 @@
                 </a>
               </td>
             </tr>
-          @endif <!-- ユーザーによって表示制限 -->
+          @endif
         @endforeach
       </tbody>
     </table>

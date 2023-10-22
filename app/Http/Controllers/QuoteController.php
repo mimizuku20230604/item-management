@@ -280,6 +280,8 @@ class QuoteController extends Controller
   public function show(Quote $quote)
   {
     // dd($quote);
+    // Policyルール適用
+    $this->authorize('view', $quote);
     return view('quotes.show', compact('quote'));
   }
 

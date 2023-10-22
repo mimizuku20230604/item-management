@@ -79,7 +79,6 @@
     <br>
     <button class="btn btn-secondary mt-3" onclick="location.href='{{route('quote.index')}}';">一覧へ戻る</button>
         </div>
-
       </div>
     </div>
   </div>
