@@ -45,12 +45,12 @@
                     @endif
                 </div>
               </div>
-              <div class="col-md-4">
+              {{-- <div class="col-md-4">
                 <div class="form-group">
                   <label for="created_at">作成日</label>
                   <input type="date" name="created_at" class="form-control" id="created_at" value="{{ $request->created_at }}" readonly>
                 </div>
-              </div>
+              </div> --}}
             </div>
             <div class="form-group">
               <label for="remarks">備考</label>

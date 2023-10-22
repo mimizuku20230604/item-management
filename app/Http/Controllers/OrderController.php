@@ -2,22 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Quote; // Quoteモデルを使用するためにuse宣言
 use App\Models\Item; // Itemモデルを使用するためにuse宣言
 use App\Models\User; // Userモデルを使用するためにuse宣言
 use App\Models\Price; // Priceモデルを使用するためにuse宣言
-
 use Carbon\Carbon;
-
-// use Illuminate\Validation\ValidationException;
-
-
 use Illuminate\Support\Facades\Mail; // メール機能
 use App\Mail\OrderForm; // メール機能
-
-use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Gate;
 
 class OrderController extends Controller
 {
@@ -39,7 +33,6 @@ class OrderController extends Controller
   {
     // dd($price);
     // dd($request);
-    // $request = $request->all();
     return view('orders.create', compact('price', 'request'));
   }
 
@@ -51,7 +44,6 @@ class OrderController extends Controller
     // dd($request);
     // ここでデータはバリデーションを実行しない！
     //（create画面のリクエストとリダイレクトで返すデータが異なるため。）
-
     return view('orders.confirm', compact('request'));
   }
 
@@ -62,7 +54,6 @@ class OrderController extends Controller
   {
     // dd($request);
     // dump('test');
-
     // ここでバリデーションを実行。
     $request->validate([
       'quantity' => 'integer|digits_between:1,10|min:1',
@@ -105,7 +96,6 @@ class OrderController extends Controller
   {
     // dd($price);
     // dd($request);
-    $request = $request->all();
     return view('orders.quoteCreate', compact('quote', 'request'));
   }
 
@@ -127,7 +117,6 @@ class OrderController extends Controller
   {
     // dd($request);
     // dump('test');
-
     // ここでバリデーションを実行。
     $request->validate([
       'customer_id' => 'required',

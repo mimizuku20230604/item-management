@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\Item;
+// use Illuminate\Support\Facades\Gate;  //不要。ミドルウェアで設定済み。Route::middleware
 
 class ItemController extends Controller
 {
@@ -20,7 +20,6 @@ class ItemController extends Controller
   public function create(Request $request)
   {
     // dd($request);
-    // $request = $request->all();
     return view( 'items/create', compact('request'));
   }
 
@@ -29,7 +28,6 @@ class ItemController extends Controller
     // dd($request);
     // ここでデータはバリデーションを実行しない！
     //（create画面のリクエストとリダイレクトで返すデータが異なるため。）
-
     return view('items.confirm', compact('request'));
   }
 

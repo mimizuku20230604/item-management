@@ -16,12 +16,12 @@
     {{-- <form method="get" action="{{ route('order.quoteCreate') }}" enctype="multipart/form-data"> --}}
       {{-- @csrf --}}
           <div class="form-group">
-            <label for="user_name">顧客名</label>
-            <input type="text" name="user_name" class="form-control" id="user_name" value="{{ $quote->customer->name }}" readonly>
+            <label for="customer_name">顧客名</label>
+            <input type="text" name="customer_name" class="form-control" id="customer_name" value="{{ $quote->customer->name }}" readonly>
           </div>
           <div class="form-group">
-            <label for="user_email">メールアドレス</label>
-            <input type="text" name="user_email" class="form-control" id="user_email" value="{{ $quote->customer->email }}" readonly>
+            <label for="customer_email">メールアドレス</label>
+            <input type="text" name="customer_email" class="form-control" id="customer_email" value="{{ $quote->customer->email }}" readonly>
           </div>
           <div class="form-group">
             <label for="item_name">商品名</label>
@@ -54,11 +54,19 @@
                 <input type="date" name="expiration_date" class="form-control" id="expiration_date" value="{{ $quote['expiration_date'] }}" readonly>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="today_date">作成日</label>
-                <input type="date" name="today_date" class="form-control" id="today_date" value="{{ $quote->created_at->format('Y-m-d') }}" readonly>
-              </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="created_at">登録日</label>
+              <input type="date" class="form-control" id="created_at" name="created_at" value="{{ $quote->created_at->format('Y-m-d') }}" readonly>
+            </div>
+            <div class="form-group  col-md-4">
+              <label for="updated_at">更新日</label>
+              <input type="date" class="form-control" id="updated_at" name="updated_at" value="{{ $quote->updated_at->format('Y-m-d') }}" readonly>
+            </div>
+            <div class="form-group  col-md-4">
+              <label for="user_name">登録者（最終更新者）</label>
+              <input type="text" class="form-control" id="user_name" name="user_name" value="{{$quote->user->name }}" readonly>
             </div>
           </div>
           <div class="form-group">
