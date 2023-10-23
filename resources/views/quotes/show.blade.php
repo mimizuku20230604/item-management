@@ -1,7 +1,7 @@
 
 @extends('adminlte::page')
 
-@section('title', '見積詳細')
+@section('title', 'H-Laravel社')
 
 @section('content_header')
     <h1>見積詳細</h1>
@@ -75,7 +75,7 @@
           </div>
     {{-- <button type="submit" class="btn btn-primary">発注画面へ</button> --}}
     {{-- </form> --}}
-    <button class="btn btn-outline-success mt-3" onclick="location.href='{{route('order.quoteCreate', $quote)}}';">発注画面へ</button>
+    <button class="btn btn-success mt-3" onclick="location.href='{{route('order.quoteCreate', $quote)}}';">発注画面へ</button>
     <br>
     <button class="btn btn-secondary mt-3" onclick="location.href='{{route('quote.index')}}';">一覧へ戻る</button>
         </div>

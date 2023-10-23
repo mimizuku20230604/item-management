@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', '単価一覧')
+@section('title', 'H-Laravel社')
 
 @section('content_header')
     <h1>単価一覧</h1>
@@ -19,7 +19,9 @@
         <div class="input-group">
           <p class="card-text text-sm">（初期表示は期限内のもののみです。）
           <div class="card-tools ml-auto">
+            @can('admin')
             <a href="{{ url('prices/create') }}" class="btn btn-primary">単価登録</a>
+            @endcan
           </div>
         </div>
     </div>
@@ -40,25 +42,14 @@
             </thead>
             <tbody>
                 @foreach ($prices as $price)
-
-                <!-- ユーザーによって表示制限 -->
-                  {{-- @php --}}
-                  {{-- $currentUser = auth()->user(); --}}
-                  {{-- @endphp --}}
-                  {{-- @if ($currentUser->role === 'admin' || ($currentUser->id === $price->customer_id || is_null($price->customer_id)))  --}}
-
-
                   <!-- ユーザーによって表示制限 -->
-                  @php
-                  $customerId = $price->customer_id;
-                  @endphp
-                  @if ($customerId === null || $customerId === auth()->user()->id)
+                  @if (Gate::allows('admin') || $price->customer_id === null || $price->customer_id === auth()->user()->id)
                     <tr class="table-bordered">
                         <td class="text-right">{{ $price->id }}</td>
                         <td class="text-left">{{ $price->item->name }}</td> {{-- アイテム名を表示 --}}
                         <td class="text-right">{{ number_format($price->registration_price, 2) }}</td> 
                         {{-- <td class="text-left">{{ $price->customer ? $price->customer->name : '全ユーザー' }}</td> ustomer?でnullを許容 --}}
-                        <td class="text-left">{{ $customerId ? $price->customer->name : '全ユーザー' }}</td> <!-- ユーザーによって表示制限（customerId） -->
+                        <td class="text-left">{{ $price->customer_id ? $price->customer->name : '全ユーザー' }}</td> <!-- ユーザーによって表示制限（customerId） -->
                         {{-- <td class="text-center">{{ date('Y/m/d', strtotime($price->deadline_date)) }}</td> --}}
                         <td class="text-center">
                           @if ($price->deadline_date)
@@ -69,7 +60,7 @@
                         <td class="text-left">{{ $price->user->name }}</td> {{-- userリレーションを介してnameを表示 --}}
                         <td>
                             <a href="{{route('price.show', $price)}}">
-                            <button class="btn btn-outline-success btn-sm">詳細画面へ</button>
+                            <button class="btn btn-info btn-sm">詳細画面へ</button>
                             </a>
                         </td>
                     </tr>

@@ -4,7 +4,9 @@
     <div class="input-group">
       <p class="card-text text-sm">（初期表示は見積期限内のもののみです。）
       <div class="card-tools ml-auto">
-        <a href="{{ url('quotes/create') }}" class="btn btn-primary">見積作成</a>
+        @can('admin')
+          <a href="{{ url('quotes/create') }}" class="btn btn-primary">見積作成</a>
+        @endcan
       </div>
     </div>
   </div>
@@ -40,7 +42,7 @@
               <td class="text-center">{{ $quote->created_at->format('Y/m/d') }}</td>
               <td>
                 <a href="{{route('quote.show', $quote)}}">
-                <button class="btn btn-outline-success btn-sm">詳細画面へ</button>
+                <button class="btn btn-info btn-sm">詳細画面へ</button>
                 </a>
               </td>
             </tr>

@@ -1,7 +1,7 @@
 
 @extends('adminlte::page')
 
-@section('title', '発注登録')
+@section('title', 'H-Laravel社')
 
 @section('content_header')
     <h1>発注登録</h1>
@@ -59,7 +59,7 @@
                 <label for="remarks">備考</label>
                 <textarea name="remarks" class="form-control" id="remarks" cols="30" rows="5" maxlength="500">{{ !empty($request["remarks"]) ? $request["remarks"] : old('remarks', $price->remarks) }}</textarea>
               </div>
-            <button type="submit" class="btn btn-outline-success mt-3">確認</button>
+            <button type="submit" class="btn btn-success mt-3">確認する</button>
           </form>
           <button class="btn btn-secondary mt-3" onclick="location.href='{{route('price.show', $price)}}';">詳細へ戻る</button><br>
           <button class="btn btn-secondary mt-3" onclick="location.href='{{route('order.index')}}';">一覧へ戻る</button>

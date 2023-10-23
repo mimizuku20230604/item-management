@@ -1,7 +1,7 @@
 
 @extends('adminlte::page')
 
-@section('title', '商品登録')
+@section('title', 'H-Laravel社')
 
 @section('content_header')
   <h1>商品登録</h1>
@@ -27,7 +27,7 @@
               <label for="detail">詳細</label>
               <input type="text" class="form-control" id="detail" name="detail" value="{{ !empty($request["detail"]) ? $request["detail"] : old('detail', '') }}" placeholder="詳細説明">
             </div>
-            <button type="submit" class="btn btn-primary">確認</button>
+            <button type="submit" class="btn btn-primary">確認する</button>
           </form>
         </div>
       </div>

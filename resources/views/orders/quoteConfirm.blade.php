@@ -1,7 +1,7 @@
 
 @extends('adminlte::page')
 
-@section('title', '発注登録')
+@section('title', 'H-Laravel社')
 
 @section('content_header')
     <h1>発注登録</h1>
@@ -82,7 +82,7 @@
                 <div class="invalid-feedback">500文字以内です</div>
               @endif
             </div>
-            <button type="submit" class="btn btn-outline-success mt-3">確定する</button>
+            <button type="submit" class="btn btn-success mt-3">確定する</button>
             <p class="card-text text-sm">（確定後、お客様へメール配信します。）
           </form>
             <!-- a hrefだと、未入力の初期画面に戻る。 -->

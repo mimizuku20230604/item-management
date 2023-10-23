@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Price;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class PricePolicy
+class OrderPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,18 +19,10 @@ class PricePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Price $price): bool
+    public function view(User $user, Order $order): bool
     {
-        // ポリシーのロジックをここに記述
-        // 例: 特定の条件に基づいてユーザーにアクセスを許可または拒否
-        // return $user->id === $quote->customer_id; // 例: ユーザーIDが見積のcustomer_idと一致する場合のみ許可
-
         //対象customer_idは閲覧可能
-        if ($user->id == $price->customer_id) {
-            return true;
-        }
-        //nullは全て閲覧可能
-        if ($price->customer_id === null) {
+        if ($user->id == $order->customer_id) {
             return true;
         }
         //管理者は全て閲覧可能
@@ -54,7 +46,7 @@ class PricePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Price $price): bool
+    public function update(User $user, Order $order): bool
     {
         //
     }
@@ -62,7 +54,7 @@ class PricePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Price $price): bool
+    public function delete(User $user, Order $order): bool
     {
         //
     }
@@ -70,7 +62,7 @@ class PricePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Price $price): bool
+    public function restore(User $user, Order $order): bool
     {
         //
     }
@@ -78,7 +70,7 @@ class PricePolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Price $price): bool
+    public function forceDelete(User $user, Order $order): bool
     {
         //
     }

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', '商品一覧')
+@section('title', 'H-Laravel社')
 
 @section('content_header')
     <h1>商品一覧</h1>
@@ -39,17 +39,17 @@
                     <td class="text-left">{{ $user->email }}</td>
                     <td>
                       {{-- <a href="{{route('item.show', $item)}}"> --}}
-                      <button class="btn btn-outline-success btn-sm">編集</button>
+                      <button class="btn btn-success btn-sm">編集</button>
                       </a>
                     </td>
                     <td>
                       {{-- <a href="{{route('item.show', $item)}}"> --}}
-                      <button class="btn btn-outline-success btn-sm">削除</button>
+                      <button class="btn btn-success btn-sm">削除</button>
                       </a>
                     </td>
                     <td>
                       {{-- <a href="{{route('item.show', $item)}}"> --}}
-                      <button class="btn btn-outline-success btn-sm">詳細画面へ</button>
+                      <button class="btn btn-success btn-sm">詳細画面へ</button>
                       </a>
                     </td>
                   </tr>
