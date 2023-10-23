@@ -65,7 +65,7 @@ return [
 
     'logo' => '<b>商品管理</b>',
     // 'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img' => 'img/logo1.png', //サイドバーロゴ
+    'logo_img' => 'img/logo6.png', //サイドバーロゴ
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -111,7 +111,7 @@ return [
         'enabled' => true,
         'img' => [
             // 'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-            'path' => 'img/logo1.png', //ローディングロゴ
+            'path' => 'img/logo4.png', //ローディングロゴ
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
@@ -336,7 +336,7 @@ return [
         [
             'key'  => 'profile_index_admin_only', //[user]には表示されない。
             'text' => 'ユーザー一覧',
-            'url'  => 'profile/index',
+            'url'  => 'profiles/index',
             'icon' => 'fas fa-fw fa-lock',
         ],
         [

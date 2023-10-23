@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'H-Laravel社')
 
 @section('content_header')
     <h1>ホーム</h1>
@@ -19,5 +19,5 @@
 @stop
 
 @section('footer')
-    Copyright © {{ date('Y') }} ○○○○ All Rights Reserved.
+    Copyright © {{ date('Y') }} H-Laravel社_商品管理システム All Rights Reserved.
 @endsection

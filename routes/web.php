@@ -60,7 +60,7 @@ Route::group(['prefix' => 'prices', 'as' => 'price.'], function () {
   Route::get('create', [PriceController::class, 'create'])->name('create');
   Route::post('store', [PriceController::class, 'store'])->name('store');
   Route::get('confirm', [PriceController::class, 'confirm'])->name('confirm');
-  Route::get('show/{price}', [PriceController::class, 'show'])->name('show');
+  Route::get('show/{price}', [PriceController::class, 'show'])->middleware('can:view,price')->name('show');
   Route::get('edit/{price}', [PriceController::class, 'edit'])->name('edit');
   Route::get('editConfirm/{price}', [PriceController::class, 'editConfirm'])->name('editConfirm');
   Route::patch('update/{price}', [PriceController::class, 'update'])->name('update');
@@ -76,7 +76,7 @@ Route::group(['prefix' => 'quotes', 'as' => 'quote.'], function () {
   Route::get('create', [QuoteController::class, 'create'])->name('create');
   Route::get('confirm', [QuoteController::class, 'confirm'])->name('confirm');
   Route::post('store', [QuoteController::class, 'store'])->name('store');
-  Route::get('show/{quote}', [QuoteController::class, 'show'])->name('show');
+  Route::get('show/{quote}', [QuoteController::class, 'show'])->middleware('can:view,quote')->name('show');
   // Route::get('edit/{quote}', [QuoteController::class, 'edit'])->name('edit');
   // Route::patch('update/{quote}', [QuoteController::class, 'update'])->name('update');
   // Route::delete('destroy/{quote}', [QuoteController::class, 'destroy'])->name('destroy');
@@ -91,7 +91,7 @@ Route::group(['prefix' => 'orders', 'as' => 'order.'], function () {
   Route::get('quoteConfirm', [OrderController::class, 'quoteConfirm'])->name('quoteConfirm');
   Route::post('store', [OrderController::class, 'store'])->name('store');
   Route::post('quoteStore', [OrderController::class, 'quoteStore'])->name('quoteStore');
-  Route::get('{order}', [OrderController::class, 'show'])->name('show');
+  Route::get('{order}', [OrderController::class, 'show'])->middleware('can:view,order')->name('show');
   // Route::get('{order}/edit', [OrderController::class, 'edit'])->name('edit');
   // Route::patch('{order}', [OrderController::class, 'update'])->name('update');
   // Route::delete('{order}', [OrderController::class, 'destroy'])->name('destroy');

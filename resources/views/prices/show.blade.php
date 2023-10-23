@@ -1,7 +1,7 @@
 
 @extends('adminlte::page')
 
-@section('title', '単価詳細')
+@section('title', 'H-Laravel社')
 
 @section('content_header')
     <h1>単価詳細</h1>
@@ -55,25 +55,24 @@
             <label for="remarks">備考</label>
             <textarea name="remarks" class="form-control" id="remarks" readonly>{{ $price->remarks }}</textarea>
           </div>
-<button class="btn btn-outline-success mt-3" onclick="location.href='{{route('order.create', $price)}}';">発注画面へ</button>
-<br>
+          <button class="btn btn-primary mt-3" onclick="location.href='{{route('order.create', $price)}}';">発注画面へ</button>
+          <br>
             @can('admin')
-            <button class="btn btn-outline-success mt-3" onclick="location.href='{{route('price.edit', $price)}}';">編集</button>
+              <button class="btn btn-success mt-3" onclick="location.href='{{route('price.edit', $price)}}';">編集</button>
             @endcan
             @can('admin')
-            <form method="post" action="{{route('price.destroy', $price)}}">
-              @csrf
-              @method('delete')
-              <button class="btn btn-outline-danger mt-3" onClick="return confirm('本当に削除しますか？');">削除</button>
-            </form>
+              <form method="post" action="{{route('price.destroy', $price)}}">
+                @csrf
+                @method('delete')
+                <button class="btn btn-danger mt-3" onClick="return confirm('本当に削除しますか？');">削除</button>
+              </form>
             @endcan
-            <button class="btn btn-secondary mt-3" onclick="location.href='{{route('price.index')}}';">一覧へ戻る</button>
+          <button class="btn btn-secondary mt-3" onclick="location.href='{{route('price.index')}}';">一覧へ戻る</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
 @endsection
 
 @section('css')

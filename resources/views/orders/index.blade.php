@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', '発注済一覧')
+@section('title', 'H-Laravel社')
 
 @section('content_header')
     <h1>発注済一覧</h1>
@@ -13,7 +13,7 @@
       <div class="card">
         <div class="card-header">
           <div class="input-group">
-            <p class="card-text text-sm">（初期表示は期限内のもののみです。）
+            <p class="card-text text-sm">（初期表示は3ヶ月以内のもののみです。）
           </div>
         </div>
         <div class="card-body table-responsive p-0">
@@ -35,7 +35,7 @@
             <tbody>
               @foreach ($orders as $order)
                 <!-- ログインユーザーによって表示制限のif($order->customer->nameを使用) -->
-                @if ($order->customer_id === auth()->user()->id)
+                @if (Gate::allows('admin') || $order->customer_id === auth()->user()->id)
                   <tr class="table-bordered">
                     <td class="text-right">{{ $order->id }}</td>
                     <td class="text-left">{{ $order->customer->name }}</td> <!-- customer_idから -->
@@ -48,7 +48,7 @@
                     <td class="text-left">{{ $order->user->name }}</td> <!-- user_idから -->
                     <td>
                       <a href="{{route('order.show', $order)}}">
-                      <button class="btn btn-outline-success btn-sm">詳細画面へ</button>
+                      <button class="btn btn-info btn-sm">詳細画面へ</button>
                       </a>
                     </td>
                   </tr>

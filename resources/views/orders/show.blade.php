@@ -1,7 +1,7 @@
 
 @extends('adminlte::page')
 
-@section('title', '発注済詳細')
+@section('title', 'H-Laravel社')
 
 @section('content_header')
     <h1>発注済詳細</h1>
@@ -67,6 +67,14 @@
             <label for="remarks">備考</label>
             <textarea name="remarks" class="form-control" id="remarks" readonly>{{ $order->remarks }}</textarea>
           </div>
+          <button class="btn btn-outline-primary mt-3" onclick="location.href=#">リピート発注
+            <span class="badge badge-pill btn-warning">工事中</span>
+          </button>
+          <br>
+          <button class="btn btn-outline-success mt-3" onclick="location.href=#">変更依頼
+            <span class="badge badge-pill btn-warning">工事中</span>
+          </button>
+          <br>
           <button class="btn btn-secondary mt-3" onclick="location.href='{{route('order.index')}}';">一覧へ戻る</button>
         </div>
       </div>

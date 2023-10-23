@@ -1,7 +1,7 @@
 
 @extends('adminlte::page')
 
-@section('title', '単価編集')
+@section('title', 'H-Laravel社')
 
 @section('content_header')
     <h1>単価編集</h1>

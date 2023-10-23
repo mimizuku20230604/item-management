@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', '見積一覧')
+@section('title', 'H-Laravel社')
 
 @section('content_header')
   <h1>見積一覧</h1>

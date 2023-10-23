@@ -112,6 +112,8 @@ class PriceController extends Controller
   public function show(Price $price)
   {
     // dd($price);
+    // Policyルール適用
+    // $this->authorize('view', $price);
     return view('prices.show', ['price' => $price]);
   }
 
@@ -122,6 +124,7 @@ class PriceController extends Controller
   {
     // dd($price);
     // dd($request);
+    // Gateルール適用
     Gate::authorize('admin');
     return view('prices.edit', compact('request', 'price'));
   }

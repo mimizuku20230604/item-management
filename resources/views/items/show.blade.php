@@ -1,7 +1,7 @@
 
 @extends('adminlte::page')
 
-@section('title', '商品詳細')
+@section('title', 'H-Laravel社')
 
 @section('content_header')
   <h1>商品詳細</h1>
@@ -39,11 +39,11 @@
               <input type="text" class="form-control" id="user_name" name="user_name" value="{{$item->user->name }}" readonly>
             </div>
           </div>
-          <button class="btn btn-outline-success mt-3" onclick="location.href='{{route('item.edit', $item)}}';">編集</button>
+          <button class="btn btn-success mt-3" onclick="location.href='{{route('item.edit', $item)}}';">編集</button>
           <form method="post" action="{{route('item.destroy', $item)}}">
             @csrf
             @method('delete')
-            <button class="btn btn-outline-danger mt-3" onclick="return confirm('本当に削除しますか？');">削除</button>
+            <button class="btn btn-danger mt-3" onclick="return confirm('本当に削除しますか？');">削除</button>
           </form>
           <button class="btn btn-secondary mt-3" onclick="location.href='{{route('item.index')}}';">一覧へ戻る</button>
         </div>
