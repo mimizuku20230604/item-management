@@ -7,7 +7,7 @@ use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
-
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,13 +39,21 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['auth', 'can:admin'])->group(function () {
       Route::group(['prefix' => 'profiles', 'as' => 'profile.'], function () {
         Route::get('index', [ProfileController::class, 'index'])->name('index');
-        Route::get('show', [ProfileController::class, 'show'])->name('show');
-        Route::get('edit', [ProfileController::class, 'edit'])->name('edit');
-        Route::get('passwordEdit', [ProfileController::class, 'passwordEdit'])->name('passwordEdit');
-        Route::patch('update',[ProfileController::class, 'update'])->name('update');
-        Route::patch('passwordUpdate', [ProfileController::class, 'passwordUpdate'])->name('passwordUpdate');
+        Route::get('show/{profile}', [ProfileController::class, 'show'])->name('show');
+        Route::get('edit/{profile}', [ProfileController::class, 'edit'])->name('edit');
+        Route::patch('update/{profile}',[ProfileController::class, 'update'])->name('update');
         Route::delete('destroy/{profile}', [ProfileController::class, 'destroy'])->name('destroy');
       });
+    });
+
+    // ユーザー画面
+    Route::group(['prefix' => 'users', 'as' => 'user.'], function () {
+      Route::get('show', [UserController::class, 'show'])->name('show');
+      Route::get('edit', [UserController::class, 'edit'])->name('edit');
+      Route::get('passwordEdit', [UserController::class, 'passwordEdit'])->name('passwordEdit');
+      Route::patch('update', [UserController::class, 'update'])->name('update');
+      Route::patch('passwordUpdate', [UserController::class, 'passwordUpdate'])->name('passwordUpdate');
+      // Route::delete('destroy', [UserController::class, 'destroy'])->name('destroy');
     });
 
     // 商品画面（ミドルウェア制限あり）

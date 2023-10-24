@@ -70,7 +70,7 @@
                             @endif
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link">お問合せ（作成中）</a>
+                                <a class="nav-link">お問合せ（準備中）</a>
                             </li>
 
                         @else

@@ -4,7 +4,7 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-    <h1>単価登録</h1>
+    <h4>単価登録</h4>
 @stop
 
 @section('content')

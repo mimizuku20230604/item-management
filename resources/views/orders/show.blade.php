@@ -4,7 +4,7 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-    <h1>発注済詳細</h1>
+    <h4>発注済詳細</h4>
 @stop
 
 @section('content')
@@ -68,11 +68,11 @@
             <textarea name="remarks" class="form-control" id="remarks" readonly>{{ $order->remarks }}</textarea>
           </div>
           <button class="btn btn-outline-primary mt-3" onclick="location.href=#">リピート発注
-            <span class="badge badge-pill btn-info">作成中</span>
+            <span class="badge badge-pill btn-info">準備中</span>
           </button>
           <br>
           <button class="btn btn-outline-success mt-3" onclick="location.href=#">変更依頼
-            <span class="badge badge-pill btn-info">作成中</span>
+            <span class="badge badge-pill btn-info">準備中</span>
           </button>
           <br>
           <button class="btn btn-secondary mt-3" onclick="location.href='{{route('order.index')}}';">一覧へ戻る</button>

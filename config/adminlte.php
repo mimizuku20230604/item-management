@@ -341,13 +341,27 @@ return [
         ],
         [
             'text' => 'profile',
-            'url'  => 'profiles/show',
+            'url'  => 'users/show',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text' => 'change_password',
-            'url'  => 'profiles/passwordEdit',
+            'url'  => 'users/passwordEdit',
             'icon' => 'fas fa-fw fa-lock',
+        ],
+        [
+            'text' => 'ログアウト',
+            'url'  => '#',
+            'icon' => 'fas fa-fw fa-sign-out-alt',
+            'label'       => '準備中',
+            'label_color' => 'info',
+        ],
+        [
+            'text'        => '退会',
+            'url'         => '#',
+            'icon'        => 'fas fa-user-times',
+            'label'       => '準備中',
+            'label_color' => 'info',
         ],
 
         // AdminLTEデフォルト

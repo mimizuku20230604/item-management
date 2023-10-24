@@ -4,7 +4,7 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-  <h1>パスワード変更</h1>
+  <h2>パスワード変更</h2>
 @stop
 
 @section('content')
@@ -17,7 +17,7 @@
       @endif
       <div class="card">
         <div class="card-header">
-          <form method="post" action="{{route('profile.passwordUpdate')}}" >
+          <form method="post" action="{{route('user.passwordUpdate')}}" >
             @csrf
             @method('patch')
             <div class="form-group">

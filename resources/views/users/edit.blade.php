@@ -4,7 +4,7 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-  <h1>アカウント編集</h1>
+  <h2>アカウント編集</h2>
 @stop
 
 @section('content')
@@ -12,7 +12,7 @@
     <div class="col-md-10">
       <div class="card">
         <div class="card-header">
-          <form method="post" action="{{route('profile.update')}}" >
+          <form method="post" action="{{route('user.update')}}" >
             @csrf
             @method('patch')
             <div class="form-group">

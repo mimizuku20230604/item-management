@@ -4,7 +4,7 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-  <h1>アカウント情報</h1>
+  <h2>アカウント情報</h2>
 @stop
 
 @section('content')
@@ -31,7 +31,7 @@
               <input type="date" class="form-control" id="updated_at" name="updated_at" value="{{ $user->updated_at->format('Y-m-d') }}" readonly>
             </div>
           </div>
-          <button class="btn btn-success mt-3" onclick="location.href='{{route('profile.edit')}}';">編集</button>
+          <button class="btn btn-success mt-3" onclick="location.href='{{route('user.edit')}}';">編集</button>
         </div>
       </div>
     </div>

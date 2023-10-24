@@ -4,7 +4,7 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-    <h1>見積詳細</h1>
+    <h4>見積詳細</h4>
 @stop
 
 @section('content')
@@ -78,7 +78,7 @@
     <button class="btn btn-success mt-3" onclick="location.href='{{route('order.quoteCreate', $quote)}}';">発注画面へ</button>
     <br>
     <button class="btn btn-outline-primary mt-3" onclick="location.href=#">リピート発行
-        <span class="badge badge-pill btn-info">作成中</span>
+        <span class="badge badge-pill btn-info">準備中</span>
       </button>
       <br>
     <button class="btn btn-secondary mt-3" onclick="location.href='{{route('quote.index')}}';">一覧へ戻る</button>
