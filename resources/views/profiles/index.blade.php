@@ -3,7 +3,7 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-    <h4>商品一覧</h4>
+    <h4>ユーザ一覧</h4>
 @stop
 
 @section('content')
@@ -11,14 +11,11 @@
     <div class="col-12">
       @include('includes.alert')
       <div class="card">
-        <div class="card-header">
-          <div class="input-group">
-            <p class="card-text text-sm">
-            <div class="card-tools ml-auto">
-              <a href="{{route('item.create')}}" class="btn btn-primary">商品登録</a>
-            </div>
-          </div>
-        </div>
+        {{-- <div class="card-header"> --}}
+          {{-- <div class="input-group"> --}}
+            {{-- <p class="card-text text-sm"> --}}
+          {{-- </div> --}}
+        {{-- </div> --}}
         <div class="card-body table-responsive p-0">
           <table class="table table-hover text-center">
             <thead>

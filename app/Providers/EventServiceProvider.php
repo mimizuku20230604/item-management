@@ -42,6 +42,7 @@ class EventServiceProvider extends ServiceProvider
         $event->menu->remove('prices_create_admin_only');
         $event->menu->remove('quotes_create_admin_only');
         $event->menu->remove('profile_index_admin_only');
+        $event->menu->remove('Information_admin_only');
       }
     });
   }
