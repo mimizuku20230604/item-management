@@ -3,7 +3,7 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-    <h1>商品一覧</h1>
+    <h4>商品一覧</h4>
 @stop
 
 @section('content')
