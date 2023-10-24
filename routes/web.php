@@ -6,6 +6,8 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,8 +39,11 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['auth', 'can:admin'])->group(function () {
       Route::group(['prefix' => 'profiles', 'as' => 'profile.'], function () {
         Route::get('index', [ProfileController::class, 'index'])->name('index');
-        Route::get('edit/{profile}', [ProfileController::class, 'edit'])->name('edit');
-        Route::patch('update/{profile}',[ProfileController::class, 'update'])->name('update');
+        Route::get('show', [ProfileController::class, 'show'])->name('show');
+        Route::get('edit', [ProfileController::class, 'edit'])->name('edit');
+        Route::get('passwordEdit', [ProfileController::class, 'passwordEdit'])->name('passwordEdit');
+        Route::patch('update',[ProfileController::class, 'update'])->name('update');
+        Route::patch('passwordUpdate', [ProfileController::class, 'passwordUpdate'])->name('passwordUpdate');
         Route::delete('destroy/{profile}', [ProfileController::class, 'destroy'])->name('destroy');
       });
     });

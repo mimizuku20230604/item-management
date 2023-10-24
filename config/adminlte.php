@@ -341,12 +341,12 @@ return [
         ],
         [
             'text' => 'profile',
-            'url'  => 'admin/settings',
+            'url'  => 'profiles/show',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text' => 'change_password',
-            'url'  => 'admin/settings',
+            'url'  => 'profiles/passwordEdit',
             'icon' => 'fas fa-fw fa-lock',
         ],
 
