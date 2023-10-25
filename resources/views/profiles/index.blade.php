@@ -43,6 +43,7 @@
       </div>
     </div>
   </div>
+  <a class="btn btn-primary" href="{{ route('login') }}">ログイン画面へ</a>
 @stop
 
 @section('css')
