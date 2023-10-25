@@ -38,6 +38,9 @@ class Handler extends ExceptionHandler
         if ($exception instanceof ModelNotFoundException) {
             return response()->view('errors.404', [], 404);
         }
+        if ($exception instanceof ModelNotFoundException) {
+            return response()->view('errors.419', [], 419);
+        }
         return parent::render($request, $exception);
     }
 }
