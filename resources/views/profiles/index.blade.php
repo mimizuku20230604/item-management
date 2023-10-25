@@ -3,7 +3,8 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-    <h4>商品一覧</h4>
+    <h4>ユーザ一覧</h4>
+    <button class="btn btn-secondary mt-3" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
 @stop
 
 @section('content')
@@ -11,14 +12,6 @@
     <div class="col-12">
       @include('includes.alert')
       <div class="card">
-        <div class="card-header">
-          <div class="input-group">
-            <p class="card-text text-sm">
-            <div class="card-tools ml-auto">
-              <a href="{{route('item.create')}}" class="btn btn-primary">商品登録</a>
-            </div>
-          </div>
-        </div>
         <div class="card-body table-responsive p-0">
           <table class="table table-hover text-center">
             <thead>
@@ -26,8 +19,6 @@
                 <th class="font-weight-normal">ID</th>
                 <th class="font-weight-normal">名前</th>
                 <th class="font-weight-normal">Email</th>
-                <th class="font-weight-normal">編集</th>
-                <th class="font-weight-normal">削除</th>
                 <th class="font-weight-normal">詳細画面へ</th>
               </tr>
             </thead>
@@ -38,18 +29,10 @@
                     <td class="text-left">{{ $user->name }}</td>
                     <td class="text-left">{{ $user->email }}</td>
                     <td>
-                      {{-- <a href="{{route('item.show', $item)}}"> --}}
-                      <button class="btn btn-success btn-sm">編集</button>
+                      <a href="{{route('profile.show', $user)}}">
+                      <button class="btn btn-info btn-sm">詳細画面へ</button>
                       </a>
                     </td>
-                    <td>
-                      {{-- <a href="{{route('item.show', $item)}}"> --}}
-                      <button class="btn btn-success btn-sm">削除</button>
-                      </a>
-                    </td>
-                    <td>
-                      {{-- <a href="{{route('item.show', $item)}}"> --}}
-                      <button class="btn btn-success btn-sm">詳細画面へ</button>
                       </a>
                     </td>
                   </tr>

@@ -77,7 +77,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
         // デフォルトでロールが「2（user）」になる設定
-        $role = Role::where('name', 'user')->first();
+        $role = Role::where('name', 'admin')->first();
         if ($role) {
             $user->roles()->attach($role->id);
         }

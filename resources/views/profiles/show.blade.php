@@ -4,7 +4,7 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-  <h2>アカウント情報</h2>
+  <h2>アカウント情報（管理者用）</h2>
 @stop
 
 @section('content')
@@ -31,9 +31,9 @@
               <input type="date" class="form-control" id="updated_at" name="updated_at" value="{{ $user->updated_at->format('Y-m-d') }}" readonly>
             </div>
           </div>
-          <button class="btn btn-success mt-3" onclick="location.href='{{route('user.edit')}}';">編集</button>
+          <button class="btn btn-success mt-3" onclick="location.href='{{route('profile.edit', $user)}}';">編集</button>
           <br>
-          <button class="btn btn-secondary mt-3" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+          <button class="btn btn-secondary mt-3" onclick="location.href='{{route('profile.index')}}';">一覧へ戻る</button>
         </div>
       </div>
     </div>

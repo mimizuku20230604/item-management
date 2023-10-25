@@ -405,14 +405,25 @@ return [
         //     'url'  => 'admin/settings',
         //     'icon' => 'fas fa-fw fa-lock',
         // ],
-        // [
-        //     'text'    => 'multilevel',
-        //     'icon'    => 'fas fa-fw fa-share',
-        //     'submenu' => [
-        //         [
-        //             'text' => 'level_one',
-        //             'url'  => '#',
-        //         ],
+        [
+            'key'  => 'Information_admin_only', 
+            'text'    => 'Information',
+            'icon'    => 'fas fa-fw fa-share',
+            'label'   => '準備中',
+            'label_color' => 'info',
+            'submenu' => [
+                [
+                    'text' => '社内へ',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => '社外へ',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => '新商品情報',
+                    'url'  => '#',
+                ],
         //         [
         //             'text'    => 'level_one',
         //             'url'     => '#',
@@ -441,8 +452,8 @@ return [
         //             'text' => 'level_one',
         //             'url'  => '#',
         //         ],
-        //     ],
-        // ],
+            ],
+        ],
         
         // ['header' => 'labels'],
         // [
