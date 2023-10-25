@@ -40,11 +40,17 @@ class ProfileController extends Controller
       'name' => 'required|string|max:255',
       // ignore メソッドによって現在のユーザーidの(email)を除外
       'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class)->ignore($user)],
+      'role_id' => 'required|in:1,2', // 1: admin, 2: user
     ]);
+
     // $user = Auth::user();
     $user->name = $request->name;
     $user->email = $request->email;
+    // 役割を更新
+    $user->roles()->sync([$request->role_id]);
+
     $user->save();
+    
     return redirect()->route('profile.show', $user)->with('update', 'アカウント情報を更新しました');
   }
   
