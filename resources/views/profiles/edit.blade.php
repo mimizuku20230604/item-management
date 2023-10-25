@@ -4,7 +4,7 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-  <h2>アカウント編集</h2>
+  <h2>アカウント編集（管理者用）</h2>
 @stop
 
 @section('content')
@@ -12,7 +12,7 @@
     <div class="col-md-10">
       <div class="card">
         <div class="card-header">
-          <form method="post" action="{{route('user.update')}}" >
+          <form method="post" action="{{route('profile.update', $user)}}" >
             @csrf
             @method('patch')
             <div class="form-group">
@@ -31,7 +31,7 @@
             </div>
             <button type="submit" class="btn btn-primary">更新する</button>
           </form>
-          <button class="btn btn-secondary mt-3" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+          <button class="btn btn-secondary mt-3" onclick="location.href='{{route('profile.index')}}';">一覧へ戻る</button>
         </div>
       </div>
     </div>
@@ -43,8 +43,3 @@
 
 @section('js')
 @stop
-
-
-
-
-

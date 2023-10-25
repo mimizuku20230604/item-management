@@ -39,10 +39,10 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['auth', 'can:admin'])->group(function () {
       Route::group(['prefix' => 'profiles', 'as' => 'profile.'], function () {
         Route::get('index', [ProfileController::class, 'index'])->name('index');
-        Route::get('show/{profile}', [ProfileController::class, 'show'])->name('show');
-        Route::get('edit/{profile}', [ProfileController::class, 'edit'])->name('edit');
-        Route::patch('update/{profile}',[ProfileController::class, 'update'])->name('update');
-        Route::delete('destroy/{profile}', [ProfileController::class, 'destroy'])->name('destroy');
+        Route::get('show/{user}', [ProfileController::class, 'show'])->name('show');
+        Route::get('edit/{user}', [ProfileController::class, 'edit'])->name('edit');
+        Route::patch('update/{user}',[ProfileController::class, 'update'])->name('update');
+        Route::delete('destroy/{user}', [ProfileController::class, 'destroy'])->name('destroy');
       });
     });
 
