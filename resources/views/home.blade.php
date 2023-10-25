@@ -10,11 +10,11 @@
 @section('content')
   @can('admin')
     <span class="badge badge-pill btn-info">
-      準備中準備中
+      準備中
     </span>
     <div class="form-row">
       @include('includes.sales') 
-      @include('includes.insideInfo') 
+      @include('includes.inside') 
     </div>
   @endcan
   <br>
