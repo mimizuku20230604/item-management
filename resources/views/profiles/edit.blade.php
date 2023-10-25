@@ -36,6 +36,15 @@
       </div>
     </div>
   </div>
+    <div class="row">
+    <div class="col-md-10">
+      <div class="card">
+        <div class="card-header">
+          @include('includes.role-user-form')
+        </div>
+      </div>
+    </div>
+  </div>
 @stop
 
 @section('css')

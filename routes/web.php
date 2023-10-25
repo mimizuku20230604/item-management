@@ -35,14 +35,22 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
   Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    // ユーザー管理画面（ミドルウェア制限あり）
+    // 管理用ユーザー画面（ミドルウェア制限あり）
     Route::middleware(['auth', 'can:admin'])->group(function () {
       Route::group(['prefix' => 'profiles', 'as' => 'profile.'], function () {
         Route::get('index', [ProfileController::class, 'index'])->name('index');
         Route::get('show/{user}', [ProfileController::class, 'show'])->name('show');
         Route::get('edit/{user}', [ProfileController::class, 'edit'])->name('edit');
         Route::patch('update/{user}',[ProfileController::class, 'update'])->name('update');
-        Route::delete('destroy/{user}', [ProfileController::class, 'destroy'])->name('destroy');
+        // Route::delete('destroy/{user}', [ProfileController::class, 'destroy'])->name('destroy');
+      });
+    });
+
+    // 権限付与ルート（ミドルウェア制限あり）
+    Route::middleware(['auth', 'can:admin'])->group(function () {
+      Route::group(['prefix' => 'roles', 'as' => 'role.'], function () {
+        Route::patch('{user}/attach', [RoleController::class, 'attach'])->name('attach');
+        Route::patch('{user}/detach', [RoleController::class, 'detach'])->name('detach');
       });
     });
 
@@ -108,9 +116,9 @@ Route::middleware(['auth'])->group(function () {
       Route::post('store', [OrderController::class, 'store'])->name('store');
       Route::post('quoteStore', [OrderController::class, 'quoteStore'])->name('quoteStore');
       Route::get('{order}', [OrderController::class, 'show'])->middleware('can:view,order')->name('show');
-      // Route::get('{order}/edit', [OrderController::class, 'edit'])->name('edit');
-      // Route::patch('{order}', [OrderController::class, 'update'])->name('update');
-      // Route::delete('{order}', [OrderController::class, 'destroy'])->name('destroy');
+      // Route::get('edit/{order}', [OrderController::class, 'edit'])->name('edit');
+      // Route::patch('update/{order}', [OrderController::class, 'update'])->name('update');
+      // Route::delete('destroy/{order}', [OrderController::class, 'destroy'])->name('destroy');
     });
 
 });

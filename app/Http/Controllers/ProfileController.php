@@ -2,16 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-
-use Illuminate\Validation\Rule;
-
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
-
+use Illuminate\Validation\Rule;
 use App\Models\User;
 use App\Models\Role;
 
@@ -34,8 +26,10 @@ class ProfileController extends Controller
 
   public function edit(User $user)
   {
-    
-    return view('profiles.edit', compact('user'));
+    //権限付与用コード
+    $admin = true;
+    $roles = Role::all();
+    return view('profiles.edit', compact('user', 'admin', 'roles'));
   }
 
   public function update(Request $request, User $user)
