@@ -75,8 +75,8 @@ class PriceController extends Controller
       'customer_id' => 'nullable',
       'registration_price' => 'required|numeric|regex:/^\d{1,8}(\.\d{1,2})?$/',
       'deadline_date' => 'nullable|date|after_or_equal:today',
-      // 'remarks' => 'max:500',
-      'remarks' => 'max:7',
+      // 'remark' => 'max:500',
+      'remark' => 'max:7',
     ]);
 
     $price = new Price();
@@ -84,7 +84,7 @@ class PriceController extends Controller
     $price->customer_id = $request->customer_id;
     $price->registration_price = $request->registration_price;
     $price->deadline_date = $request->deadline_date;
-    $price->remarks = $request->remarks;
+    $price->remark = $request->remark;
     $price->user_id = auth()->user()->id;
     $price->save();
 
@@ -148,15 +148,15 @@ class PriceController extends Controller
     // dd($price);
     Gate::authorize('admin');
     $request->validate([
-    'registration_price' => 'required|numeric|regex:/^\d{1,8}(\.\d{1,2})?$/',
-    'deadline_date' => 'nullable|date|after_or_equal:today',
-    // 'remarks' => 'max:500',
-    'remarks' => 'max:7',
+      'registration_price' => 'required|numeric|regex:/^\d{1,8}(\.\d{1,2})?$/',
+      'deadline_date' => 'nullable|date|after_or_equal:today',
+      // 'remark' => 'max:500',
+      'remark' => 'max:7',
     ]);
 
     $price->registration_price = $request->registration_price;
     $price->deadline_date = $request->deadline_date;
-    $price->remarks = $request->remarks;
+    $price->remark = $request->remark;
     $price->user_id = auth()->user()->id;
     $price->save();
 

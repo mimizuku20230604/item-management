@@ -35,9 +35,9 @@
               @endif
             </div>
             <div class="form-group">
-              <label for="detail">詳細</label>
-              <input type="text" class="form-control @if($errors->has('detail')) is-invalid @endif" id="detail" name="detail" value="{{ $request->detail }}" readonly>
-              @if($errors->has('detail'))
+              <label for="remark">詳細</label>
+              <input type="text" class="form-control @if($errors->has('remark')) is-invalid @endif" id="remark" name="remark" value="{{ $request->remark }}" readonly>
+              @if($errors->has('remark'))
                 <div class="invalid-feedback">50文字以内です</div>
               @endif
             </div>
@@ -47,7 +47,7 @@
             <input type="hidden" name="item_id" value="{{ $request->item_id }}">
             <input type="hidden" name="name" value="{{ $request->name }}">
             <input type="hidden" name="type" value="{{ $request->type }}">
-            <input type="hidden" name="detail" value="{{ $request->detail }}">
+            <input type="hidden" name="remark" value="{{ $request->remark }}">
             <button type="submit" class="btn btn-secondary mt-3">入力画面に戻る</button>
           </form>
         </div>

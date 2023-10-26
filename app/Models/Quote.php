@@ -16,7 +16,7 @@ class Quote extends Model
         'unit_price',
         'quantity',
         'total_amount',
-        'remarks',
+        'remark',
         'customer_id',
     ];
 
@@ -35,7 +35,4 @@ class Quote extends Model
     {
         return $this->belongsTo(User::class, 'customer_id');
     }
-
 }
-
-

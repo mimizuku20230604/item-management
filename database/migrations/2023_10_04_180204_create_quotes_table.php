@@ -19,7 +19,7 @@ return new class extends Migration
             $table->decimal('unit_price', 10, 2);  // 単価。decimal は、10進数の数値を定義。10は合計桁数（整数部と小数部を合わせた桁数）2は小数部の桁数（小数点以下2桁まで）
             $table->integer('quantity');  // 数量
             $table->integer('total_amount'); // 合計金額
-            $table->text('remarks')->nullable();
+            $table->text('remark')->nullable();
             $table->date('expiration_date');  // 有効期限
             $table->timestamps();
 
@@ -29,7 +29,6 @@ return new class extends Migration
             $table->foreign('customer_id')->references('id')->on('users');
             // 外部キー制約（商品情報）（ items テーブルの id カラムに関連付け）
             $table->foreign('item_id')->references('id')->on('items');
-
         });
     }
 

@@ -45,8 +45,8 @@ class QuoteController extends Controller
       'quantity' => 'required|numeric|regex:/^\d{1,10}$/',
       'total_amount' => 'required|numeric|regex:/^\d{1,10}$/',
       'expiration_date' => 'required|date|after_or_equal:today',
-      // 'remarks' => 'max:500',
-      'remarks' => 'max:7',
+      // 'remark' => 'max:500',
+      'remark' => 'max:7',
     ]);
 
     $quote = new Quote();
@@ -56,7 +56,7 @@ class QuoteController extends Controller
     $quote->quantity = $request->quantity;
     $quote->total_amount = $request->total_amount;
     $quote->expiration_date = $request->expiration_date;
-    $quote->remarks = $request->remarks;
+    $quote->remark = $request->remark;
     $quote->user_id = auth()->user()->id;
     $quote->save();
 
@@ -125,11 +125,11 @@ class QuoteController extends Controller
 
     // ラジオボタンの選択に応じて期間フィルタリング
     if ($filter === 'within_deadline') {
-        // 見積期限内の場合
-        $query->whereDate('expiration_date', '>=', Carbon::today());
+      // 見積期限内の場合
+      $query->whereDate('expiration_date', '>=', Carbon::today());
     } elseif ($filter === 'expired') {
-        // 見積期限外の場合
-        $query->whereDate('expiration_date', '<', Carbon::today());
+      // 見積期限外の場合
+      $query->whereDate('expiration_date', '<', Carbon::today());
     }
 
     // あいまい検索
@@ -137,25 +137,25 @@ class QuoteController extends Controller
     if ($searchKeyword) {
       $query->where(function ($q) use ($searchKeyword) {
         $q->where('id', 'like', "%$searchKeyword%")
-        ->orWhereHas('user', function ($userQuery) use ($searchKeyword) {
-          $userQuery->where('name', 'like', "%$searchKeyword%");
-        }) //user_idではなくname
-        ->orWhereHas('customer', function ($customerQuery) use ($searchKeyword) {
-          $customerQuery->where('name', 'like', "%$searchKeyword%");
-        }) //customer_idではなくname
-        ->orWhereHas('item', function ($itemQuery) use ($searchKeyword) {
-          $itemQuery->where('name', 'like', "%$searchKeyword%");
-        }) //item_idではなくname
-        ->orWhere('quantity', 'like', "%$searchKeyword%")
-        ->orWhere('unit_price', 'like', "%$searchKeyword%")
-        ->orWhere('total_amount', 'like', "%$searchKeyword%")
-        ->orWhere('remarks', 'like', "%$searchKeyword%");
+          ->orWhereHas('user', function ($userQuery) use ($searchKeyword) {
+            $userQuery->where('name', 'like', "%$searchKeyword%");
+          }) //user_idではなくname
+          ->orWhereHas('customer', function ($customerQuery) use ($searchKeyword) {
+            $customerQuery->where('name', 'like', "%$searchKeyword%");
+          }) //customer_idではなくname
+          ->orWhereHas('item', function ($itemQuery) use ($searchKeyword) {
+            $itemQuery->where('name', 'like', "%$searchKeyword%");
+          }) //item_idではなくname
+          ->orWhere('quantity', 'like', "%$searchKeyword%")
+          ->orWhere('unit_price', 'like', "%$searchKeyword%")
+          ->orWhere('total_amount', 'like', "%$searchKeyword%")
+          ->orWhere('remark', 'like', "%$searchKeyword%");
       });
     }
 
     // フォームの値をセッションに保存（ambiguousSearchは値が入っているので、アクティブにすると、検索キーワードが残る。）
     session([
-      'search' => $request->input('search'), 
+      'search' => $request->input('search'),
       'filter' => $request->input('filter'),
     ]);
 
@@ -164,7 +164,7 @@ class QuoteController extends Controller
     return view('quotes.search', compact('quotes', 'items', 'users'));
   }
 
-  
+
   public function advancedSearch(Request $request)
   {
     $items = Item::all();
@@ -284,5 +284,4 @@ class QuoteController extends Controller
     // $this->authorize('view', $quote);
     return view('quotes.show', compact('quote'));
   }
-
 }

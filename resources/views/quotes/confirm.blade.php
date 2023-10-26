@@ -88,9 +88,9 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="remarks">備考</label>
-              <textarea name="remarks" class="form-control @if($errors->has('remarks')) is-invalid @endif" id="remarks" id="remarks" readonly>{{ $request['remarks'] }}</textarea>
-              @if($errors->has('remarks'))
+              <label for="remark">備考</label>
+              <textarea name="remark" class="form-control @if($errors->has('remark')) is-invalid @endif" id="remark" id="remark" readonly>{{ $request['remark'] }}</textarea>
+              @if($errors->has('remark'))
                 <div class="invalid-feedback">500文字以内です</div>
               @endif
             </div>
@@ -103,7 +103,7 @@
             <input type="hidden" name="quantity" value="{{ $request['quantity'] }}">
             <input type="hidden" name="unit_price" value="{{ $request['unit_price'] }}">
             <input type="hidden" name="expiration_date" value="{{ $request['expiration_date'] }}">
-            <input type="hidden" name="remarks" value="{{ $request['remarks'] }}">
+            <input type="hidden" name="remark" value="{{ $request['remark'] }}">
             <button type="submit" class="btn btn-secondary mt-3">入力画面に戻る</button>
           </form>
         </div>
@@ -124,7 +124,7 @@
   }
   // ページ読み込み時に実行
   document.addEventListener("DOMContentLoaded", function () {
-    const textarea = document.getElementById("remarks");
+    const textarea = document.getElementById("remark");
     autoResizeTextarea(textarea);
     // ウィンドウのリサイズ時にも実行
     window.addEventListener("resize", function () {

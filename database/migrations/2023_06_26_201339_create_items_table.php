@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('name', 100)->index();
             $table->string('type', 100)->nullable();
-            $table->string('detail', 500)->nullable();
+            $table->string('remark', 500)->nullable();
             $table->timestamps();
 
             // 外部キー制約（ユーザー情報）（ users テーブルの id カラムに関連付け）

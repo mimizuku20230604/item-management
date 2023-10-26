@@ -58,8 +58,8 @@ class OrderController extends Controller
     $request->validate([
       'quantity' => 'integer|digits_between:1,10|min:1',
       'request_date' => 'nullable|date|after_or_equal:tomorrow',
-      // 'remarks' => 'max:500',
-      'remarks' => 'max:7',
+      // 'remark' => 'max:500',
+      'remark' => 'max:7',
     ]);
 
     // カンマを削除して数値に変換
@@ -76,7 +76,7 @@ class OrderController extends Controller
     $order->quantity = $request->quantity;
     $order->total_amount = $total_amount;
     $order->request_date = $request->request_date;
-    $order->remarks = $request->remarks;
+    $order->remark = $request->remark;
     $order->user_id = auth()->user()->id;;
     $order->save();
 
@@ -125,8 +125,8 @@ class OrderController extends Controller
       'quantity' => 'required|numeric|regex:/^\d{1,10}$/',
       'total_amount' => 'required|numeric|regex:/^\d{1,10}$/',
       'request_date' => 'nullable|date|after_or_equal:tomorrow',
-      // 'remarks' => 'max:500',
-      'remarks' => 'max:7',
+      // 'remark' => 'max:500',
+      'remark' => 'max:7',
     ]);
 
     $order = new Order;
@@ -136,7 +136,7 @@ class OrderController extends Controller
     $order->quantity = $request->quantity;
     $order->total_amount = $request->total_amount;
     $order->request_date = $request->request_date;
-    $order->remarks = $request->remarks;
+    $order->remark = $request->remark;
     $order->user_id = auth()->user()->id;;
     $order->save();
 
@@ -179,5 +179,4 @@ class OrderController extends Controller
   {
     //
   }
-
 }

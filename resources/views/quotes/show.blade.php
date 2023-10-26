@@ -73,8 +73,8 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="remarks">備考</label>
-            <textarea name="remarks" class="form-control" id="remarks" readonly>{{ $quote['remarks'] }}</textarea>
+            <label for="remark">備考</label>
+            <textarea name="remark" class="form-control" id="remark" readonly>{{ $quote['remark'] }}</textarea>
           </div>
     {{-- <button type="submit" class="btn btn-primary">発注画面へ</button> --}}
     {{-- </form> --}}
@@ -104,7 +104,7 @@
   }
   // ページ読み込み時に実行
   document.addEventListener("DOMContentLoaded", function () {
-    const textarea = document.getElementById("remarks");
+    const textarea = document.getElementById("remark");
     autoResizeTextarea(textarea);
     // ウィンドウのリサイズ時にも実行
     window.addEventListener("resize", function () {

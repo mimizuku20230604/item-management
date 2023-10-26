@@ -67,8 +67,8 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="remarks">備考</label>
-            <textarea name="remarks" class="form-control" id="remarks" readonly>{{ $order->remarks }}</textarea>
+            <label for="remark">備考</label>
+            <textarea name="remark" class="form-control" id="remark" readonly>{{ $order->remark }}</textarea>
           </div>
           <button class="btn btn-outline-primary mt-3" onclick="location.href=#">リピート発注
             <span class="badge badge-pill btn-info">準備中</span>
@@ -98,7 +98,7 @@
     }
     // ページ読み込み時に実行
     document.addEventListener("DOMContentLoaded", function () {
-      const textarea = document.getElementById("remarks");
+      const textarea = document.getElementById("remark");
       autoResizeTextarea(textarea);
       // ウィンドウのリサイズ時にも実行
       window.addEventListener("resize", function () {

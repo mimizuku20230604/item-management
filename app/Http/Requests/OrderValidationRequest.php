@@ -22,8 +22,7 @@ class OrderValidationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'remarks' => 'max:10', // 例: 備考は最大500文字
+            'remark' => 'max:10', // 例: 備考は最大500文字
         ];
-
     }
 }

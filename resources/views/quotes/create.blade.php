@@ -70,8 +70,8 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="remarks">備考</label>
-              <textarea name="remarks" class="form-control" id="remarks" cols="30" rows="5" maxlength="500">{{ !empty($request["remarks"]) ? $request["remarks"] : old('remarks') }}</textarea>
+              <label for="remark">備考</label>
+              <textarea name="remark" class="form-control" id="remark" cols="30" rows="5" maxlength="500">{{ !empty($request["remark"]) ? $request["remark"] : old('remark') }}</textarea>
             </div>
             <button type="submit" class="btn btn-primary">確認する</button>
           </form>

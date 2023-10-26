@@ -40,7 +40,7 @@
                     <td class="text-right">{{ $item->id }}</td>
                     <td class="text-left">{{ $item->name }}</td>
                     <td class="text-left">{{ $item->type }}</td>
-                    <td class="text-left">{{ $item->detail }}</td>
+                    <td class="text-left">{{ $item->remark }}</td>
                     <td class="text-left">{{ $item->user->name }}</td> <!-- user_idから -->
                     <td>
                       <a href="{{route('item.show', $item)}}">

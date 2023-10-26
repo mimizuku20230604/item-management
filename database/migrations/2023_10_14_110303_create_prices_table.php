@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id')->nullable(); // NULL許容
             $table->decimal('registration_price', 10, 2);
             $table->date('deadline_date')->nullable(); // NULL許容
-            $table->text('remarks')->nullable(); // NULL許容
+            $table->text('remark')->nullable(); // NULL許容
             $table->timestamps();
 
             // 外部キー制約（ユーザー情報）（ users テーブルの id カラムに関連付け）
@@ -30,7 +30,6 @@ return new class extends Migration
 
             // ユニーク制約（同じ商品・顧客の組合せ重複を防ぐ）
             $table->unique(['item_id', 'customer_id']);
-
         });
     }
 
