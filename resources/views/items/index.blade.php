@@ -29,7 +29,7 @@
                 <th class="font-weight-normal">ID</th>
                 <th class="font-weight-normal">名前</th>
                 <th class="font-weight-normal">種別</th>
-                <th class="font-weight-normal">詳細</th>
+                <th class="font-weight-normal">備考</th>
                 <th class="font-weight-normal">登録者名</th>
                 <th class="font-weight-normal">詳細画面へ</th>
               </tr>

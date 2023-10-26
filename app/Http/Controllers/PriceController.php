@@ -76,7 +76,7 @@ class PriceController extends Controller
       'registration_price' => 'required|numeric|regex:/^\d{1,8}(\.\d{1,2})?$/',
       'deadline_date' => 'nullable|date|after_or_equal:today',
       // 'remark' => 'max:500',
-      'remark' => 'max:7',
+      'remark' => 'max:501',
     ]);
 
     $price = new Price();
@@ -151,7 +151,7 @@ class PriceController extends Controller
       'registration_price' => 'required|numeric|regex:/^\d{1,8}(\.\d{1,2})?$/',
       'deadline_date' => 'nullable|date|after_or_equal:today',
       // 'remark' => 'max:500',
-      'remark' => 'max:7',
+      'remark' => 'max:501',
     ]);
 
     $price->registration_price = $request->registration_price;

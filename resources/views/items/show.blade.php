@@ -25,7 +25,7 @@
             <input type="text" class="form-control" id="type" name="type" value="{{ $item->type }}" readonly>
           </div>
           <div class="form-group">
-            <label for="remark">詳細</label>
+            <label for="remark">備考</label>
             <input type="text" class="form-control" id="remark" name="remark" value="{{ $item->remark }}" readonly>
           </div>
           <div class="form-row">

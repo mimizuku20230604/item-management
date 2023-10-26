@@ -35,7 +35,7 @@
               @endif
             </div>
             <div class="form-group">
-              <label for="remark">詳細</label>
+              <label for="remark">備考</label>
               <input type="text" class="form-control @if($errors->has('remark')) is-invalid @endif" id="remark" name="remark" value="{{ $request->remark }}" readonly>
               @if($errors->has('remark'))
                 <div class="invalid-feedback">50文字以内です</div>

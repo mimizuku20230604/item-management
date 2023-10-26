@@ -59,7 +59,7 @@ class OrderController extends Controller
       'quantity' => 'integer|digits_between:1,10|min:1',
       'request_date' => 'nullable|date|after_or_equal:tomorrow',
       // 'remark' => 'max:500',
-      'remark' => 'max:7',
+      'remark' => 'max:501',
     ]);
 
     // カンマを削除して数値に変換
@@ -126,7 +126,7 @@ class OrderController extends Controller
       'total_amount' => 'required|numeric|regex:/^\d{1,10}$/',
       'request_date' => 'nullable|date|after_or_equal:tomorrow',
       // 'remark' => 'max:500',
-      'remark' => 'max:7',
+      'remark' => 'max:501',
     ]);
 
     $order = new Order;

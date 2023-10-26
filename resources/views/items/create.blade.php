@@ -27,8 +27,8 @@
               <input type="text" class="form-control" id="type" name="type" value="{{ !empty($request["type"]) ? $request["type"] : old('type', '') }}"placeholder="種別">
             </div>
             <div class="form-group">
-              <label for="remark">詳細</label>
-              <input type="text" class="form-control" id="remark" name="remark" value="{{ !empty($request["remark"]) ? $request["remark"] : old('remark', '') }}" placeholder="詳細説明">
+              <label for="remark">備考</label>
+              <input type="text" class="form-control" id="remark" name="remark" value="{{ !empty($request["remark"]) ? $request["remark"] : old('remark', '') }}" placeholder="備考">
             </div>
             <button type="submit" class="btn btn-primary">確認する</button>
           </form>

@@ -46,7 +46,7 @@ class QuoteController extends Controller
       'total_amount' => 'required|numeric|regex:/^\d{1,10}$/',
       'expiration_date' => 'required|date|after_or_equal:today',
       // 'remark' => 'max:500',
-      'remark' => 'max:7',
+      'remark' => 'max:501',
     ]);
 
     $quote = new Quote();
