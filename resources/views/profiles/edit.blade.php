@@ -32,11 +32,19 @@
                 <div class="invalid-feedback">{{ $errors->first('email') }}</div>
               @endif
             </div>
-                <div class="form-group">
-                <label for="role">ユーザー権限</label><br>
-                <input type="radio" name="role_id" value="1" {{ $user->roles->contains(1) ? 'checked' : '' }}> 管理者<br>
-                <input type="radio" name="role_id" value="2" {{ $user->roles->contains(2) ? 'checked' : '' }}> 一般ユーザー<br>
-                </div>
+            <div class="form-group">
+              <label for="remark">備考</label>
+              <textarea name="remark" class="form-control @if($errors->has('remark')) is-invalid @endif" id="remark" cols="30" rows="5" maxlength="500">{{ !empty(old('remark')) ? (old('remark')) : $user->remark }}</textarea>
+              @if($errors->has('remark'))
+                <div class="invalid-feedback">{{ $errors->first('remark') }}</div>
+              @endif
+            </div>
+            <div class="form-group">
+              <label for="role">ユーザー権限</label><br>
+              <input type="radio" name="role_id" value="1" {{ $user->roles->contains(1) ? 'checked' : '' }}> 管理者<br>
+              <input type="radio" name="role_id" value="2" {{ $user->roles->contains(2) ? 'checked' : '' }}> 一般ユーザー
+              <br>
+            </div>
             <button type="submit" class="btn btn-primary">更新する</button>
           </form>
           <button class="btn btn-secondary mt-3" onclick="location.href='{{route('profile.index')}}';">一覧へ戻る</button>
