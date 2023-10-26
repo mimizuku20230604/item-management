@@ -3,8 +3,10 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-    <h4>ユーザ一覧</h4>
-    <button class="btn btn-secondary mt-3" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+  <div class="d-flex align-items-center">
+      <h4 class="m-0">ユーザ一覧</h4>
+    <button class="btn btn-secondary ml-3 btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+  </div>
 @stop
 
 @section('content')

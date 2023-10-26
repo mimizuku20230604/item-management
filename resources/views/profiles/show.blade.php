@@ -4,7 +4,10 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-  <h2>アカウント情報（管理者用）</h2>
+  <div class="d-flex align-items-center">
+      <h4 class="m-0">アカウント情報（管理者用）</h4>
+      <button class="btn btn-secondary ml-3 btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+  </div>
 @stop
 
 @section('content')
@@ -31,6 +34,11 @@
               <input type="date" class="form-control" id="updated_at" name="updated_at" value="{{ $user->updated_at->format('Y-m-d') }}" readonly>
             </div>
           </div>
+          <div class="form-group">
+                <label for="role">ユーザー権限</label><br>
+                <input type="radio" name="role_id" value="1" {{ $user->roles->contains(1) ? 'checked' : '' }} disabled> 管理者<br>
+                <input type="radio" name="role_id" value="2" {{ $user->roles->contains(2) ? 'checked' : '' }} disabled> 一般ユーザー<br>
+                </div>
           <button class="btn btn-success mt-3" onclick="location.href='{{route('profile.edit', $user)}}';">編集</button>
           <br>
           <button class="btn btn-secondary mt-3" onclick="location.href='{{route('profile.index')}}';">一覧へ戻る</button>

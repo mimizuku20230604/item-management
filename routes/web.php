@@ -46,14 +46,6 @@ Route::middleware(['auth'])->group(function () {
       });
     });
 
-    // 権限付与ルート（ミドルウェア制限あり）
-    Route::middleware(['auth', 'can:admin'])->group(function () {
-      Route::group(['prefix' => 'roles', 'as' => 'role.'], function () {
-        Route::patch('{user}/attach', [RoleController::class, 'attach'])->name('attach');
-        Route::patch('{user}/detach', [RoleController::class, 'detach'])->name('detach');
-      });
-    });
-
     // ユーザー画面
     Route::group(['prefix' => 'users', 'as' => 'user.'], function () {
       Route::get('show', [UserController::class, 'show'])->name('show');
