@@ -78,7 +78,8 @@ class ItemController extends Controller
     $inputs = $request->validate([
       'name' => 'required|max:50',
       'type' => 'max:50',
-      'remark' => 'max:50',
+      // 'remark' => 'max:500',
+      'remark' => 'max:501',
     ]);
 
     $item->name = $request->name;

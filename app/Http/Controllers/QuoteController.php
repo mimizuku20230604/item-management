@@ -183,7 +183,7 @@ class QuoteController extends Controller
     if (!empty($maxQuoteNumber)) {
       $query->where('id', '<=', $maxQuoteNumber);
     }
-    // 登録者名の検索
+    // 登録者の検索
     $userName = $request->input('user_name');
     if (!empty($userName)) {
       $query->whereHas('user', function ($q) use ($userName) {

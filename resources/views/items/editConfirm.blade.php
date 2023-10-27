@@ -11,12 +11,11 @@
 @stop
 
 @section('content')
+  @include('includes.alert')
   <div class="row">
-    <div class="col-md-10">
-      @include('includes.alert')
-      <div class="card">
-        <div class="card-header">
-          {{-- <form method="post" action="{{route('item.update')}}" > --}}
+    <div class="col-md-8 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
           <form method="post" action="/items/update/{{ $request->item_id }}">
             @csrf
             @method('patch')
@@ -50,6 +49,26 @@
             <input type="hidden" name="remark" value="{{ $request->remark }}">
             <button type="submit" class="btn btn-secondary mt-3">入力画面に戻る</button>
           </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
+          @can('admin')
+            <div class="form-group">
+              <label for="user_remark">顧客備考</label>
+              <textarea name="user_remark" class="form-control" id="user_remark" rows="5" readonly></textarea>
+            </div>
+            <div class="form-group">
+              <label for="item_remark">商品備考</label>
+              <textarea name="item_remark" class="form-control" id="item_remark" rows="5" readonly></textarea>
+            </div>
+            <div class="form-group">
+              <label>仕入先備考</label>
+              <textarea class="form-control" rows="5" readonly>準備中</textarea>
+            </div>
+          @endcan
         </div>
       </div>
     </div>

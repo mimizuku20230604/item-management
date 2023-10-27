@@ -11,22 +11,22 @@
 @stop
 
 @section('content')
+@include('includes.alert')
   <div class="row">
-    <div class="col-12">
-      @include('includes.alert')
-      <div class="card">
-        <div class="card-header">
+    <div class="col-md-8 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
           <form method="post" action="{{route('order.store')}}" >
             @csrf
+              <div class="form-group">
+                <label for="customer_id">顧客名</label>
+                <input type="hidden" name="customer_id" value="{{ $request->customer_id }}">
+                <input type="text" class="form-control" name="customer_name" id="customer_name" value="{{ $customer->name }}" readonly>
+              </div>
               <div class="form-group">
                 <label for="item_id">商品名</label>
                 <input type="hidden" name="item_id" value="{{ $request->item_id }}">
                 <input type="text" class="form-control" name="item_name" id="item_name" value="{{ $request->item_name }}" readonly>
-              </div>
-              <div class="form-group">
-                <label for="customer_id">顧客名</label>
-                <input type="hidden" name="customer_id" value="{{ $request->customer_id }}">
-                <input type="text" class="form-control" name="customer_name" id="customer_name" value="{{ $request->customer_name }}" readonly>
               </div>
               <div class="form-row">
                 <div class="col-md-4">
@@ -58,7 +58,7 @@
               <div class="form-row">
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="request_date">希望着日（未入力の場合、最短対応）</label> <!-- デフォルト値:null -->
+                    <label for="request_date">希望着日（未指定は最短対応）</label>
                     <input type="date" name="request_date" class="form-control @if($errors->has('request_date')) is-invalid @endif" id="request_date" value="{{ $request->request_date }}" readonly>
                     @if($errors->has('request_date'))
                       <div class="invalid-feedback">指定する場合、翌日以降です</div>
@@ -73,7 +73,7 @@
                   <div class="invalid-feedback">500文字以内です</div>
                 @endif
               </div>
-            <button type="submit" class="btn btn-success mt-3">確定する</button>
+            <button type="submit" class="btn btn-primary mt-3">確定する</button>
             <p class="card-text text-sm">（確定後、お客様へメール配信します。）
           </form>
             <!-- a hrefだと、未入力の初期画面に戻る。 -->
@@ -92,14 +92,36 @@
             <input type="hidden" name="total_amount" value="{{ $request->total_amount }}">
             <input type="hidden" name="request_date" value="{{ $request->request_date }}">
             <input type="hidden" name="remark" value="{{ $request->remark }}">
+            <input type="hidden" name="user_remark" value="{{ $request->user_remark }}">
+            <input type="hidden" name="item_remark" value="{{ $request->item_remark }}">
             <button type="submit" class="btn btn-secondary mt-3">入力画面に戻る</button>
           </form>
           <button class="btn btn-secondary mt-3" onclick="location.href='{{route('order.index')}}';">一覧へ戻る</button>
         </div>
       </div>
     </div>
+    <div class="col-md-4 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
+          @can('admin')
+            <div class="form-group">
+              <label for="user_remark">顧客備考</label>
+              <textarea name="user_remark" class="form-control" id="user_remark" rows="5" readonly>{{ $request["user_remark"] }}</textarea>
+            </div>
+            <div class="form-group">
+              <label for="item_remark">商品備考</label>
+              <textarea name="item_remark" class="form-control" id="item_remark" rows="5" readonly>{{ $request["item_remark"] }}</textarea>
+            </div>
+            <div class="form-group">
+              <label>仕入先備考</label>
+              <textarea class="form-control" rows="5" readonly>準備中</textarea>
+            </div>
+          @endcan
+        </div>
+      </div>
+    </div>
   </div>
-@endsection
+@stop
 
 @section('css')
 @stop

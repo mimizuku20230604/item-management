@@ -11,12 +11,12 @@
 @stop
 
 @section('content')
-  <div class="row">
-    <div class="col-12">
-      @include('includes.alert')
-      <div class="card">
-        <div class="card-header">
-          <form method="get" action="{{route('quote.confirm')}}" >
+  <form method="get" action="{{route('quote.confirm')}}" >
+    @include('includes.alert')
+    <div class="row">
+      <div class="col-md-8 d-flex">
+        <div class="card flex-fill">
+          <div class="card-header border-0">
             <div class="form-group">
               <label for="customer_id">顧客名</label>
               <select class="form-control" id="customer_id" name="customer_id" required>
@@ -39,13 +39,13 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="unit_price">単価</label>
-                  <input type="number" name="unit_price" class="form-control" id="unit_price" value="{{ !empty($request["unit_price"]) ? $request["unit_price"] : old('unit_price') }}" step="0.01" min="0" max="99999999.99" placeholder="単価を入力してください" required>
+                  <input type="number" name="unit_price" class="form-control" id="unit_price" value="{{ !empty($request["unit_price"]) ? $request["unit_price"] : old('unit_price') }}" step="0.01" min="0" max="99999999.99" placeholder="単価入力" required>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="quantity">数量</label>
-                  <input type="number" name="quantity" class="form-control" id="quantity" value="{{ !empty($request["quantity"]) ? $request["quantity"] : old('quantity') }}" min="1" max="9999999999" placeholder="数量を入力してください" required>
+                  <input type="number" name="quantity" class="form-control" id="quantity" value="{{ !empty($request["quantity"]) ? $request["quantity"] : old('quantity') }}" min="1" max="9999999999" placeholder="数量入力" required>
                 </div>
               </div>
               <div class="col-md-4">
@@ -58,7 +58,7 @@
             <div class="form-row">
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="expiration_date">見積期限（デフォルト値: 90日後）</label>
+                  <label for="expiration_date">見積期限（基本90日）</label>
                   <input type="date" name="expiration_date" class="form-control" id="expiration_date" value="{{ !empty($request["expiration_date"]) ? $request["expiration_date"] : old('expiration_date', date('Y-m-d', strtotime('+90 days'))) }}" min="{{ date('Y-m-d') }}" required>
                 </div>
               </div>
@@ -74,11 +74,31 @@
               <textarea name="remark" class="form-control" id="remark" cols="30" rows="5" maxlength="500">{{ !empty($request["remark"]) ? $request["remark"] : old('remark') }}</textarea>
             </div>
             <button type="submit" class="btn btn-primary">確認する</button>
-          </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 d-flex">
+        <div class="card flex-fill">
+          <div class="card-header border-0">
+            @can('admin')
+              <div class="form-group">
+                <label for="user_remark">顧客備考</label>
+                <textarea name="user_remark" class="form-control" id="user_remark" rows="5" readonly>{{ !empty($request["user_remark"]) ? $request["user_remark"] : old('user_remark') }}</textarea>
+              </div>
+              <div class="form-group">
+                <label for="item_remark">商品備考</label>
+                <textarea name="item_remark" class="form-control" id="item_remark" rows="5" readonly>{{ !empty($request["item_remark"]) ? $request["item_remark"] : old('item_remark') }}</textarea>
+              </div>
+              <div class="form-group">
+                <label>仕入先備考</label>
+                <textarea class="form-control" rows="5" readonly>準備中</textarea>
+              </div>
+            @endcan
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </form>
 @stop
 
 @section('css')
@@ -109,6 +129,21 @@
     unitPriceInput.addEventListener('input', calculateTotalAmount);
     // 初期状態で合計金額を計算
     calculateTotalAmount();
+
+
+    // JavaScriptを使って顧客が選択されたら顧客の remark を表示
+    document.getElementById('customer_id').addEventListener('change', function() {
+      var customerId = this.value;
+      var userRemark = @json($users->pluck('remark', 'id')); // ユーザー ID に対応する remark の連想配列
+      document.getElementById('user_remark').value = userRemark[customerId] || ''; // 顧客の remark を textarea に設定
+    });
+
+    // JavaScriptを使って商品が選択されたら商品の remark を表示
+    document.getElementById('item_id').addEventListener('change', function() {
+      var itemId = this.value;
+      var itemRemark = @json($items->pluck('remark', 'id')); // 商品 ID に対応する remark の連想配列
+      document.getElementById('item_remark').value = itemRemark[itemId] || ''; // 商品の remark を textarea に設定
+    });
   </script>
 @stop
 

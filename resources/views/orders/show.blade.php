@@ -11,11 +11,10 @@
 @stop
 
 @section('content')
-
   <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header">
+    <div class="col-md-8 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
           <div class="form-group">
             <label for="customer_id">顧客名</label>
             <input type="text" class="form-control" name="customer_name" id="customer_name" value="{{ $order->customer->name }}" readonly>
@@ -47,7 +46,7 @@
           <div class="form-row">
             <div class="col-md-4">
               <div class="form-group">
-                <label for="request_date">希望着日（未入力の場合、最短対応）</label> <!-- デフォルト値:null -->
+                <label for="request_date">希望着日（未指定は最短対応）</label>
                 <input type="date" name="request_date" class="form-control" id="request_date" value="{{ $order->request_date }}" readonly>
               </div>
             </div>
@@ -67,8 +66,8 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="remark">備考</label>
-            <textarea name="remark" class="form-control" id="remark" readonly>{{ $order->remark }}</textarea>
+            <label for="remarks">備考</label>
+            <textarea name="remarks" class="form-control" id="remarks" readonly>{{ $order->remarks }}</textarea>
           </div>
           <button class="btn btn-outline-primary mt-3" onclick="location.href=#">リピート発注
             <span class="badge badge-pill btn-info">準備中</span>
@@ -82,9 +81,28 @@
         </div>
       </div>
     </div>
+    <div class="col-md-4 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
+          @can('admin')
+            <div class="form-group">
+              <label for="user_remark">顧客備考</label>
+              <textarea name="user_remark" class="form-control" id="user_remark" rows="5" readonly>{{ $order->customer->remark }}</textarea>
+            </div>
+            <div class="form-group">
+              <label for="item_remark">商品備考</label>
+              <textarea name="item_remark" class="form-control" id="item_remark" rows="5" readonly>{{ $order->item->remark }}</textarea>
+            </div>
+            <div class="form-group">
+              <label>仕入先備考</label>
+              <textarea class="form-control" rows="5" readonly>準備中</textarea>
+            </div>
+          @endcan
+        </div>
+      </div>
+    </div>
   </div>
-
-@endsection
+@stop
 
 @section('css')
 @stop
@@ -98,7 +116,7 @@
     }
     // ページ読み込み時に実行
     document.addEventListener("DOMContentLoaded", function () {
-      const textarea = document.getElementById("remark");
+      const textarea = document.getElementById("remarks");
       autoResizeTextarea(textarea);
       // ウィンドウのリサイズ時にも実行
       window.addEventListener("resize", function () {

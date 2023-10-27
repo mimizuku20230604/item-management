@@ -32,7 +32,7 @@
 <p>{{ number_format($quote->total_amount) }} 円</p>
 <p>備考：</p>
 <p>{{ $quote->remark }}</p>
-<p>見積発行者：</p>
+<p>登録者：</p>
 <p>{{ $quote->user->name }}</p>
 <p>{{ $quote->user->email }}</p>
 <p>ーーーーーーーーーーーーーーーーーーーーーー</p>

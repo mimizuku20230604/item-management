@@ -11,9 +11,9 @@
 @stop
 
 @section('content')
+  @include('includes.alert')
   <div class="row">
     <div class="col-12">
-      @include('includes.alert')
       <div class="card">
         <div class="card-header">
           <form method="get" action="{{route('order.quoteConfirm')}}" >
@@ -54,7 +54,7 @@
             <div class="form-row">
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="request_date">希望着日（未入力の場合、最短対応）</label> <!-- デフォルト値:null -->
+                  <label for="request_date">希望着日（未指定は最短対応）</label>
                   <input type="date" name="request_date" class="form-control" id="request_date" value="{{ !empty($request["request_date"]) ? $request["request_date"] : old('request_date', '') }}" min="{{ date('Y-m-d', strtotime('+1 day')) }}">
                 </div>
               </div>
@@ -71,7 +71,7 @@
       </div>
     </div>
   </div>
-@endsection
+@stop
 
 @section('css')
 @stop

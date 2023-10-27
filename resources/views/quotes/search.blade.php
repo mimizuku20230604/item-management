@@ -10,9 +10,9 @@
 @stop
 
 @section('content')
+  @include('includes.alert')
   <div class="row">
     <div class="col-12">
-      @include('includes.alert')
       <ul class="nav nav-tabs" id="myTabs" role="tablist">
         <li class="nav-item">
           <!-- ambiguousSearch.bladeでは、requestを「quotes/ambiguousSearch」にする。上のタブ部分がアクティブになって下のタブ部分（あいまい検索部分）とくっつきます。 -->

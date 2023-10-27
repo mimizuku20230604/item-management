@@ -10,9 +10,9 @@
 @stop
 
 @section('content')
+  @include('includes.alert')
   <div class="row">
     <div class="col-12">
-      @include('includes.alert')
       <div class="card">
         <div class="card-body table-responsive p-0">
           <table class="table table-hover text-center">
@@ -21,7 +21,7 @@
                 <th class="font-weight-normal">ID</th>
                 <th class="font-weight-normal">名前</th>
                 <th class="font-weight-normal">Email</th>
-                <th class="font-weight-normal">詳細画面へ</th>
+                <th class="font-weight-normal">詳細</th>
               </tr>
             </thead>
             <tbody>
@@ -32,7 +32,7 @@
                     <td class="text-left">{{ $user->email }}</td>
                     <td>
                       <a href="{{route('profile.show', $user)}}">
-                      <button class="btn btn-info btn-sm">詳細画面へ</button>
+                      <button class="btn btn-info btn-sm">詳細</button>
                       </a>
                     </td>
                       </a>

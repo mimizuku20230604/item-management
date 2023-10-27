@@ -11,15 +11,15 @@
 @stop
 
 @section('content')
+  @if (session('update'))
+    <div class="alert alert-success">
+      {{ session('update') }}
+    </div>
+  @endif
   <div class="row">
-    <div class="col-md-10">
-      @if (session('update'))
-        <div class="alert alert-success">
-          {{ session('update') }}
-        </div>
-      @endif
-      <div class="card">
-        <div class="card-header">
+    <div class="col-md-8 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
           <form method="post" action="{{route('user.passwordUpdate')}}" >
             @csrf
             @method('patch')
@@ -36,6 +36,12 @@
             </div>
             <button type="submit" class="btn btn-primary">更新する</button>
           </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
         </div>
       </div>
     </div>

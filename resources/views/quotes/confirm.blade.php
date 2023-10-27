@@ -11,11 +11,11 @@
 @stop
 
 @section('content')
+  @include('includes.alert')
   <div class="row">
-    <div class="col-12">
-      @include('includes.alert')
-      <div class="card">
-        <div class="card-header">
+    <div class="col-md-8 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
           <form method="post" action="{{route('quote.store')}}" >
             @csrf
             <div class="form-group">
@@ -73,7 +73,7 @@
             <div class="form-row">
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="expiration_date">見積期限</label>
+                  <label for="expiration_date">見積期限（基本90日）</label>
                   <input type="date" name="expiration_date" class="form-control @if($errors->has('expiration_date')) is-invalid @endif" id="expiration_date" value="{{ $request['expiration_date'] }}" readonly>
                     @if($errors->has('expiration_date'))
                       <div class="invalid-feedback">指定する場合、本日以降です</div>
@@ -104,13 +104,35 @@
             <input type="hidden" name="unit_price" value="{{ $request['unit_price'] }}">
             <input type="hidden" name="expiration_date" value="{{ $request['expiration_date'] }}">
             <input type="hidden" name="remark" value="{{ $request['remark'] }}">
+            <input type="hidden" name="user_remark" value="{{ $request['user_remark'] }}">
+            <input type="hidden" name="item_remark" value="{{ $request['item_remark'] }}">
             <button type="submit" class="btn btn-secondary mt-3">入力画面に戻る</button>
           </form>
         </div>
       </div>
     </div>
+    <div class="col-md-4 d-flex"> <!-- 2番目のカード（これを追加することで2つのカードが横に並びます） -->
+      <div class="card flex-fill">
+        <div class="card-header border-0"> <!-- こちらに2番目のカードのコンテンツを追加 -->
+          @can('admin')
+            <div class="form-group">
+              <label for="user_remark">顧客備考</label>
+              <textarea name="user_remark" class="form-control" id="user_remark" rows="5" readonly>{{ $request["user_remark"] }}</textarea>
+            </div>
+            <div class="form-group">
+              <label for="item_remark">商品備考</label>
+              <textarea name="item_remark" class="form-control" id="item_remark" rows="5" readonly>{{ $request["item_remark"] }}</textarea>
+            </div>
+            <div class="form-group">
+              <label>仕入先備考</label>
+              <textarea class="form-control" rows="5" readonly>準備中</textarea>
+            </div>
+          @endcan
+        </div>
+      </div>
+    </div>
   </div>
-@endsection
+@stop
 
 @section('css')
 @stop

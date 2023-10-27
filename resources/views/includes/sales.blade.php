@@ -1,6 +1,6 @@
 
       <div class="col-md-4">
-        <div class="form-group">
+        <div class="form-group mr-2 ml-2">
           <table class="table">
             <tbody>
               <tr>

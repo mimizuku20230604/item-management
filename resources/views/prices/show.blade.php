@@ -11,18 +11,17 @@
 @stop
 
 @section('content')
-
   <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header">
-          <div class="form-group">
-            <label for="item_name">商品名</label>
-            <input type="text" name="item_name" class="form-control" id="item_name" value="{{ $price->item->name }}" readonly>
-          </div>
+    <div class="col-md-8 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
           <div class="form-group">
             <label for="customer_name">顧客名</label>
             <input type="text" name="customer_name" class="form-control" id="customer_name" value="{{ $price->customer ? $price->customer->name : '全ユーザー' }}" readonly>
+          </div>
+          <div class="form-group">
+            <label for="item_name">商品名</label>
+            <input type="text" name="item_name" class="form-control" id="item_name" value="{{ $price->item->name }}" readonly>
           </div>
           <div class="form-row">
             <div class="col-md-4">
@@ -41,17 +40,23 @@
             </div>
           </div>
           <div class="form-row">
-            <div class="form-group col-md-4">
-              <label for="created_at">登録日</label>
-              <input type="date" class="form-control" id="created_at" name="created_at" value="{{ $price->created_at->format('Y-m-d') }}" readonly>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="created_at">登録日</label>
+                <input type="date" class="form-control" id="created_at" name="created_at" value="{{ $price->created_at->format('Y-m-d') }}" readonly>
+              </div>
             </div>
-            <div class="form-group  col-md-4">
-              <label for="updated_at">更新日</label>
-              <input type="date" class="form-control" id="updated_at" name="updated_at" value="{{ $price->updated_at->format('Y-m-d') }}" readonly>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="updated_at">更新日</label>
+                <input type="date" class="form-control" id="updated_at" name="updated_at" value="{{ $price->updated_at->format('Y-m-d') }}" readonly>
+              </div>
             </div>
-            <div class="form-group  col-md-4">
-              <label for="user_name">登録者（最終更新者）</label>
-              <input type="text" class="form-control" id="user_name" name="user_name" value="{{$price->user->name }}" readonly>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="user_name">登録者（最終更新者）</label>
+                <input type="text" class="form-control" id="user_name" name="user_name" value="{{$price->user->name }}" readonly>
+              </div>
             </div>
           </div>
           <div class="form-group">
@@ -71,7 +76,26 @@
               </form>
             @endcan
           <button class="btn btn-secondary mt-3" onclick="location.href='{{route('price.index')}}';">一覧へ戻る</button>
-          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
+          @can('admin')
+            <div class="form-group">
+              <label for="user_remark">顧客備考</label>
+              <textarea name="user_remark" class="form-control" id="user_remark" rows="5" readonly>{{ $price->customer ? $price->customer->remark : '' }}</textarea>
+            </div>
+            <div class="form-group">
+              <label for="item_remark">商品備考</label>
+              <textarea name="item_remark" class="form-control" id="item_remark" rows="5" readonly>{{ $price->item->remark }}</textarea>
+            </div>
+            <div class="form-group">
+              <label>仕入先備考</label>
+              <textarea class="form-control" rows="5" readonly>準備中</textarea>
+            </div>
+          @endcan
         </div>
       </div>
     </div>

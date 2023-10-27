@@ -10,9 +10,9 @@
 @stop
 
 @section('content')
+  @include('includes.alert')
   <div class="row">
     <div class="col-12">
-      @include('includes.alert')
       <div class="card">
         <div class="card-header">
           <div class="input-group">
@@ -31,8 +31,8 @@
                 <th class="font-weight-normal">合計金額</th>
                 <th class="font-weight-normal">希望着日</th>
                 <th class="font-weight-normal">作成日</th>
-                <th class="font-weight-normal">登録者名</th>
-                <th class="font-weight-normal">詳細画面へ</th>
+                <th class="font-weight-normal">登録者</th>
+                <th class="font-weight-normal">詳細</th>
               </tr>
             </thead>
             <tbody>
@@ -51,7 +51,7 @@
                     <td class="text-left">{{ $order->user->name }}</td> <!-- user_idから -->
                     <td>
                       <a href="{{route('order.show', $order)}}">
-                      <button class="btn btn-info btn-sm">詳細画面へ</button>
+                      <button class="btn btn-info btn-sm">詳細</button>
                       </a>
                     </td>
                   </tr>

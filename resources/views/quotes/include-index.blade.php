@@ -15,7 +15,6 @@
       <thead>
         <tr class="text-center table-secondary">
           <th class="font-weight-normal">見積番号</th>
-          <th class="font-weight-normal">見積発行者名</th>
           <th class="font-weight-normal">顧客名</th>
           <th class="font-weight-normal">商品名</th>
           <th class="font-weight-normal">単価</th>
@@ -23,7 +22,8 @@
           <th class="font-weight-normal">合計金額</th>
           <th class="font-weight-normal">見積期限</th>
           <th class="font-weight-normal">作成日</th>
-          <th class="font-weight-normal">詳細画面へ</th>
+          <th class="font-weight-normal">登録者</th>
+          <th class="font-weight-normal">詳細</th>
         </tr>
       </thead>
       <tbody>
@@ -32,7 +32,6 @@
           @if (Gate::allows('admin') || $quote->customer_id === auth()->user()->id)
             <tr class="table-bordered">
               <td class="text-right">{{ $quote->id }}</td>
-              <td class="text-left">{{ $quote->user->name }}</td>
               <td class="text-left">{{ $quote->customer->name }}</td>
               <td class="text-left">{{ $quote->item->name }}</td>
               <td class="text-right">{{ number_format($quote->unit_price, 2) }}</td> 
@@ -40,9 +39,10 @@
               <td class="text-right">{{ number_format($quote->total_amount) }}</td>
               <td class="text-center">{{ date('Y/m/d', strtotime($quote->expiration_date)) }}</td>
               <td class="text-center">{{ $quote->created_at->format('Y/m/d') }}</td>
+              <td class="text-left">{{ $quote->user->name }}</td>
               <td>
                 <a href="{{route('quote.show', $quote)}}">
-                <button class="btn btn-info btn-sm">詳細画面へ</button>
+                <button class="btn btn-info btn-sm">詳細</button>
                 </a>
               </td>
             </tr>

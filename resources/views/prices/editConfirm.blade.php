@@ -11,22 +11,22 @@
 @stop
 
 @section('content')
+  @include('includes.alert')
   <div class="row">
-    <div class="col-12">
-      @include('includes.alert')
-      <div class="card">
-        <div class="card-header">
+    <div class="col-md-8 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
           {{-- <form method="post" action="{{ route('price.update', $price) }}" > --}}
           <form method="post" action="/prices/update/{{ $request->price_id }}">
             @csrf
             @method('patch')
             <div class="form-group">
-              <label for="item_name">商品名</label>
-              <input type="text" name="item_name" class="form-control" id="item_name" value="{{ $request->item_name }}" readonly>
-            </div>
-            <div class="form-group">
               <label for="customer_name">顧客名</label>
               <input type="text" name="customer_name" class="form-control" id="customer_name" value="{{ $request->customer_name }}" readonly>
+            </div>
+            <div class="form-group">
+              <label for="item_name">商品名</label>
+              <input type="text" name="item_name" class="form-control" id="item_name" value="{{ $request->item_name }}" readonly>
             </div>
             <div class="form-row">
               <div class="col-md-4">
@@ -41,19 +41,13 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="deadline_date">適用期限</label> <!-- デフォルト値:null -->
+                  <label for="deadline_date">適用期限（基本期限なし）</label>
                   <input type="date" name="deadline_date" class="form-control @if($errors->has('deadline_date')) is-invalid @endif" id="deadline_date" value="{{ $request->deadline_date }}" readonly>
                   @if($errors->has('deadline_date'))
                       <div class="invalid-feedback">指定する場合、本日以降です</div>
                     @endif
                 </div>
               </div>
-              {{-- <div class="col-md-4">
-                <div class="form-group">
-                  <label for="created_at">作成日</label>
-                  <input type="date" name="created_at" class="form-control" id="created_at" value="{{ $request->created_at }}" readonly>
-                </div>
-              </div> --}}
             </div>
             <div class="form-group">
               <label for="remark">備考</label>
@@ -77,8 +71,28 @@
         </div>
       </div>
     </div>
+    <div class="col-md-4 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
+          @can('admin')
+            <div class="form-group">
+              <label for="user_remark">顧客備考</label>
+              <textarea name="user_remark" class="form-control" id="user_remark" rows="5" readonly>{{ $price->user->remark }}</textarea>
+            </div>
+            <div class="form-group">
+              <label for="item_remark">商品備考</label>
+              <textarea name="item_remark" class="form-control" id="item_remark" rows="5" readonly>{{ $price->item->remark }}</textarea>
+            </div>
+            <div class="form-group">
+              <label>仕入先備考</label>
+              <textarea class="form-control" rows="5" readonly>準備中</textarea>
+            </div>
+          @endcan
+        </div>
+      </div>
+    </div>
   </div>
-@endsection
+@stop
 
 @section('css')
 @stop

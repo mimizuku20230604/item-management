@@ -11,14 +11,19 @@
 @stop
 
 @section('content')
+  @include('includes.alert')
   <div class="row">
-    <div class="col-12">
-      @include('includes.alert')
-      <div class="card">
-        <div class="card-header">
+    <div class="col-md-8 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
           {{-- <form method="post" action="/prices/store/{{ $request->price_id }}"> --}}
           <form method="post" action="{{route('price.store')}}" >
             @csrf
+            <div class="form-group">
+              <label for="user_name">顧客名</label>
+              <input type="hidden" name="customer_id" value="{{ $request->customer_id }}">
+              <input type="text" name="customer_name" class="form-control" id="customer_name" value="{{ $customer->name ?? '全ユーザー' }}" readonly>
+            </div>
             <div class="form-group">
               <label for="item_name">商品名</label>
               <input type="hidden" name="item_id" value="{{ $item->id }}">
@@ -26,11 +31,6 @@
               @if($errors->has('item_id'))
                 <div class="invalid-feedback">必須項目です</div>
               @endif
-            </div>
-            <div class="form-group">
-              <label for="user_name">顧客名</label>
-              <input type="hidden" name="customer_id" value="{{ $request->customer_id }}">
-              <input type="text" name="customer_name" class="form-control" id="customer_name" value="{{ $customer->name ?? '全ユーザー' }}" readonly>
             </div>
             <div class="form-row">
               <div class="col-md-4">
@@ -45,7 +45,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="deadline_date">適用期限</label> <!-- デフォルト値:null -->
+                  <label for="deadline_date">適用期限（基本期限なし）</label>
                   <input type="date" name="deadline_date" class="form-control @if($errors->has('deadline_date')) is-invalid @endif" id="deadline_date" value="{{ $request->deadline_date }}" readonly>
                   @if($errors->has('deadline_date'))
                     <div class="invalid-feedback">指定する場合、本日以降です</div>
@@ -60,7 +60,7 @@
                 <div class="invalid-feedback">500文字以内です</div>
               @endif
             </div>
-            <button type="submit" class="btn btn-primary" onclick="return confirm('本当に登録しますか？\nお客様が指定されている場合、\登録するとお客様へメール送信されます。');">登録する</button>
+            <button type="submit" class="btn btn-primary" onclick="return confirm('本当に登録しますか？\nお客様が指定されている場合、\n登録するとお客様へメール送信されます。');">登録する</button>
             <p class="card-text text-sm">（登録後、お客様指定の場合メール配信します。）
           </form>
           <form method="get" action="{{route('price.create')}}">
@@ -69,14 +69,36 @@
             <input type="hidden" name="registration_price" value="{{ $request['registration_price'] }}">
             <input type="hidden" name="deadline_date" value="{{ $request['deadline_date'] }}">
             <input type="hidden" name="remark" value="{{ $request['remark'] }}">
+            <input type="hidden" name="user_remark" value="{{ $request['user_remark'] }}">
+            <input type="hidden" name="item_remark" value="{{ $request['item_remark'] }}">
             <button type="submit" class="btn btn-secondary mt-3">入力画面に戻る</button>
           </form>
           <button class="btn btn-secondary mt-3" onclick="location.href='{{route('price.index')}}';">一覧へ戻る</button>
         </div>
       </div>
     </div>
+    <div class="col-md-4 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
+          @can('admin')
+            <div class="form-group">
+              <label for="user_remark">顧客備考</label>
+              <textarea name="user_remark" class="form-control" id="user_remark" rows="5" readonly>{{ $request["user_remark"] }}</textarea>
+            </div>
+            <div class="form-group">
+              <label for="item_remark">商品備考</label>
+              <textarea name="item_remark" class="form-control" id="item_remark" rows="5" readonly>{{ $request["item_remark"] }}</textarea>
+            </div>
+            <div class="form-group">
+              <label>仕入先備考</label>
+              <textarea class="form-control" rows="5" readonly>準備中</textarea>
+            </div>
+          @endcan
+        </div>
+      </div>
+    </div>
   </div>
-@endsection
+@stop
 
 @section('css')
 @stop

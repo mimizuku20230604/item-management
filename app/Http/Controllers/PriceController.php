@@ -17,18 +17,6 @@ use Illuminate\Support\Facades\Gate;
 
 class PriceController extends Controller
 {
-  /**
-   * 単価一覧
-   */
-  public function index()
-  {
-    $items = Item::all();
-    $users = User::all();
-    $query = Price::query();
-    // idカラムで降順にソートしたデータを取得
-    $prices = $query->orderBy('id', 'desc')->get();
-    return view('prices.index', compact('prices', 'items', 'users'));
-  }
 
   /**
    * 単価登録
@@ -107,37 +95,50 @@ class PriceController extends Controller
   }
 
   /**
+   * 単価一覧
+   */
+  public function index()
+  {
+    $users = User::all();
+    $items = Item::all();
+    $query = Price::query();
+    // idカラムで降順にソートしたデータを取得
+    $prices = $query->orderBy('id', 'desc')->get();
+    return view('prices.index', compact('prices', 'users', 'items'));
+  }
+
+  /**
    * 単価詳細画面表示
    */
-  public function show(Price $price)
+  public function show(Price $price, User $user, Item $item)
   {
     // dd($price);
     // Policyルール適用
     // $this->authorize('view', $price);
-    return view('prices.show', ['price' => $price]);
+    return view('prices.show', compact('price', 'user', 'item'));
   }
 
   /**
    * 単価編集画面
    */
-  public function edit(Request $request, Price $price)
+  public function edit(Request $request, Price $price, User $user, Item $item)
   {
     // dd($price);
     // dd($request);
     // Gateルール適用
     Gate::authorize('admin');
-    return view('prices.edit', compact('request', 'price'));
+    return view('prices.edit', compact('request', 'price', 'user', 'item'));
   }
 
   /**
    * 単価編集、確認画面
    */
-  public function editConfirm(Request $request, Price $price)
+  public function editConfirm(Request $request, Price $price, User $user, Item $item)
   {
     // dd($price);
     // dd($request);
     Gate::authorize('admin');
-    return view('prices.editConfirm', compact('request', 'price'));
+    return view('prices.editConfirm', compact('request', 'price', 'user', 'item'));
   }
 
   /**
