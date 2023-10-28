@@ -4,10 +4,9 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-  <div class="d-flex align-items-center">
-      <h4 class="m-0">商品詳細</h4>
-      <button class="btn btn-secondary ml-3 btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
-  </div>
+  <h4>商品詳細</h4>
+  <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+  <button class="btn btn-secondary ml-2 btn-sm" onclick="location.href='{{route('item.index')}}';">一覧へ戻る</button>
 @stop
 
 @section('content')
@@ -48,7 +47,7 @@
             @method('delete')
             <button class="btn btn-danger mt-3" onclick="return confirm('本当に削除しますか？');">削除</button>
           </form>
-          <button class="btn btn-secondary mt-3" onclick="location.href='{{route('item.index')}}';">一覧へ戻る</button>
+          
         </div>
       </div>
     </div>

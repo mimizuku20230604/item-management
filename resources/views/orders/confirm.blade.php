@@ -4,14 +4,14 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-  <div class="d-flex align-items-center">
-      <h4 class="m-0">発注確認</h4>
-      <button class="btn btn-secondary ml-3 btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
-  </div>
+  <h4>発注確認</h4>
+  <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+  <button class="btn btn-secondary ml-2 btn-sm" onclick="location.href='{{route('price.show', ['price' => $request->price_id])}}';">詳細へ戻る</button>
+  <button class="btn btn-secondary ml-2 btn-sm" onclick="location.href='{{route('price.index')}}';">一覧へ戻る</button>
 @stop
 
 @section('content')
-@include('includes.alert')
+  @include('includes.alert')
   <div class="row">
     <div class="col-md-8 d-flex">
       <div class="card flex-fill">
@@ -38,10 +38,7 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="quantity">数量</label>
-                    {{-- <input type="hidden" name="quantity" value="{{ floor(str_replace(',', '', $request->quantity)) }}"> --}}
-                    {{-- <input type="hidden" name="quantity" value="{{ is_numeric($request->quantity) ? floor(str_replace(',', '', $request->quantity)) : '' }}"> --}}
                     <input type="hidden" name="quantity" value="{{ $request->quantity }}">
-                    {{-- <input type="text" class="form-control @if($errors->has('quantity')) is-invalid @endif" id="quantity" value="{{ is_numeric($request->quantity) ? number_format($request->quantity) : $request->quantity }}" readonly> --}}
                     <input type="text" class="form-control @if($errors->has('quantity')) is-invalid @endif" id="quantity" value="{{ number_format($request->quantity) }}" readonly>
                     @if($errors->has('quantity'))
                       <div class="invalid-feedback">必須項目です（整数のみ・1以上・10桁以内）</div>
@@ -87,7 +84,6 @@
             <input type="hidden" name="customer_id" value="{{ $request->customer_id }}">
             <input type="hidden" name="customer_name" value="{{ $request->customer_name }}">
             <input type="hidden" name="registration_price" value="{{ $request->registration_price }}">
-            {{-- <input type="hidden" name="quantity" value="{{ is_numeric($request->quantity) ? number_format($request->quantity) : $request->quantity }}"> --}}
             <input type="hidden" name="quantity" value="{{ $request->quantity }}">
             <input type="hidden" name="total_amount" value="{{ $request->total_amount }}">
             <input type="hidden" name="request_date" value="{{ $request->request_date }}">
@@ -96,14 +92,13 @@
             <input type="hidden" name="item_remark" value="{{ $request->item_remark }}">
             <button type="submit" class="btn btn-secondary mt-3">入力画面に戻る</button>
           </form>
-          <button class="btn btn-secondary mt-3" onclick="location.href='{{route('order.index')}}';">一覧へ戻る</button>
         </div>
       </div>
     </div>
     <div class="col-md-4 d-flex">
       <div class="card flex-fill">
         <div class="card-header border-0">
-          @can('admin')
+          @if (auth()->user()->isAdmin())
             <div class="form-group">
               <label for="user_remark">顧客備考</label>
               <textarea name="user_remark" class="form-control" id="user_remark" rows="5" readonly>{{ $request["user_remark"] }}</textarea>
@@ -116,7 +111,9 @@
               <label>仕入先備考</label>
               <textarea class="form-control" rows="5" readonly>準備中</textarea>
             </div>
-          @endcan
+          @else
+            @include('includes.remarkItemInfo') 
+          @endif
         </div>
       </div>
     </div>

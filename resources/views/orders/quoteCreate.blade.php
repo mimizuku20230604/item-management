@@ -5,18 +5,18 @@
 
 @section('content_header')
     <div class="d-flex align-items-center">
-      <h4 class="m-0">発注登録</h4>
-      <button class="btn btn-secondary ml-3 btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+      <h4>発注登録</h4>
+      <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
   </div>
 @stop
 
 @section('content')
-  @include('includes.alert')
-  <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header">
-          <form method="get" action="{{route('order.quoteConfirm')}}" >
+  <form method="get" action="{{route('order.quoteConfirm')}}" >
+    @include('includes.alert')
+    <div class="row">
+      <div class="col-md-8 d-flex">
+        <div class="card flex-fill">
+          <div class="card-header border-0">
             <div class="form-group">
               <label for="customer_id">顧客名</label>
               <input type="hidden" name="customer_id" value="{{ $quote->customer_id }}">
@@ -64,13 +64,37 @@
               <textarea name="remark" class="form-control" id="remark" cols="30" rows="5" maxlength="500">{{ !empty($request["remark"]) ? $request["remark"] : old('remark', $quote->remark) }}</textarea>
             </div>
             <button type="submit" class="btn btn-success mt-3">確認する</button>
-          </form>
-          <button class="btn btn-secondary mt-3" onclick="location.href='{{route('quote.show', $quote)}}';">詳細へ戻る</button><br>
-          <button class="btn btn-secondary mt-3" onclick="location.href='{{route('quote.index')}}';">見積一覧へ戻る</button>
+            <br>
+            <button class="btn btn-secondary mt-3" onclick="location.href='{{route('quote.show', $quote)}}';">詳細へ戻る</button><br>
+            <button class="btn btn-secondary mt-3" onclick="location.href='{{route('quote.index')}}';">見積一覧へ戻る</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 d-flex">
+        <div class="card flex-fill">
+          <div class="card-header border-0">
+            @if (auth()->user()->isAdmin())
+              <div class="form-group">
+                <label for="user_remark">顧客備考</label>
+                <textarea name="user_remark" class="form-control" id="user_remark" rows="5" readonly>{{ !empty($request["user_remark"]) ? $request["user_remark"] : $quote->customer->remark }}</textarea>
+              </div>
+              <div class="form-group">
+                <label for="item_remark">商品備考</label>
+                <textarea name="item_remark" class="form-control" id="item_remark" rows="5" readonly>{{ !empty($request["item_remark"]) ? $request["item_remark"] : $quote->item->remark }}</textarea>
+              </div>
+              <div class="form-group">
+                <label>仕入先備考</label>
+                <textarea class="form-control" rows="5" readonly>準備中</textarea>
+              </div>
+              </div>
+            @else
+              @include('includes.remarkItemInfo') 
+            @endif
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </form>
 @stop
 
 @section('css')

@@ -5,8 +5,8 @@
 
 @section('content_header')
   <div class="d-flex align-items-center">
-      <h4 class="m-0">アカウント情報</h4>
-      <button class="btn btn-secondary ml-3 btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+      <h4>アカウント情報</h4>
+      <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
   </div>
 @stop
 
@@ -41,6 +41,7 @@
     <div class="col-md-4 d-flex">
       <div class="card flex-fill">
         <div class="card-header border-0">
+          @include('includes.remarkItemInfo') 
         </div>
       </div>
     </div>

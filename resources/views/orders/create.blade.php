@@ -4,10 +4,10 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-    <div class="d-flex align-items-center">
-      <h4 class="m-0">発注登録</h4>
-      <button class="btn btn-secondary ml-3 btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
-  </div>
+    <h4>発注登録</h4>
+    <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+    <button class="btn btn-secondary ml-2 btn-sm" onclick="location.href='{{route('price.show', $price)}}';">詳細へ戻る</button>
+    <button class="btn btn-secondary ml-2 btn-sm" onclick="location.href='{{route('price.index')}}';">一覧へ戻る</button>
 @stop
 
 @section('content')
@@ -19,24 +19,23 @@
           <div class="card-header border-0">
             <input type="hidden" name="price_id" value="{{ $price->id }}">
             <div class="form-group">
-              {{-- <label for="customer_id">顧客名</label>
-              <input type="hidden" name="customer_id" value="{{ auth()->user()->id }}">
-              <input type="text" class="form-control" name="customer_name" id="customer_name" value="{{ auth()->user()->name }}" readonly> --}}
               <label for="customer_id">顧客名</label>
+@if ($price->customer_id !== null)
+<input type="hidden" name="customer_id" value="{{ $price->customer->id }}">
+<input type="text" class="form-control" name="customer_name" id="customer_name" value="{{ $price->customer->name }}" readonly>
+@else
                 @if (auth()->user()->isAdmin())
-                    <select class="form-control" id="customer_id" name="customer_id">
-                        <option value="">顧客を選択してください</option>
-                        @foreach ($users as $user)
-                            <option value="{{ $user->id }}" {{ ($request->has('customer_id') && $request->customer_id == $user->id) || (old('customer_id') == $user->id) ? 'selected' : '' }}>{{ $user->name }}</option>
-                        @endforeach
-                    </select>
+                  <select class="form-control" id="customer_id" name="customer_id">
+                    <option value="">顧客を選択してください</option>
+                    @foreach ($users as $user)
+                      <option value="{{ $user->id }}" {{ ($request->has('customer_id') && $request->customer_id == $user->id) || (old('customer_id') == $user->id) ? 'selected' : '' }}>{{ $user->name }}</option>
+                    @endforeach
+                  </select>
                 @else
-                    <input type="hidden" name="customer_id" value="{{ auth()->user()->id }}">
-                    <input type="text" class="form-control" name="customer_name" id="customer_name" value="{{ auth()->user()->name }}" readonly>
+                  <input type="hidden" name="customer_id" value="{{ auth()->user()->id }}">
+                  <input type="text" class="form-control" name="customer_name" id="customer_name" value="{{ auth()->user()->name }}" readonly>
                 @endif
-
-
-              
+@endif
             </div>
             <div class="form-group">
               <label for="item_id">商品名</label>
@@ -76,19 +75,16 @@
               <textarea name="remark" class="form-control" id="remark" cols="30" rows="5" maxlength="500">{{ !empty($request["remark"]) ? $request["remark"] : old('remark', $price->remark) }}</textarea>
             </div>
             <button type="submit" class="btn btn-success mt-3">確認する</button>
-            <br>
-            <button class="btn btn-secondary mt-3" onclick="location.href='{{route('price.show', $price)}}';">詳細へ戻る</button><br>
-            <button class="btn btn-secondary mt-3" onclick="location.href='{{route('order.index')}}';">一覧へ戻る</button>
           </div>
         </div>
       </div>
       <div class="col-md-4 d-flex">
         <div class="card flex-fill">
           <div class="card-header border-0">
-            @can('admin')
+            @if (auth()->user()->isAdmin())
               <div class="form-group">
                 <label for="user_remark">顧客備考</label>
-                <textarea name="user_remark" class="form-control" id="user_remark" rows="5" readonly>{{ !empty($request["user_remark"]) ? $request["user_remark"] : old('user_remark') }}</textarea>
+                  <textarea name="user_remark" class="form-control" id="user_remark" rows="5" readonly>{{ $request["user_remark"] ?? $price->customer->remark ?? old('user_remark') }}</textarea>
               </div>
               <div class="form-group">
                 <label for="item_remark">商品備考</label>
@@ -99,7 +95,9 @@
                 <textarea class="form-control" rows="5" readonly>準備中</textarea>
               </div>
               </div>
-            @endcan
+            @else
+              @include('includes.remarkItemInfo') 
+            @endif
           </div>
         </div>
       </div>

@@ -42,13 +42,13 @@ class OrderController extends Controller
   /**
    * 発注確認（単価より）
    */
-  public function confirm(Request $request)
+  public function confirm(Request $request, Price $price)
   {
     // dd($request);
     // ここでデータはバリデーションを実行しない！
     //（create画面のリクエストとリダイレクトで返すデータが異なるため。）
     $customer = User::find($request['customer_id']); // ユーザーを取得（顧客名を表示させるため）
-    return view('orders.confirm', compact('request', 'customer'));
+    return view('orders.confirm', compact('request', 'customer', 'price'));
   }
 
   /**

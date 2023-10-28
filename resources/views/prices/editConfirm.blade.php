@@ -4,10 +4,10 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-    <div class="d-flex align-items-center">
-      <h4 class="m-0">単価編集</h4>
-      <button class="btn btn-secondary ml-3 btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
-  </div>
+  <h4>単価編集</h4>
+  <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+  <button class="btn btn-secondary ml-2 btn-sm" onclick="location.href='{{route('price.show', $price)}}';">詳細へ戻る</button>
+  <button class="btn btn-secondary ml-2 btn-sm" onclick="location.href='{{route('price.index')}}';">一覧へ戻る</button>
 @stop
 
 @section('content')
@@ -65,9 +65,6 @@
             <input type="hidden" name="remark" value="{{ $request->remark }}">
             <button type="submit" class="btn btn-secondary mt-3">入力画面に戻る</button>
           </form>
-          <button class="btn btn-secondary mt-3" onclick="location.href='{{route('price.show', $price)}}';">詳細へ戻る</button>
-          <br>
-          <button class="btn btn-secondary mt-3" onclick="location.href='{{route('price.index')}}';">一覧へ戻る</button>
         </div>
       </div>
     </div>
@@ -77,7 +74,7 @@
           @can('admin')
             <div class="form-group">
               <label for="user_remark">顧客備考</label>
-              <textarea name="user_remark" class="form-control" id="user_remark" rows="5" readonly>{{ $price->user->remark }}</textarea>
+              <textarea name="user_remark" class="form-control" id="user_remark" rows="5" readonly>{{ $price->customer->remark }}</textarea>
             </div>
             <div class="form-group">
               <label for="item_remark">商品備考</label>

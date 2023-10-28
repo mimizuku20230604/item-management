@@ -5,8 +5,8 @@
 
 @section('content_header')
   <div class="d-flex align-items-center">
-      <h4 class="m-0">見積詳細</h4>
-      <button class="btn btn-secondary ml-3 btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+      <h4>見積詳細</h4>
+      <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
   </div>
 @stop
 
@@ -86,7 +86,7 @@
     <div class="col-md-4 d-flex">
       <div class="card flex-fill">
         <div class="card-header border-0">
-          @can('admin')
+          @if (auth()->user()->isAdmin())
             <div class="form-group">
               <label for="user_remark">顧客備考</label>
               <textarea name="user_remark" class="form-control" id="user_remark" rows="5" readonly>{{ $quote->customer->remark }}</textarea>
@@ -99,7 +99,9 @@
               <label>仕入先備考</label>
               <textarea class="form-control" rows="5" readonly>準備中</textarea>
             </div>
-          @endcan
+          @else
+            @include('includes.remarkItemInfo') 
+          @endif
         </div>
       </div>
     </div>
