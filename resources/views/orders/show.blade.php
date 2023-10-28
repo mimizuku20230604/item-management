@@ -75,8 +75,6 @@
           <button class="btn btn-outline-success mt-3" onclick="location.href=#">変更依頼
             <span class="badge badge-pill btn-info">準備中</span>
           </button>
-          <br>
-          
         </div>
       </div>
     </div>

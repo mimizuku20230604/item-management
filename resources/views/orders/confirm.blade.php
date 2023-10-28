@@ -41,7 +41,7 @@
                     <input type="hidden" name="quantity" value="{{ $request->quantity }}">
                     <input type="text" class="form-control @if($errors->has('quantity')) is-invalid @endif" id="quantity" value="{{ number_format($request->quantity) }}" readonly>
                     @if($errors->has('quantity'))
-                      <div class="invalid-feedback">必須項目です（整数のみ・1以上・10桁以内）</div>
+                      <div class="invalid-feedback">{{ $errors->first('quantity') }}</div>
                     @endif
                   </div>
                 </div>
@@ -58,7 +58,7 @@
                     <label for="request_date">希望着日（未指定は最短対応）</label>
                     <input type="date" name="request_date" class="form-control @if($errors->has('request_date')) is-invalid @endif" id="request_date" value="{{ $request->request_date }}" readonly>
                     @if($errors->has('request_date'))
-                      <div class="invalid-feedback">指定する場合、翌日以降です</div>
+                      <div class="invalid-feedback">{{ $errors->first('request_date') }}</div>
                     @endif
                   </div>
                 </div>
@@ -67,7 +67,7 @@
                 <label for="remark">備考</label>
                 <textarea name="remark" class="form-control @if($errors->has('remark')) is-invalid @endif" id="remark" readonly>{{ $request->remark }}</textarea>
                 @if($errors->has('remark'))
-                  <div class="invalid-feedback">500文字以内です</div>
+                  <div class="invalid-feedback">{{ $errors->first('remark') }}</div>
                 @endif
               </div>
             <button type="submit" class="btn btn-primary mt-3">確定する</button>

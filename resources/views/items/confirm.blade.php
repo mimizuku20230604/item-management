@@ -20,21 +20,21 @@
               <label for="name">名前</label>
               <input type="text" class="form-control @if($errors->has('name')) is-invalid @endif" id="name" name="name" value="{{ $request->name }}" readonly>
               @if($errors->has('name'))
-                <div class="invalid-feedback">必須項目です（50文字以内）</div>
+                <div class="invalid-feedback">{{ $errors->first('name') }}</div>
               @endif
             </div>
             <div class="form-group">
               <label for="type">種別</label>
               <input type="text" class="form-control @if($errors->has('type')) is-invalid @endif" id="type" name="type" value="{{ $request->type }}" readonly>
               @if($errors->has('type'))
-                <div class="invalid-feedback">50文字以内です</div>
+                <div class="invalid-feedback">{{ $errors->first('type') }}</div>
               @endif
             </div>
             <div class="form-group">
               <label for="remark">備考</label>
               <textarea name="remark" class="form-control @if($errors->has('remark')) is-invalid @endif" id="remark" readonly>{{ $request->remark }}</textarea>
               @if($errors->has('remark'))
-                <div class="invalid-feedback">500文字以内です</div>
+                <div class="invalid-feedback">{{ $errors->first('remark') }}</div>
               @endif
             </div>
             <button type="submit" class="btn btn-primary">登録</button>

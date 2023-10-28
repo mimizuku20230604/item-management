@@ -35,7 +35,7 @@
                   <input type="hidden" name="registration_price" value="{{ $request->registration_price }}">
                   <input type="text" class="form-control @if($errors->has('registration_price')) is-invalid @endif" id="registration_price" value="{{ number_format($request->registration_price, 2) }}" readonly>
                   @if($errors->has('registration_price'))
-                    <div class="invalid-feedback">必須項目です（数字のみ・小数点第2まで・10桁以内）</div>
+                    <div class="invalid-feedback">{{ $errors->first('registration_price') }}</div>
                   @endif
                 </div>
               </div>
@@ -44,8 +44,8 @@
                   <label for="deadline_date">適用期限（基本期限なし）</label>
                   <input type="date" name="deadline_date" class="form-control @if($errors->has('deadline_date')) is-invalid @endif" id="deadline_date" value="{{ $request->deadline_date }}" readonly>
                   @if($errors->has('deadline_date'))
-                      <div class="invalid-feedback">指定する場合、本日以降です</div>
-                    @endif
+                    <div class="invalid-feedback">{{ $errors->first('deadline_date') }}</div>
+                  @endif
                 </div>
               </div>
             </div>
@@ -53,8 +53,8 @@
               <label for="remark">備考</label>
               <textarea name="remark" class="form-control @if($errors->has('remark')) is-invalid @endif" id="remark" readonly>{{ $request->remark }}</textarea>
               @if($errors->has('remark'))
-                  <div class="invalid-feedback">500文字以内です</div>
-                @endif
+                <div class="invalid-feedback">{{ $errors->first('remark') }}</div>
+              @endif
             </div>
             <button type="submit" class="btn btn-primary" onclick="return confirm('本当に更新しますか？\nお客様が指定されている場合、\n更新するとお客様へメール送信されます。');">更新する</button>
             <p class="card-text text-sm">（更新後、お客様指定の場合メール配信します。）
