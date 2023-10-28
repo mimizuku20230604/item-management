@@ -4,10 +4,10 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-    <div class="d-flex align-items-center">
-      <h4>発注登録</h4>
-      <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
-  </div>
+  <h4>発注登録</h4>
+  <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+  <button class="btn btn-secondary ml-2 btn-sm" onclick="location.href='{{route('quote.show', $quote)}}';">詳細へ戻る</button>
+  <button class="btn btn-secondary ml-2 btn-sm" onclick="location.href='{{route('quote.index')}}';">一覧へ戻る</button>
 @stop
 
 @section('content')
@@ -17,6 +17,7 @@
       <div class="col-md-8 d-flex">
         <div class="card flex-fill">
           <div class="card-header border-0">
+            <input type="hidden" name="quote_id" value="{{ $quote->id }}">
             <div class="form-group">
               <label for="customer_id">顧客名</label>
               <input type="hidden" name="customer_id" value="{{ $quote->customer_id }}">
@@ -64,9 +65,6 @@
               <textarea name="remark" class="form-control" id="remark" cols="30" rows="5" maxlength="500">{{ !empty($request["remark"]) ? $request["remark"] : old('remark', $quote->remark) }}</textarea>
             </div>
             <button type="submit" class="btn btn-success mt-3">確認する</button>
-            <br>
-            <button class="btn btn-secondary mt-3" onclick="location.href='{{route('quote.show', $quote)}}';">詳細へ戻る</button><br>
-            <button class="btn btn-secondary mt-3" onclick="location.href='{{route('quote.index')}}';">見積一覧へ戻る</button>
           </div>
         </div>
       </div>

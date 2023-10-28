@@ -20,10 +20,10 @@
             <input type="hidden" name="price_id" value="{{ $price->id }}">
             <div class="form-group">
               <label for="customer_id">顧客名</label>
-@if ($price->customer_id !== null)
-<input type="hidden" name="customer_id" value="{{ $price->customer->id }}">
-<input type="text" class="form-control" name="customer_name" id="customer_name" value="{{ $price->customer->name }}" readonly>
-@else
+              @if ($price->customer_id !== null)
+                <input type="hidden" name="customer_id" value="{{ $price->customer->id }}">
+                <input type="text" class="form-control" name="customer_name" id="customer_name" value="{{ $price->customer->name }}" readonly>
+              @else
                 @if (auth()->user()->isAdmin())
                   <select class="form-control" id="customer_id" name="customer_id">
                     <option value="">顧客を選択してください</option>
@@ -35,7 +35,7 @@
                   <input type="hidden" name="customer_id" value="{{ auth()->user()->id }}">
                   <input type="text" class="form-control" name="customer_name" id="customer_name" value="{{ auth()->user()->name }}" readonly>
                 @endif
-@endif
+              @endif
             </div>
             <div class="form-group">
               <label for="item_id">商品名</label>

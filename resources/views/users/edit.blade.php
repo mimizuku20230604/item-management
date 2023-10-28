@@ -4,10 +4,9 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-  <div class="d-flex align-items-center">
-      <h4>アカウント編集</h4>
-      <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
-  </div>
+  <h4>アカウント編集</h4>
+  <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+  <button class="btn btn-secondary ml-2 btn-sm" onclick="location.href='{{route('user.show')}}';">アカウント情報へ戻る</button>
 @stop
 
 @section('content')
@@ -34,7 +33,7 @@
             </div>
             <button type="submit" class="btn btn-primary">更新する</button>
           </form>
-          <button class="btn btn-secondary mt-3" onclick="location.href='{{route('user.show')}}';">戻る</button>
+          
         </div>
       </div>
     </div>

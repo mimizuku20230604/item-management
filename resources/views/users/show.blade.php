@@ -4,10 +4,8 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-  <div class="d-flex align-items-center">
-      <h4>アカウント情報</h4>
-      <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
-  </div>
+  <h4>アカウント情報</h4>
+  <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
 @stop
 
 @section('content')

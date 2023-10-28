@@ -6,6 +6,7 @@
 @section('content_header')
   <h4>発注済詳細</h4>
   <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+  <button class="btn btn-secondary ml-2 btn-sm" onclick="location.href='{{route('order.index')}}';">一覧へ戻る</button>
 @stop
 
 @section('content')
@@ -75,7 +76,7 @@
             <span class="badge badge-pill btn-info">準備中</span>
           </button>
           <br>
-          <button class="btn btn-secondary mt-3" onclick="location.href='{{route('order.index')}}';">一覧へ戻る</button>
+          
         </div>
       </div>
     </div>

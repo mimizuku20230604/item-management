@@ -4,10 +4,9 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-  <div class="d-flex align-items-center">
-      <h4>アカウント情報（管理者用）</h4>
-      <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
-  </div>
+  <h4>アカウント情報（管理者用）</h4>
+  <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+  <button class="btn btn-secondary ml-2 btn-sm" onclick="location.href='{{route('profile.index')}}';">一覧へ戻る</button>
 @stop
 
 @section('content')
@@ -45,7 +44,7 @@
                 </div>
           <button class="btn btn-success mt-3" onclick="location.href='{{route('profile.edit', $user)}}';">編集</button>
           <br>
-          <button class="btn btn-secondary mt-3" onclick="location.href='{{route('profile.index')}}';">一覧へ戻る</button>
+          
         </div>
       </div>
     </div>

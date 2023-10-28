@@ -1,5 +1,6 @@
 
   <!-- あいまい検索フォーム -->
+  
   <div class="card">
     <div class="card-header">
       <form action="{{ route('quote.ambiguousSearch') }}" method="GET">

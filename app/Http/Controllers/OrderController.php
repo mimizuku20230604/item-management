@@ -106,12 +106,12 @@ class OrderController extends Controller
   /**
    * 発注確認（見積より）
    */
-  public function quoteConfirm(Request $request)
+  public function quoteConfirm(Request $request, Quote $quote)
   {
     // dd($request);
     // ここでデータはバリデーションを実行しない！
     //（create画面のリクエストとリダイレクトで返すデータが異なるため。）
-    return view('orders.quoteConfirm', compact('request'));
+    return view('orders.quoteConfirm', compact('quote', 'request'));
   }
 
   /**
