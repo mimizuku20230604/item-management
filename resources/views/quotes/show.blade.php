@@ -4,17 +4,16 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-    <h4>見積詳細</h4>
+  <h4>見積詳細</h4>
+  <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+  <button class="btn btn-secondary  ml-2 btn-sm" onclick="location.href='{{route('quote.index')}}';">一覧へ戻る</button>
 @stop
 
 @section('content')
-
   <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header">
-    {{-- <form method="get" action="{{ route('order.quoteCreate') }}" enctype="multipart/form-data"> --}}
-      {{-- @csrf --}}
+    <div class="col-md-8 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
           <div class="form-group">
             <label for="customer_name">顧客名</label>
             <input type="text" name="customer_name" class="form-control" id="customer_name" value="{{ $quote->customer->name }}" readonly>
@@ -70,24 +69,41 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="remarks">備考</label>
-            <textarea name="remarks" class="form-control" id="remarks" readonly>{{ $quote['remarks'] }}</textarea>
+            <label for="remark">備考</label>
+            <textarea name="remark" class="form-control" id="remark" readonly>{{ $quote['remark'] }}</textarea>
           </div>
-    {{-- <button type="submit" class="btn btn-primary">発注画面へ</button> --}}
-    {{-- </form> --}}
-    <button class="btn btn-success mt-3" onclick="location.href='{{route('order.quoteCreate', $quote)}}';">発注画面へ</button>
-    <br>
-    <button class="btn btn-outline-primary mt-3" onclick="location.href=#">リピート発行
-        <span class="badge badge-pill btn-info">準備中</span>
-      </button>
-      <br>
-    <button class="btn btn-secondary mt-3" onclick="location.href='{{route('quote.index')}}';">一覧へ戻る</button>
+          <button class="btn btn-success mt-3" onclick="location.href='{{route('order.quoteCreate', $quote)}}';">発注画面へ</button>
+          <br>
+          <button class="btn btn-outline-primary mt-3" onclick="location.href=#">リピート発行
+            <span class="badge badge-pill btn-info">準備中</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
+          @if (auth()->user()->isAdmin())
+            <div class="form-group">
+              <label for="user_remark">顧客備考</label>
+              <textarea name="user_remark" class="form-control" id="user_remark" rows="5" readonly>{{ $quote->customer->remark }}</textarea>
+            </div>
+            <div class="form-group">
+              <label for="item_remark">商品備考</label>
+              <textarea name="item_remark" class="form-control" id="item_remark" rows="5" readonly>{{ $quote->item->remark }}</textarea>
+            </div>
+            <div class="form-group">
+              <label>仕入先備考</label>
+              <textarea class="form-control" rows="5" readonly>準備中</textarea>
+            </div>
+          @else
+            @include('includes.remarkItemInfo') 
+          @endif
         </div>
       </div>
     </div>
   </div>
-  
-@endsection
+@stop
 
 @section('css')
 @stop
@@ -101,7 +117,7 @@
   }
   // ページ読み込み時に実行
   document.addEventListener("DOMContentLoaded", function () {
-    const textarea = document.getElementById("remarks");
+    const textarea = document.getElementById("remark");
     autoResizeTextarea(textarea);
     // ウィンドウのリサイズ時にも実行
     window.addEventListener("resize", function () {

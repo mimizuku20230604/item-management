@@ -16,7 +16,7 @@ class Order extends Model
         'quantity',
         'total_amount',
         'request_date',
-        'remarks',
+        'remark',
         'user_id',
     ];
 

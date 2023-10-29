@@ -25,7 +25,7 @@
 <p>単価：</p>
 <p>{{ number_format($price->registration_price, 2) }} 円</p>
 <p>備考：</p>
-<p>{{ $price->remarks }}</p>
+<p>{{ $price->remark }}</p>
 <p>登録者：</p>
 <p>{{ $price->user->name }}</p>
 <p>{{ $price->user->email }}</p>

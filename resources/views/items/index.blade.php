@@ -3,13 +3,14 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-    <h4>商品一覧</h4>
+  <h4>商品一覧</h4>
+  <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
 @stop
 
 @section('content')
+  @include('includes.alert')
   <div class="row">
     <div class="col-12">
-      @include('includes.alert')
       <div class="card">
         <div class="card-header">
           <div class="input-group">
@@ -26,9 +27,10 @@
                 <th class="font-weight-normal">ID</th>
                 <th class="font-weight-normal">名前</th>
                 <th class="font-weight-normal">種別</th>
+                <th class="font-weight-normal">作成日</th>
+                <th class="font-weight-normal">更新日</th>
+                <th class="font-weight-normal">登録者</th>
                 <th class="font-weight-normal">詳細</th>
-                <th class="font-weight-normal">登録者名</th>
-                <th class="font-weight-normal">詳細画面へ</th>
               </tr>
             </thead>
             <tbody>
@@ -37,11 +39,12 @@
                     <td class="text-right">{{ $item->id }}</td>
                     <td class="text-left">{{ $item->name }}</td>
                     <td class="text-left">{{ $item->type }}</td>
-                    <td class="text-left">{{ $item->detail }}</td>
+                    <td class="text-center">{{ $item->created_at->format('Y/m/d') }}</td>
+                    <td class="text-center">{{ $item->updated_at->format('Y/m/d') }}</td>
                     <td class="text-left">{{ $item->user->name }}</td> <!-- user_idから -->
                     <td>
                       <a href="{{route('item.show', $item)}}">
-                      <button class="btn btn-info btn-sm">詳細画面へ</button>
+                      <button class="btn btn-info btn-sm">詳細</button>
                       </a>
                     </td>
                   </tr>

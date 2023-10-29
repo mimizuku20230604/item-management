@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // ordersテーブルからtotal amountの合計を取得
+        $totalSales = Order::sum('total_amount');
+        return view('home', compact('totalSales'));
     }
 }

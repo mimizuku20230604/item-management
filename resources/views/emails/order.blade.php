@@ -30,7 +30,7 @@
 <p>希望着日：</p>
 <p>{{ date('Y/m/d', strtotime($order->request_date)) }}</p>
 <p>備考：</p>
-<p>{{ $order->remarks }}</p>
+<p>{{ $order->remark }}</p>
 <p>登録者：</p>
 <p>{{ $order->user->name }}</p>
 <p>{{ $order->user->email }}</p>

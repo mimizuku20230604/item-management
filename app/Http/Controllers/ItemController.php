@@ -20,7 +20,7 @@ class ItemController extends Controller
   public function create(Request $request)
   {
     // dd($request);
-    return view( 'items/create', compact('request'));
+    return view('items/create', compact('request'));
   }
 
   public function confirm(Request $request)
@@ -34,15 +34,15 @@ class ItemController extends Controller
   public function store(Request $request)
   {
     $inputs = $request->validate([
-        'name' => 'required|max:50',
-        'type' => 'max:50',
-        'detail' => 'max:50',
+      'name' => 'required|max:50',
+      'type' => 'max:50',
+      'remark' => 'max:50',
     ]);
 
     $item = new Item();
     $item->name = $request->name;
     $item->type = $request->type;
-    $item->detail = $request->detail;
+    $item->remark = $request->remark;
     $item->user_id = auth()->user()->id;
     $item->save();
     return redirect()->route('item.index')->with('success', '商品を追加しました');
@@ -67,7 +67,7 @@ class ItemController extends Controller
     // ここでデータはバリデーションを実行しない！
     //（create画面のリクエストとリダイレクトで返すデータが異なるため。）
 
-    return view('items.editConfirm',compact('request', 'item'));
+    return view('items.editConfirm', compact('request', 'item'));
   }
 
   public function update(Request $request, Item $item)
@@ -78,12 +78,13 @@ class ItemController extends Controller
     $inputs = $request->validate([
       'name' => 'required|max:50',
       'type' => 'max:50',
-      'detail' => 'max:50',
+      // 'remark' => 'max:500',
+      'remark' => 'max:501',
     ]);
 
     $item->name = $request->name;
     $item->type = $request->type;
-    $item->detail = $request->detail;
+    $item->remark = $request->remark;
     $item->user_id = auth()->user()->id;
     $item->save();
     return redirect()->route('item.index')->with('update', '商品を更新しました');

@@ -4,12 +4,13 @@
 
 @section('content_header')
   <h4>見積一覧</h4>
+  <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
 @stop
 
 @section('content')
+  @include('includes.alert')
   <div class="row">
     <div class="col-12">
-      @include('includes.alert')
       <ul class="nav nav-tabs" id="myTabs" role="tablist">
         <li class="nav-item">
           <!-- index.bladeでは、requestを「quotes/index」にする。上のタブ部分がアクティブになって下のタブ部分（あいまい検索部分）とくっつきます。 -->

@@ -4,15 +4,16 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-  <h2>アカウント情報</h2>
+  <h4>アカウント情報</h4>
+  <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
 @stop
 
 @section('content')
+  @include('includes.alert')
   <div class="row">
-    <div class="col-md-10">
-      @include('includes.alert')
-      <div class="card">
-        <div class="card-header">
+    <div class="col-md-8 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
           <div class="form-group">
             <label for="name">名前</label>
             <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" readonly>
@@ -32,8 +33,13 @@
             </div>
           </div>
           <button class="btn btn-success mt-3" onclick="location.href='{{route('user.edit')}}';">編集</button>
-          <br>
-          <button class="btn btn-secondary mt-3" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
+          @include('includes.remarkItemInfo') 
         </div>
       </div>
     </div>

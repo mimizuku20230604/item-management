@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
-use App\Models\Quote; // Quoteモデルを使用するためにuse宣言
-use App\Models\Item; // Itemモデルを使用するためにuse宣言
-use App\Models\User; // Userモデルを使用するためにuse宣言
-use App\Models\Price; // Priceモデルを使用するためにuse宣言
+use App\Models\Quote;
+use App\Models\Item;
+use App\Models\User;
+use App\Models\Price;
+use App\Models\Role;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Mail; // メール機能
-use App\Mail\OrderForm; // メール機能
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderForm;
 use Illuminate\Support\Facades\Gate;
 
 class OrderController extends Controller
@@ -29,22 +30,25 @@ class OrderController extends Controller
   /**
    * 発注作成（単価より）
    */
-  public function create(Request $request, Price $price)
+  public function create(Request $request, Price $price, User $user, Item $item)
   {
     // dd($price);
     // dd($request);
-    return view('orders.create', compact('price', 'request'));
+    $users = User::all();
+    $roles = Role::all();
+    return view('orders.create', compact('request', 'price', 'user', 'item', 'roles', 'users'));
   }
 
   /**
    * 発注確認（単価より）
    */
-  public function confirm(Request $request)
+  public function confirm(Request $request, Price $price)
   {
     // dd($request);
     // ここでデータはバリデーションを実行しない！
     //（create画面のリクエストとリダイレクトで返すデータが異なるため。）
-    return view('orders.confirm', compact('request'));
+    $customer = User::find($request['customer_id']); // ユーザーを取得（顧客名を表示させるため）
+    return view('orders.confirm', compact('request', 'customer', 'price'));
   }
 
   /**
@@ -58,8 +62,8 @@ class OrderController extends Controller
     $request->validate([
       'quantity' => 'integer|digits_between:1,10|min:1',
       'request_date' => 'nullable|date|after_or_equal:tomorrow',
-      // 'remarks' => 'max:500',
-      'remarks' => 'max:7',
+      // 'remark' => 'max:500',
+      'remark' => 'max:501',
     ]);
 
     // カンマを削除して数値に変換
@@ -76,7 +80,7 @@ class OrderController extends Controller
     $order->quantity = $request->quantity;
     $order->total_amount = $total_amount;
     $order->request_date = $request->request_date;
-    $order->remarks = $request->remarks;
+    $order->remark = $request->remark;
     $order->user_id = auth()->user()->id;;
     $order->save();
 
@@ -102,12 +106,12 @@ class OrderController extends Controller
   /**
    * 発注確認（見積より）
    */
-  public function quoteConfirm(Request $request)
+  public function quoteConfirm(Request $request, Quote $quote)
   {
     // dd($request);
     // ここでデータはバリデーションを実行しない！
     //（create画面のリクエストとリダイレクトで返すデータが異なるため。）
-    return view('orders.quoteConfirm', compact('request'));
+    return view('orders.quoteConfirm', compact('quote', 'request'));
   }
 
   /**
@@ -125,8 +129,8 @@ class OrderController extends Controller
       'quantity' => 'required|numeric|regex:/^\d{1,10}$/',
       'total_amount' => 'required|numeric|regex:/^\d{1,10}$/',
       'request_date' => 'nullable|date|after_or_equal:tomorrow',
-      // 'remarks' => 'max:500',
-      'remarks' => 'max:7',
+      // 'remark' => 'max:500',
+      'remark' => 'max:501',
     ]);
 
     $order = new Order;
@@ -136,7 +140,7 @@ class OrderController extends Controller
     $order->quantity = $request->quantity;
     $order->total_amount = $request->total_amount;
     $order->request_date = $request->request_date;
-    $order->remarks = $request->remarks;
+    $order->remark = $request->remark;
     $order->user_id = auth()->user()->id;;
     $order->save();
 
@@ -179,5 +183,4 @@ class OrderController extends Controller
   {
     //
   }
-
 }

@@ -1,9 +1,10 @@
 
       <div class="col-md-8">
         <div class="form-group">
-          <div class="card">
+          <div class="card mr-2 ml-2">
             <div class="card-header d-flex align-items-center">
               <h5 class="custom-text-color mr-3">insider information</h5>
+              <span class="badge badge-pill btn-info">準備中</span>
             </div>
             <div class="card-body bg-light" style="max-height: 180px; overflow-y: auto;">
               <div class="card">

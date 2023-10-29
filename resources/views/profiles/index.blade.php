@@ -3,14 +3,14 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-    <h4>ユーザ一覧</h4>
-    <button class="btn btn-secondary mt-3" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+  <h4>ユーザ一覧</h4>
+  <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
 @stop
 
 @section('content')
+  @include('includes.alert')
   <div class="row">
     <div class="col-12">
-      @include('includes.alert')
       <div class="card">
         <div class="card-body table-responsive p-0">
           <table class="table table-hover text-center">
@@ -19,23 +19,23 @@
                 <th class="font-weight-normal">ID</th>
                 <th class="font-weight-normal">名前</th>
                 <th class="font-weight-normal">Email</th>
-                <th class="font-weight-normal">詳細画面へ</th>
+                <th class="font-weight-normal">詳細</th>
               </tr>
             </thead>
             <tbody>
               @foreach ($users as $user)
-                  <tr class="table-bordered">
-                    <td class="text-right">{{ $user->id }}</td>
-                    <td class="text-left">{{ $user->name }}</td>
-                    <td class="text-left">{{ $user->email }}</td>
-                    <td>
-                      <a href="{{route('profile.show', $user)}}">
-                      <button class="btn btn-info btn-sm">詳細画面へ</button>
-                      </a>
-                    </td>
-                      </a>
-                    </td>
-                  </tr>
+                <tr class="table-bordered">
+                  <td class="text-right">{{ $user->id }}</td>
+                  <td class="text-left">{{ $user->name }}</td>
+                  <td class="text-left">{{ $user->email }}</td>
+                  <td>
+                    <a href="{{route('profile.show', $user)}}">
+                    <button class="btn btn-info btn-sm">詳細</button>
+                    </a>
+                  </td>
+                    </a>
+                  </td>
+                </tr>
               @endforeach
             </tbody>
           </table>
@@ -43,7 +43,6 @@
       </div>
     </div>
   </div>
-  <a class="btn btn-primary" href="{{ route('login') }}">ログイン画面へ</a>
 @stop
 
 @section('css')

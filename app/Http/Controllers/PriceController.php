@@ -17,18 +17,6 @@ use Illuminate\Support\Facades\Gate;
 
 class PriceController extends Controller
 {
-  /**
-   * 単価一覧
-   */
-  public function index()
-  {
-    $items = Item::all();
-    $users = User::all();
-    $query = Price::query();
-    // idカラムで降順にソートしたデータを取得
-    $prices = $query->orderBy('id', 'desc')->get();
-    return view('prices.index', compact('prices', 'items', 'users'));
-  }
 
   /**
    * 単価登録
@@ -75,8 +63,8 @@ class PriceController extends Controller
       'customer_id' => 'nullable',
       'registration_price' => 'required|numeric|regex:/^\d{1,8}(\.\d{1,2})?$/',
       'deadline_date' => 'nullable|date|after_or_equal:today',
-      // 'remarks' => 'max:500',
-      'remarks' => 'max:7',
+      // 'remark' => 'max:500',
+      'remark' => 'max:501',
     ]);
 
     $price = new Price();
@@ -84,7 +72,7 @@ class PriceController extends Controller
     $price->customer_id = $request->customer_id;
     $price->registration_price = $request->registration_price;
     $price->deadline_date = $request->deadline_date;
-    $price->remarks = $request->remarks;
+    $price->remark = $request->remark;
     $price->user_id = auth()->user()->id;
     $price->save();
 
@@ -107,37 +95,50 @@ class PriceController extends Controller
   }
 
   /**
+   * 単価一覧
+   */
+  public function index()
+  {
+    $users = User::all();
+    $items = Item::all();
+    $query = Price::query();
+    // idカラムで降順にソートしたデータを取得
+    $prices = $query->orderBy('id', 'desc')->get();
+    return view('prices.index', compact('prices', 'users', 'items'));
+  }
+
+  /**
    * 単価詳細画面表示
    */
-  public function show(Price $price)
+  public function show(Price $price, User $user, Item $item)
   {
     // dd($price);
     // Policyルール適用
     // $this->authorize('view', $price);
-    return view('prices.show', ['price' => $price]);
+    return view('prices.show', compact('price', 'user', 'item'));
   }
 
   /**
    * 単価編集画面
    */
-  public function edit(Request $request, Price $price)
+  public function edit(Request $request, Price $price, User $user, Item $item)
   {
     // dd($price);
     // dd($request);
     // Gateルール適用
     Gate::authorize('admin');
-    return view('prices.edit', compact('request', 'price'));
+    return view('prices.edit', compact('request', 'price', 'user', 'item'));
   }
 
   /**
    * 単価編集、確認画面
    */
-  public function editConfirm(Request $request, Price $price)
+  public function editConfirm(Request $request, Price $price, User $user, Item $item)
   {
     // dd($price);
     // dd($request);
     Gate::authorize('admin');
-    return view('prices.editConfirm', compact('request', 'price'));
+    return view('prices.editConfirm', compact('request', 'price', 'user', 'item'));
   }
 
   /**
@@ -148,15 +149,15 @@ class PriceController extends Controller
     // dd($price);
     Gate::authorize('admin');
     $request->validate([
-    'registration_price' => 'required|numeric|regex:/^\d{1,8}(\.\d{1,2})?$/',
-    'deadline_date' => 'nullable|date|after_or_equal:today',
-    // 'remarks' => 'max:500',
-    'remarks' => 'max:7',
+      'registration_price' => 'required|numeric|regex:/^\d{1,8}(\.\d{1,2})?$/',
+      'deadline_date' => 'nullable|date|after_or_equal:today',
+      // 'remark' => 'max:500',
+      'remark' => 'max:501',
     ]);
 
     $price->registration_price = $request->registration_price;
     $price->deadline_date = $request->deadline_date;
-    $price->remarks = $request->remarks;
+    $price->remark = $request->remark;
     $price->user_id = auth()->user()->id;
     $price->save();
 

@@ -294,6 +294,11 @@ return [
 
     'menu' => [
         [
+            'text' => 'ホーム',
+            'url'  => '/',
+            'icon' => 'fas fa-home',
+        ],
+        [
             'key'  => 'items_create_admin_only', //[user]には表示されない。
             'text' => '商品登録',
             'url'  => 'items/create',

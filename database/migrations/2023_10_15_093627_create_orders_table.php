@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('quantity');  // 数量
             $table->integer('total_amount'); // 合計金額
             $table->date('request_date')->nullable(); // NULL許容; // 希望納期
-            $table->text('remarks')->nullable();
+            $table->text('remark')->nullable();
             $table->unsignedBigInteger('user_id')->nullable(); // NULL許容;
             $table->timestamps(); // 作成日時と更新日時
 

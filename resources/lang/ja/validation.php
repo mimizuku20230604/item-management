@@ -249,6 +249,7 @@ return [
         'username' => 'ユーザー名',
         'year' => '年',
         'password-confirm' => '確認用パスワード',
+        'remark' => '備考',
     ],
 
 ];

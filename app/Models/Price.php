@@ -15,7 +15,7 @@ class Price extends Model
         'customer_id',
         'registration_price',
         'deadline_date',
-        'remarks',
+        'remark',
     ];
 
     // Itemモデルへのリレーションを設定

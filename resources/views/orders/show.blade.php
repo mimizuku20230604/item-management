@@ -4,15 +4,16 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-    <h4>発注済詳細</h4>
+  <h4>発注済詳細</h4>
+  <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+  <button class="btn btn-secondary ml-2 btn-sm" onclick="location.href='{{route('order.index')}}';">一覧へ戻る</button>
 @stop
 
 @section('content')
-
   <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header">
+    <div class="col-md-8 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
           <div class="form-group">
             <label for="customer_id">顧客名</label>
             <input type="text" class="form-control" name="customer_name" id="customer_name" value="{{ $order->customer->name }}" readonly>
@@ -44,7 +45,7 @@
           <div class="form-row">
             <div class="col-md-4">
               <div class="form-group">
-                <label for="request_date">希望着日（未入力の場合、最短対応）</label> <!-- デフォルト値:null -->
+                <label for="request_date">希望着日（未指定は最短対応）</label>
                 <input type="date" name="request_date" class="form-control" id="request_date" value="{{ $order->request_date }}" readonly>
               </div>
             </div>
@@ -74,14 +75,33 @@
           <button class="btn btn-outline-success mt-3" onclick="location.href=#">変更依頼
             <span class="badge badge-pill btn-info">準備中</span>
           </button>
-          <br>
-          <button class="btn btn-secondary mt-3" onclick="location.href='{{route('order.index')}}';">一覧へ戻る</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
+          @if (auth()->user()->isAdmin())
+            <div class="form-group">
+              <label for="user_remark">顧客備考</label>
+              <textarea name="user_remark" class="form-control" id="user_remark" rows="5" readonly>{{ $order->customer->remark }}</textarea>
+            </div>
+            <div class="form-group">
+              <label for="item_remark">商品備考</label>
+              <textarea name="item_remark" class="form-control" id="item_remark" rows="5" readonly>{{ $order->item->remark }}</textarea>
+            </div>
+            <div class="form-group">
+              <label>仕入先備考</label>
+              <textarea class="form-control" rows="5" readonly>準備中</textarea>
+            </div>
+          @else
+            @include('includes.remarkItemInfo') 
+          @endif
         </div>
       </div>
     </div>
   </div>
-
-@endsection
+@stop
 
 @section('css')
 @stop

@@ -4,14 +4,17 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-  <h2>アカウント編集（管理者用）</h2>
+  <h4>アカウント編集（管理者用）</h4>
+  <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+  <button class="btn btn-secondary  ml-2 btn-sm" onclick="location.href='{{route('profile.show', $user)}}';">詳細へ戻る</button>
+  <button class="btn btn-secondary  ml-2 btn-sm" onclick="location.href='{{route('profile.index')}}';">一覧へ戻る</button>
 @stop
 
 @section('content')
   <div class="row">
-    <div class="col-md-10">
-      <div class="card">
-        <div class="card-header">
+    <div class="col-md-8 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
           <form method="post" action="{{route('profile.update', $user)}}" >
             @csrf
             @method('patch')
@@ -29,18 +32,27 @@
                 <div class="invalid-feedback">{{ $errors->first('email') }}</div>
               @endif
             </div>
+            <div class="form-group">
+              <label for="remark">備考</label>
+              <textarea name="remark" class="form-control @if($errors->has('remark')) is-invalid @endif" id="remark" cols="30" rows="5" maxlength="500">{{ !empty(old('remark')) ? (old('remark')) : $user->remark }}</textarea>
+              @if($errors->has('remark'))
+                <div class="invalid-feedback">{{ $errors->first('remark') }}</div>
+              @endif
+            </div>
+            <div class="form-group">
+              <label for="role">ユーザー権限</label><br>
+              <input type="radio" name="role_id" value="1" {{ $user->roles->contains(1) ? 'checked' : '' }}> 管理者<br>
+              <input type="radio" name="role_id" value="2" {{ $user->roles->contains(2) ? 'checked' : '' }}> 一般ユーザー
+              <br>
+            </div>
             <button type="submit" class="btn btn-primary">更新する</button>
           </form>
-          <button class="btn btn-secondary mt-3" onclick="location.href='{{route('profile.index')}}';">一覧へ戻る</button>
         </div>
       </div>
     </div>
-  </div>
-    <div class="row">
-    <div class="col-md-10">
-      <div class="card">
-        <div class="card-header">
-          @include('includes.role-user-form')
+    <div class="col-md-4 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header border-0">
         </div>
       </div>
     </div>

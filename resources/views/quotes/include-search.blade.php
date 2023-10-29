@@ -1,5 +1,6 @@
 
   <!-- あいまい検索フォーム -->
+  
   <div class="card">
     <div class="card-header">
       <form action="{{ route('quote.ambiguousSearch') }}" method="GET">
@@ -49,7 +50,7 @@
             </div>
           </div>
           <div class="col-md-4">
-            <label for="user_name" class="font-weight-normal">登録者名</label>
+            <label for="user_name" class="font-weight-normal">登録者</label>
             <select class="form-control" id="user_name" name="user_name">
               <option value="">選択してください</option>
                 @foreach ($users as $user)
