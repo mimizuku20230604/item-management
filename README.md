@@ -2,8 +2,6 @@
 - Laravel社_商品管理システム
     - 商品の登録・単価登録・見積作成・発注が出来る販売管理システムを制作しました。
     - 管理者（自社社員）と一般ユーザー（得意先）で異なる機能・画面を用意し、メール配信も実装しました。
-
-[Laravel社_商品管理システム](https://item-management20231012-de20a6daf45a.herokuapp.com/)
 <img width="1000" alt="トップ画面（管理者）" src="/public/img/greenshot01.png">
 <br>
 <br>
