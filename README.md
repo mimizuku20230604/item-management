@@ -61,52 +61,52 @@ https://item-management20231012-de20a6daf45a.herokuapp.com/
 ## 機能一覧
 | トップ画面（管理者） | トップ画面（一般ユーザー） |
 | ---- | ---- |
-| ![トップ画面（管理者）](/public/img/greenshot01.png) | ![トップ画面（一般ユーザー）](/public/img/greenshot01.png) |
+| ![トップ画面（管理者）](/public/img/greenshot01.png) | ![トップ画面（一般ユーザー）](/public/img/greenshot02.png) |
 | 管理者（自社社員）画面には売上表・社内インフォメーションも表示されます。 | 一般ユーザー（得意先）画面には社外インフォメーション・新商品情報のみが表示されます。 |
 
 | ログイン画面 | アカウント情報（管理者用）画面 |
 | ---- | ---- |
-| ![ログイン画面](/public/img/greenshot01.png) | ![アカウント情報（管理者用）画面](/public/img/greenshot01.png) |
+| ![ログイン画面](/public/img/greenshot03.png) | ![アカウント情報（管理者用）画面](/public/img/greenshot04.png) |
 | ログインIDとパスワードでの認証機能を実装しました。 | 初期登録は自動で一般ユーザー。管理者はユーザー権限を変更できます。 備考は管理者のみ表示。|
 
 | アカウント画面 | パスワード画面 |
 | ---- | ---- |
-| ![アカウント画面](/public/img/greenshot01.png) | ![パスワード画面](/public/img/greenshot01.png) |
+| ![アカウント画面](/public/img/greenshot05.png) | ![パスワード画面](/public/img/greenshot06.png) |
 | アカウント名・メールアドレスを変更できます。 | パスワードを変更できます。 |
 
 | 商品登録画面 | 商品詳細画面 |
 | ---- | ---- |
-| ![商品登録画面](/public/img/greenshot01.png) | ![商品詳細画面](/public/img/greenshot01.png) |
+| ![商品登録画面](/public/img/greenshot07.png) | ![商品詳細画面](/public/img/greenshot08.png) |
 | 商品を登録できます。 | 商品を編集・削除できます。 |
 
 | 単価登録画面 | 単価メール画面 |
 | ---- | ---- |
-| ![単価登録画面](/public/img/greenshot01.png) | ![単価詳細画面](/public/img/greenshot01.png) |
+| ![単価登録画面](/public/img/greenshot09.png) | ![単価詳細画面](/public/img/greenshot10.png) |
 | 単価を登録できます。 | 単価確定後、ユーザーも登録されている場合はメール配信されます。（null（全ユーザー対象）の場合は未配信。）  |
 
 | adminメールボックス画面 | 単価詳細画面 |
 | ---- | ---- |
-| ![adminメールボックス画面](/public/img/greenshot01.png) | ![単価詳細画面](/public/img/greenshot01.png) |
+| ![adminメールボックス画面](/public/img/greenshot11.png) | ![単価詳細画面](/public/img/greenshot12.png) |
 | adminメールを設定しているので、配信メールを管理者も確認できます。 | 単価を編集・削除できます。単価詳細画面から発注ができます。 |
 
 | 発注登録（管理者）画面 | 発注登録（一般ユーザー）画面 |
 | ---- | ---- |
-| ![発注登録（管理者）画面](/public/img/greenshot01.png) | ![発注登録（一般ユーザー）画面](/public/img/greenshot01.png) |
+| ![発注登録（管理者）画面](/public/img/greenshot13.png) | ![発注登録（一般ユーザー）画面](/public/img/greenshot14.png) |
 | 数量・着日を指定して発注できます。管理者には各備考が表示されます。 | 数量・着日を指定して発注できます。一般ユーザーには各備考は非表示です。 |
 
 | 発注確認画面 | 発注メール画面 |
 | ---- | ---- |
-| ![発注確認画面](/public/img/greenshot01.png) | ![発注メール画面](/public/img/greenshot01.png) |
+| ![発注確認画面](/public/img/greenshot15.png) | ![発注メール画面](/public/img/greenshot16.png) |
 | 内容を確認後、発注を確定します。不備があれば入力画面に戻れます。 | 発注確定後、メール配信されます。 |
 
 | 見積作成画面 | 見積メール画面 |
 | ---- | ---- |
-| ![発注確認画面](/public/img/greenshot01.png) | ![見積メール画面](/public/img/greenshot01.png) |
+| ![発注確認画面](/public/img/greenshot17.png) | ![見積メール画面](/public/img/greenshot18.png) |
 | 見積を登録できます。見積期限はデフォルトで90日、変更可能です。 | 見積確定後、メール配信されます。 |
 
 | 見積一覧（あいまい検索）画面 | 見積一覧（詳細検索）画面 |
 | ---- | ---- |
-| ![見積一覧（あいまい検索）画面](/public/img/greenshot01.png) | ![見積一覧（詳細検索）画面](/public/img/greenshot01.png) |
+| ![見積一覧（あいまい検索）画面](/public/img/greenshot19.png) | ![見積一覧（詳細検索）画面](/public/img/greenshot20.png) |
 | 見積一覧（あいまい検索）です。大まかな検索に対応できるようにしました。 | 見積一覧（詳細検索）です。具体的な検索に対応できるようにしました。 |
 <br>
 
