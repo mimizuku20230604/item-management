@@ -106,7 +106,7 @@ https://item-management20231012-de20a6daf45a.herokuapp.com/
 
 | 見積一覧（あいまい検索）画面 | 見積一覧（詳細検索）画面 |
 | ---- | ---- |
-| <img width="1000" alt="スクリーンショット" src="/public/img/greenshot01.png">| <img width="1000" alt="スクリーンショット" src="/public/img/greenshot01.png"> |
+| <img width="500" alt="スクリーンショット" src="/public/img/greenshot01.png">| <img width="500" alt="スクリーンショット" src="/public/img/greenshot01.png"> |
 | 見積一覧（あいまい検索）です。大まかな検索に対応できるようにしました。 | 見積一覧（詳細検索）です。具体的な検索に対応できるようにしました。 |
 
 <br>
