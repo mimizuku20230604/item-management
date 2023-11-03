@@ -30,12 +30,12 @@ https://item-management20231012-de20a6daf45a.herokuapp.com/
 <br>
 
 ## 開発期間
-約3週間
+約4週間
 <br>
 <br>
 
 ## 1日あたりの平均作業時間
-約8〜10時間/日
+約5時間／日
 <br>
 <br>
 
@@ -60,6 +60,11 @@ https://item-management20231012-de20a6daf45a.herokuapp.com/
 - デプロイ自動化(Capistrano)
 <br>
 
+## ER図
+準備中
+<br>
+<br>
+
 ## 工夫した点
 コードが冗長にならずかつ処理スピードが早くなるようにリファクタリングしました。例えば、部分テンプレートを呼び出す際はlocalsは使わずにcollectionを使い処理スピードを早くしました。
 <br>
@@ -76,4 +81,5 @@ https://item-management20231012-de20a6daf45a.herokuapp.com/
 - 投稿機能（社内インフォメーション・社外インフォメーション・新商品情報）
 - 仕入機能
 - 予算管理
+- 検索機能の追加（現在は見積一覧のみ。他の一覧にも追加する。）
 <br>
