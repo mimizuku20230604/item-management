@@ -9,12 +9,13 @@
 https://item-management20231012-de20a6daf45a.herokuapp.com/
 
 ## テストアカウント
-- Login user ID
-    - 1004user@gmail.com
-- password
-    - 631004
-- Nickname
-    - user
+
+| アカウント名（用途）                                                                | メールアドレス                                     | パスワード                                     |
+| ----------------------------------------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| 犬山（管理者）                                                                    | siroti_ma_bo_kaineko-kawaiina1@yahoo.co.jp  | siroti_ma_bo_kaineko-kawaiina1 |
+| 株式会社テック（一般ユーザー）                                                        | siroti_ma_bo_kaineko-laravel1@yahoo.co.jp   | siroti_ma_bo_kaineko-laravel1 |
+| H-Laravel社_adminInfo <br> （送信メール確認用） <br> Gmail：https://mail.google.com/     | item.management001@gmail.com                | item20231012 |
+
 
 ## 開発環境
 - Rails 5.2.4.1
