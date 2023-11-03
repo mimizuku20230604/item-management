@@ -84,7 +84,7 @@ https://item-management20231012-de20a6daf45a.herokuapp.com/
 
 | 単価詳細画面 |  |
 | ---- | ---- |
-| ![単価詳細画面](/public/img/greenshot01.png) |  |
+| ![単価詳細画面](/public/img/greenshot01.png) | ![空白画面](/public/img/greenshot01.png) |
 | 単価を編集・削除できます。単価詳細画面から発注ができます。 |  |
 
 | 発注登録（管理者）画面 | 発注登録（一般ユーザー）画面 |
