@@ -76,7 +76,7 @@ https://item-management20231012-de20a6daf45a.herokuapp.com/
 
 | 単価登録画面 | 単価メール画面 |
 | ---- | ---- |
-| ![単価登録画面](/public/img/Greenshot09.png) | ![単価詳細画面](/public/img/Greenshot10.png) |
+| ![単価登録画面](/public/img/Greenshot09.png) | ![単価メール画面](/public/img/Greenshot10.png) |
 | 単価を登録できます。 | 単価確定後、ユーザーが指定されている場合は、指定ユーザーにメール配信されます。（null（全ユーザー対象）の場合は未配信。）  |
 
 | adminメールボックス画面 | 単価詳細画面 |
@@ -103,6 +103,12 @@ https://item-management20231012-de20a6daf45a.herokuapp.com/
 | ---- | ---- |
 | ![見積一覧（あいまい検索）画面](/public/img/Greenshot19.png) | ![見積一覧（詳細検索）画面](/public/img/Greenshot20.png) |
 | 見積一覧（あいまい検索）です。大まかな検索に対応できるようにしました。 | 見積一覧（詳細検索）です。具体的な検索に対応できるようにしました。 |
+
+| 見積一覧（あいまい検索）画面 | 見積一覧（詳細検索）画面 |
+| ---- | ---- |
+| ![見積一覧（あいまい検索）画面](/public/img/Greenshot19.png) | <img width="500" alt="スクリーンショット" src="https://github.com/mimizuku20230604/item-management/blob/main/public/img/greenshot01.png"> |
+| 見積一覧（あいまい検索）です。大まかな検索に対応できるようにしました。 | 見積一覧（詳細検索）です。具体的な検索に対応できるようにしました。 |
+
 <br>
 
 ## ER図
