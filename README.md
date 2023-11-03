@@ -13,10 +13,6 @@ https://item-management20231012-de20a6daf45a.herokuapp.com/
 <br>
 <br>
 
-## アプリケーションのイメージ
-![アプリケーションのイメージ](/docs/img/app-view/app-view_1.1.gif)
-
-
 ## テストアカウント
 
 | アカウント名（用途） | メールアドレス | パスワード |
