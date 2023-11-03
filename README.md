@@ -30,7 +30,7 @@ https://item-management20231012-de20a6daf45a.herokuapp.com/
 ## 開発環境
 - Laravel 10.13.5
 - PHP 8.1.21
-- HTML, CSS, JavaScript, MySQL, GitHub, Heroku
+- HTML, CSS, JavaScript, AdminLTE, Bootstrap, MySQL, GitHub, Heroku
 <br>
 
 ## 開発期間
