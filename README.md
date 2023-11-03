@@ -161,6 +161,6 @@ https://item-management20231012-de20a6daf45a.herokuapp.com/
 - 発注の変更依頼機能
 - お問合せ機能
 - 仕入機能
-- 在庫管理
+- 在庫管理機能
 - 予算管理機能
 <br>
