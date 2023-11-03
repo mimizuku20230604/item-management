@@ -68,7 +68,7 @@
             <label for="remarks">備考</label>
             <textarea name="remarks" class="form-control" id="remarks" readonly>{{ $order->remarks }}</textarea>
           </div>
-          <button class="btn btn-outline-primary mt-3" onclick="location.href=#">リピート発注
+          <button class="btn btn-outline-primary mt-3" onclick="location.href=#">再発注
             <span class="badge badge-pill btn-info">準備中</span>
           </button>
           <br>
