@@ -6,10 +6,13 @@
 [Laravel社_商品管理システム](https://item-management20231012-de20a6daf45a.herokuapp.com/)
 <img width="1400" alt="スクリーンショット 2020-05-07 0 06 18" src="https://github.com/mimizuku20230604/item-management/blob/main/public/img/greenshot01.png">
 <br>
+<br>
 
 ## URL
 https://item-management20231012-de20a6daf45a.herokuapp.com/
 <br>
+<br>
+
 
 ## テストアカウント
 
@@ -29,9 +32,11 @@ https://item-management20231012-de20a6daf45a.herokuapp.com/
 ## 開発期間
 約3週間
 <br>
+<br>
 
 ## 1日あたりの平均作業時間
 約8〜10時間/日
+<br>
 <br>
 
 ## 機能一覧
@@ -58,15 +63,17 @@ https://item-management20231012-de20a6daf45a.herokuapp.com/
 ## 工夫した点
 コードが冗長にならずかつ処理スピードが早くなるようにリファクタリングしました。例えば、部分テンプレートを呼び出す際はlocalsは使わずにcollectionを使い処理スピードを早くしました。
 <br>
+<br>
 
 ## 苦労した点
 コメント削除機能の実装方法を調べるためにあらゆるサイトを検索しましたが、実装方法が書いてあるサイトがなかなか
 見つからず調べるのに丸1日かかってしまったことです。そこでただやみくもに検索するだけでなく、例えば英語で検索、マイナス検索、1次ソースを積極的に検索するようにしました。エンジニアには検索力も必要だと身をもって実感しました。
 <br>
-
-## 今後実装したい機能
-- インクリメンタルサーチ
-- フラッシュメッセージ
 <br>
 
-
+## 今後実装したい機能
+- メール認証機能
+- 投稿機能（社内インフォメーション・社外インフォメーション・新商品情報）
+- 仕入機能
+- 予算管理
+<br>
