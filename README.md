@@ -2,10 +2,10 @@
 - 倉庫口コミ集
     - 倉庫の口コミを読むことができます。ログインすると倉庫情報の投稿、コメントを書くことができます。前職が物流業界で、倉庫各社とやりとりする機会が多かったのですが、倉庫の口コミのようなアプリがあれば倉庫の情報がわかり、倉庫に行く運転手が口コミアプリを使って事前に倉庫情報がわかれば良いなと思い開発しました。
 
-[倉庫口コミ集](https://gyazo.com/8d8850cc6e06f6d42bf5cca9ebb6c609)
+[倉庫口コミ集](https://item-management20231012-de20a6daf45a.herokuapp.com/)
 <img width="1400" alt="スクリーンショット 2020-05-07 0 06 18" src="https://github.com/mimizuku20230604/item-management/blob/main/public/img/greenshot01.png">
 ## URL
-http://54.168.214.195
+https://item-management20231012-de20a6daf45a.herokuapp.com/
 
 ## テストアカウント
 - Login user ID
