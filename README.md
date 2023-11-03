@@ -4,7 +4,7 @@
     - 管理者（自社社員）と一般ユーザー（得意先）で異なる機能・画面を用意し、メール配信も実装しました。
 
 [Laravel社_商品管理システム](https://item-management20231012-de20a6daf45a.herokuapp.com/)
-<img width="1000" alt="スクリーンショット 2020-05-07 0 06 18" src="https://github.com/mimizuku20230604/item-management/blob/main/public/img/greenshot01.png">
+<img width="1000" alt="トップ画面（管理者）" src="/public/img/greenshot01.png">
 <br>
 <br>
 
@@ -56,59 +56,53 @@ https://item-management20231012-de20a6daf45a.herokuapp.com/
 ## 機能一覧
 | トップ画面（管理者） | トップ画面（一般ユーザー） |
 | ---- | ---- |
-| ![トップ画面（管理者）](/public/img/greenshot01.png) | ![トップ画面（一般ユーザー）](/public/img/Greenshot02.png) |
+| <img width="500" alt="トップ画面（管理者）" src="/public/img/greenshot01.png"> | <img width="500" alt="トップ画面（一般ユーザー）" src="/public/img/Greenshot02.png"> |
 | 管理者（自社社員）画面には売上表・社内インフォメーションも表示されます。 | 一般ユーザー（得意先）画面には社外インフォメーション・新商品情報のみが表示されます。 |
 
 | ログイン画面 | アカウント情報（管理者用）画面 |
 | ---- | ---- |
-| ![ログイン画面](/public/img/Greenshot03.png) | ![アカウント情報（管理者用）画面](/public/img/Greenshot04.png) |
+| <img width="500" alt="ログイン画面" src="/public/img/Greenshot03.png"> | <img width="500" alt="アカウント情報（管理者用）画面" src="/public/img/Greenshot04.png"> |
 | ログインIDとパスワードでの認証機能を実装しました。 | ユーザー権限はデフォルトで一般ユーザーです。管理者はユーザー権限を変更できます。 備考は管理者のみ表示されます。|
 
 | アカウント画面 | パスワード画面 |
 | ---- | ---- |
-| ![アカウント画面](/public/img/Greenshot05.png) | ![パスワード画面](/public/img/Greenshot06.png) |
+| <img width="500" alt="アカウント画面" src="/public/img/Greenshot05.png"> | <img width="500" alt="パスワード画面" src="/public/img/Greenshot06.png"> |
 | アカウント名・メールアドレスを変更できます。 | パスワードを変更できます。 |
 
 | 商品登録画面 | 商品詳細画面 |
 | ---- | ---- |
-| ![商品登録画面](/public/img/Greenshot07.png) | ![商品詳細画面](/public/img/Greenshot08.png) |
+| <img width="500" alt="商品登録画面" src="/public/img/Greenshot07.png"> | <img width="500" alt="商品詳細画面" src="/public/img/Greenshot08.png"> |
 | 商品を登録できます。 | 商品を編集・削除できます。 |
 
 | 単価登録画面 | 単価メール画面 |
 | ---- | ---- |
-| ![単価登録画面](/public/img/Greenshot09.png) | ![単価メール画面](/public/img/Greenshot10.png) |
+| <img width="500" alt="単価登録画面" src="/public/img/Greenshot09.png"> | <img width="500" alt="単価メール画面" src="/public/img/Greenshot10.png"> |
 | 単価を登録できます。 | 単価確定後、ユーザーが指定されている場合は、指定ユーザーにメール配信されます。（null（全ユーザー対象）の場合は未配信。）  |
 
 | adminメールボックス画面 | 単価詳細画面 |
 | ---- | ---- |
-| ![adminメールボックス画面](/public/img/Greenshot11.png) | ![単価詳細画面](/public/img/Greenshot12.png) |
+| <img width="500" alt="adminメールボックス画面" src="/public/img/Greenshot11.png"> | <img width="500" alt="単価詳細画面" src="/public/img/Greenshot12.png"> |
 | adminメールを設定しているので、配信メールを管理者も確認できます。 | 単価を編集・削除できます。単価詳細画面から発注ができます。 |
 
 | 発注登録（管理者）画面 | 発注登録（一般ユーザー）画面 |
 | ---- | ---- |
-| ![発注登録（管理者）画面](/public/img/Greenshot13.png) | ![発注登録（一般ユーザー）画面](/public/img/Greenshot14.png) |
+| <img width="500" alt="発注登録（管理者）画面" src="/public/img/Greenshot13.png"> | <img width="500" alt="発注登録（一般ユーザー）画面" src="/public/img/Greenshot14.png"> |
 | 数量・着日を指定して発注できます。管理者には各備考が表示されます。 | 数量・着日を指定して発注できます。一般ユーザーには各備考は非表示です。 |
 
 | 発注確認画面 | 発注メール画面 |
 | ---- | ---- |
-| ![発注確認画面](/public/img/Greenshot15.png) | ![発注メール画面](/public/img/Greenshot16.png) |
+| <img width="500" alt="発注確認画面" src="/public/img/Greenshot15.png"> | <img width="500" alt="発注メール画面" src="/public/img/Greenshot16.png"> |
 | 内容を確認後、発注を確定します。不備があれば入力画面に戻れます。 | 発注確定後、メール配信されます。 |
 
 | 見積作成画面 | 見積メール画面 |
 | ---- | ---- |
-| ![発注確認画面](/public/img/Greenshot17.png) | ![見積メール画面](/public/img/Greenshot18.png) |
+| <img width="500" alt="見積作成画面" src="/public/img/Greenshot17.png"> | <img width="500" alt="見積メール画面" src="/public/img/Greenshot18.png"> |
 | 見積を登録できます。見積期限はデフォルトで90日、変更可能です。 | 見積確定後、メール配信されます。 |
 
 | 見積一覧（あいまい検索）画面 | 見積一覧（詳細検索）画面 |
 | ---- | ---- |
-| ![見積一覧（あいまい検索）画面](/public/img/Greenshot19.png) | ![見積一覧（詳細検索）画面](/public/img/Greenshot20.png) |
+| <img width="500" alt="見積一覧（あいまい検索）画面" src="/public/img/Greenshot19.png"> | <img width="500" alt="見積一覧（詳細検索）画面" src="/public/img/Greenshot20.png"> |
 | 見積一覧（あいまい検索）です。大まかな検索に対応できるようにしました。 | 見積一覧（詳細検索）です。具体的な検索に対応できるようにしました。 |
-
-| 見積一覧（あいまい検索）画面 | 見積一覧（詳細検索）画面 |
-| ---- | ---- |
-| <img width="500" alt="スクリーンショット" src="/public/img/greenshot01.png">| <img width="500" alt="スクリーンショット" src="/public/img/greenshot01.png"> |
-| 見積一覧（あいまい検索）です。大まかな検索に対応できるようにしました。 | 見積一覧（詳細検索）です。具体的な検索に対応できるようにしました。 |
-
 <br>
 
 ## ER図
