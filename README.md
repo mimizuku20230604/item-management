@@ -91,7 +91,7 @@ https://item-management20231012-de20a6daf45a.herokuapp.com/
 
 | 発注確認画面 | 発注メール画面 |
 | ---- | ---- |
-| <img width="500" alt="発注確認画面" src="/public/img/Greenshot15.png"> | <img width="500" alt="発注メール画面" src="/public/img/Greenshot16.png"> |
+| <img width="1000" alt="発注確認画面" src="/public/img/Greenshot15.png"> | <img width="1000" alt="発注メール画面" src="/public/img/Greenshot16.png"> |
 | 内容を確認後、発注を確定します。不備があれば入力画面に戻れます。 | 発注確定後、メール配信されます。 |
 
 | 見積作成画面 | 見積メール画面 |
