@@ -33,7 +33,7 @@
             </div>
             <div class="form-group">
               <label for="remark">備考</label>
-              <input type="text" class="form-control @if($errors->has('remark')) is-invalid @endif" id="remark" name="remark" value="{{ $request->remark }}" readonly>
+              <textarea name="remark" class="form-control @if($errors->has('remark')) is-invalid @endif" id="remark" readonly>{{ $request->remark }}</textarea>
               @if($errors->has('remark'))
                 <div class="invalid-feedback">{{ $errors->first('remark') }}</div>
               @endif
@@ -77,4 +77,20 @@
 @stop
 
 @section('js')
+  <script>
+    // 高さを自動調整する関数
+    function autoResizeTextarea(element) {
+      element.style.height = "1px";
+      element.style.height = (element.scrollHeight) + "px";
+    }
+    // ページ読み込み時に実行
+    document.addEventListener("DOMContentLoaded", function () {
+      const textarea = document.getElementById("remark");
+      autoResizeTextarea(textarea);
+      // ウィンドウのリサイズ時にも実行
+      window.addEventListener("resize", function () {
+      autoResizeTextarea(textarea);
+      });
+    });
+  </script>
 @stop

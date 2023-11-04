@@ -19,15 +19,15 @@
             <input type="hidden" name="item_id" value="{{ $item->id }}">
             <div class="form-group">
               <label for="name">名前</label>
-              <input type="text" class="form-control" id="name" name="name" value="{{ !empty($request["name"]) ? $request["name"] : old('name', $item["name"] ) }}" placeholder="名前" required>
+              <input type="text" class="form-control" id="name" name="name" value="{{ !empty($request["name"]) ? $request["name"] : old('name', $item["name"] ) }}" required>
             </div>
             <div class="form-group">
               <label for="type">種別</label>
-              <input type="text" class="form-control" id="type" name="type" value="{{ !empty($request["type"]) ? $request["type"] : $item["type"] }}"placeholder="種別">
+              <input type="text" class="form-control" id="type" name="type" value="{{ !empty($request["type"]) ? $request["type"] : $item["type"] }}">
             </div>
             <div class="form-group">
               <label for="remark">備考</label>
-              <input type="text" class="form-control" id="remark" name="remark" value="{{ !empty($request["remark"]) ? $request["remark"] : $item["remark"] }}" placeholder="備考">
+              <textarea name="remark" class="form-control" id="remark" cols="30" rows="5" maxlength="500">{{ !empty($request["remark"]) ? $request["remark"] : $item["remark"] }}</textarea>
             </div>
             <button type="submit" class="btn btn-primary">確認する</button>
           </form>
