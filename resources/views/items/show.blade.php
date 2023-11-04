@@ -25,7 +25,7 @@
           </div>
           <div class="form-group">
             <label for="remark">備考</label>
-            <input type="text" class="form-control" id="remark" name="remark" value="{{ $item->remark }}" readonly>
+            <textarea name="remark" class="form-control" id="remark" readonly>{{ $item->remark }}</textarea>
           </div>
           <div class="form-row">
             <div class="form-group col-md-4">
@@ -78,4 +78,20 @@
 @stop
 
 @section('js')
+  <script>
+  // 高さを自動調整する関数
+  function autoResizeTextarea(element) {
+    element.style.height = "1px";
+    element.style.height = (element.scrollHeight) + "px";
+  }
+  // ページ読み込み時に実行
+  document.addEventListener("DOMContentLoaded", function () {
+    const textarea = document.getElementById("remark");
+    autoResizeTextarea(textarea);
+    // ウィンドウのリサイズ時にも実行
+    window.addEventListener("resize", function () {
+    autoResizeTextarea(textarea);
+    });
+  });
+  </script>
 @stop
