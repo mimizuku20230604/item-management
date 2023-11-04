@@ -24,7 +24,7 @@ https://item-management20231012-de20a6daf45a.herokuapp.com/
 | --- | --- | --- |
 | 犬山（管理者） | siroti_ma_bo_kaineko-kawaiina1@yahoo.co.jp | siroti_ma_bo_kaineko-kawaiina1 |
 | 株式会社テック（一般ユーザー） | siroti_ma_bo_kaineko-laravel1@yahoo.co.jp | siroti_ma_bo_kaineko-laravel1 |
-| H-Laravel社_adminInfo <br> （送信メール確認用） <br> Gmail：https://mail.google.com/ | item.management001@gmail.com | item20231012 |
+| H-Laravel社_adminInfo <br> （配信メール確認用） <br> Gmail：https://mail.google.com/ | item.management001@gmail.com | item20231012 |
 <br>
 
 ## 開発環境
