@@ -15,6 +15,7 @@
         <div class="card-header">
           <div class="input-group">
             <p class="card-text text-sm">（初期表示は3ヶ月以内のもののみです。）
+            <span class="badge badge-pill btn-info">準備中</span>
           </div>
         </div>
         <div class="card-body table-responsive p-0">

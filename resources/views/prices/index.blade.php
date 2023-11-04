@@ -17,6 +17,7 @@
         <div class="card-header">
           <div class="input-group">
             <p class="card-text text-sm">（初期表示は期限内のもののみです。）
+            <span class="badge badge-pill btn-info">準備中</span>
             <div class="card-tools ml-auto">
               @can('admin')
                 <a href="{{ url('prices/create') }}" class="btn btn-primary">単価登録</a>
