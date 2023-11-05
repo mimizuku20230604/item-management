@@ -60,15 +60,17 @@
           </div>
         </div>
         <div class="form-row mt-2">
-          <div class="col-md-6">
-            <label for="customer_name" class="font-weight-normal">顧客名</label>
-            <select class="form-control" id="customer_name" name="customer_name">
-              <option value="">選択してください</option>
-                @foreach ($users as $user)
-                  <option value="{{ $user->name }}" {{ (old('customer_name', session('customer_name')) == $user->name) ? 'selected' : '' }}>{{ $user->name }}</option>
-                @endforeach
-            </select>
-          </div>
+          @can('admin')
+            <div class="col-md-6">
+              <label for="customer_name" class="font-weight-normal">顧客名</label>
+              <select class="form-control" id="customer_name" name="customer_name">
+                <option value="">選択してください</option>
+                  @foreach ($users as $user)
+                    <option value="{{ $user->name }}" {{ (old('customer_name', session('customer_name')) == $user->name) ? 'selected' : '' }}>{{ $user->name }}</option>
+                  @endforeach
+              </select>
+            </div>
+          @endcan
           <div class="col-md-6">
             <label for="item_name" class="font-weight-normal">商品名</label>
             <select class="form-control" id="item_name" name="item_name">
