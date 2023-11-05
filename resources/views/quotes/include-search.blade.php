@@ -49,15 +49,17 @@
               <input type="search" class="form-control" id="max_id" name="max_id" value="{{ old('max_id', session('max_id')) }}" placeholder="以下">
             </div>
           </div>
-          <div class="col-md-4">
-            <label for="user_name" class="font-weight-normal">登録者</label>
-            <select class="form-control" id="user_name" name="user_name">
-              <option value="">選択してください</option>
-                @foreach ($users as $user)
-                  <option value="{{ $user->name }}" {{ (old('user_name', session('user_name')) == $user->name) ? 'selected' : '' }}>{{ $user->name }}</option>
-                @endforeach
-            </select>
-          </div>
+          @can('admin')
+            <div class="col-md-4">
+              <label for="user_name" class="font-weight-normal">登録者</label>
+              <select class="form-control" id="user_name" name="user_name">
+                <option value="">選択してください</option>
+                  @foreach ($users as $user)
+                    <option value="{{ $user->name }}" {{ (old('user_name', session('user_name')) == $user->name) ? 'selected' : '' }}>{{ $user->name }}</option>
+                  @endforeach
+              </select>
+            </div>
+          @endcan
         </div>
         <div class="form-row mt-2">
           @can('admin')
