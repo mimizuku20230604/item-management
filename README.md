@@ -173,3 +173,4 @@ https://item-management20231012-de20a6daf45a.herokuapp.com/
 - 在庫管理機能
 - 予算管理機能（現在は売上金額のみ。粗利等も追加する。）
 <br>
+
