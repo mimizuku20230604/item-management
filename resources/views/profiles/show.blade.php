@@ -20,9 +20,20 @@
             <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" readonly>
           </div>
           <div class="form-group">
-            <label for="email">email</label>
+            <label for="email">メールアドレス</label>
             <input type="text" class="form-control" id="email" name="email" value="{{ $user->email }}" readonly>
           </div>
+          <div class="form-group">
+            <label for="remark">備考</label>
+            <textarea name="remark" class="form-control" id="remark" id="remark" readonly>{{ $user->remark }}</textarea>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="role">ユーザー権限</label><br>
+            <input type="radio" name="role_id" value="1" {{ $user->roles->contains(1) ? 'checked' : '' }} disabled> 管理者<br>
+            <input type="radio" name="role_id" value="2" {{ $user->roles->contains(2) ? 'checked' : '' }} disabled> 一般ユーザー<br>
+          </div>
+          <br>
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="created_at">登録日</label>
@@ -33,15 +44,6 @@
               <input type="date" class="form-control" id="updated_at" name="updated_at" value="{{ $user->updated_at->format('Y-m-d') }}" readonly>
             </div>
           </div>
-          <div class="form-group">
-            <label for="remark">備考</label>
-            <textarea name="remark" class="form-control" id="remark" id="remark" readonly>{{ $user->remark }}</textarea>
-          </div>
-          <div class="form-group">
-                <label for="role">ユーザー権限</label><br>
-                <input type="radio" name="role_id" value="1" {{ $user->roles->contains(1) ? 'checked' : '' }} disabled> 管理者<br>
-                <input type="radio" name="role_id" value="2" {{ $user->roles->contains(2) ? 'checked' : '' }} disabled> 一般ユーザー<br>
-                </div>
           <button class="btn btn-success mt-3" onclick="location.href='{{route('profile.edit', $user)}}';">編集</button>
           <br>
           

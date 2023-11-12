@@ -6,6 +6,7 @@
 @section('content_header')
   <h4>見積作成</h4>
   <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+  <button class="btn btn-secondary ml-2 btn-sm" onclick="location.href='{{route('quote.index')}}';">一覧へ戻る</button>
 @stop
 
 @section('content')

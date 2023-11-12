@@ -6,8 +6,8 @@
 @section('content_header')
   <h4>単価編集</h4>
   <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
-  <button class="btn btn-secondary ml-2 btn-sm" onclick="location.href='{{route('price.show', $price)}}';">詳細へ戻る</button>
   <button class="btn btn-secondary ml-2 btn-sm" onclick="location.href='{{route('price.index')}}';">一覧へ戻る</button>
+  <button class="btn btn-secondary ml-2 btn-sm" onclick="location.href='{{route('price.show', $price)}}';">詳細へ戻る</button>
 @stop
 
 @section('content')
@@ -33,6 +33,8 @@
                   <input type="number" name="registration_price" class="form-control" id="registration_price" value="{{ !empty($request->registration_price) ? $request->registration_price : $price->registration_price }}" step="0.01" min="0" max="99999999.99" required>
                 </div>
               </div>
+            </div>
+            <div class="form-row">
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="deadline_date">適用期限（基本期限なし）</label>

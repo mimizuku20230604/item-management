@@ -6,6 +6,7 @@
 @section('content_header')
   <h4>商品確認</h4>
   <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
+  <button class="btn btn-secondary ml-2 btn-sm" onclick="location.href='{{route('item.index')}}';">一覧へ戻る</button>
 @stop
 
 @section('content')

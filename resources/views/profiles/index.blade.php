@@ -3,7 +3,7 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-  <h4>ユーザ一覧</h4>
+  <h4>アカウント一覧</h4>
   <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
 @stop
 
@@ -16,9 +16,9 @@
           <table class="table table-hover text-center">
             <thead>
               <tr class="text-center table-secondary">
-                <th class="font-weight-normal">ID</th>
+                <th class="font-weight-normal">アカウント番号</th>
                 <th class="font-weight-normal">名前</th>
-                <th class="font-weight-normal">Email</th>
+                <th class="font-weight-normal">メールアドレス</th>
                 <th class="font-weight-normal">詳細</th>
               </tr>
             </thead>

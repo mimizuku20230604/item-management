@@ -29,14 +29,14 @@
           <table class="table table-hover text-center">
             <thead>
               <tr class="text-center table-secondary">
-                <th class="font-weight-normal">登録番号</th>
+                <th class="font-weight-normal">単価番号</th>
                 <th class="font-weight-normal">顧客名</th>
                 <th class="font-weight-normal">商品名</th>
                 <th class="font-weight-normal">単価</th>
                 <th class="font-weight-normal">適用期限</th>
-                <th class="font-weight-normal">作成日</th>
+                <th class="font-weight-normal">更新日</th>
                 <th class="font-weight-normal">登録者</th>
-                <th class="font-weight-normal">詳細</th>
+                <th class="font-weight-normal">詳細・発注</th>
               </tr>
             </thead>
             <tbody>
@@ -53,11 +53,11 @@
                         {{ date('Y/m/d', strtotime($price->deadline_date)) }}
                       @endif
                     </td>
-                    <td class="text-center">{{ $price->created_at->format('Y/m/d') }}</td>
+                    <td class="text-center">{{ $price->updated_at->format('Y/m/d') }}</td>
                     <td class="text-left">{{ $price->user->name }}</td> {{-- userリレーションを介してnameを表示 --}}
                     <td>
                       <a href="{{route('price.show', $price)}}">
-                        <button class="btn btn-info btn-sm">詳細</button>
+                        <button class="btn btn-info btn-sm">詳細・発注</button>
                       </a>
                     </td>
                   </tr>
