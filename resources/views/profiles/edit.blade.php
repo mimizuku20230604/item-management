@@ -6,8 +6,8 @@
 @section('content_header')
   <h4>アカウント編集（管理者用）</h4>
   <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
-  <button class="btn btn-secondary  ml-2 btn-sm" onclick="location.href='{{route('profile.show', $user)}}';">詳細へ戻る</button>
   <button class="btn btn-secondary  ml-2 btn-sm" onclick="location.href='{{route('profile.index')}}';">一覧へ戻る</button>
+  <button class="btn btn-secondary  ml-2 btn-sm" onclick="location.href='{{route('profile.show', $user)}}';">詳細へ戻る</button>
 @stop
 
 @section('content')
@@ -26,7 +26,7 @@
               @endif
             </div>
             <div class="form-group">
-              <label for="email">email</label>
+              <label for="email">メールアドレス</label>
               <input type="text" class="form-control @if($errors->has('email')) is-invalid @endif" id="email" name="email" value="{{ !empty(old('email')) ? old('email') : $user->email }}" maxlength="255" required>
               @if($errors->has('email'))
                 <div class="invalid-feedback">{{ $errors->first('email') }}</div>

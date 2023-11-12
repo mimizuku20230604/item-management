@@ -19,10 +19,6 @@
             <input type="text" name="customer_name" class="form-control" id="customer_name" value="{{ $quote->customer->name }}" readonly>
           </div>
           <div class="form-group">
-            <label for="customer_email">メールアドレス</label>
-            <input type="text" name="customer_email" class="form-control" id="customer_email" value="{{ $quote->customer->email }}" readonly>
-          </div>
-          <div class="form-group">
             <label for="item_name">商品名</label>
             <input type="text" name="item_name" class="form-control" id="item_name" value="{{ $quote->item->name }}" readonly>
           </div>
@@ -54,6 +50,10 @@
               </div>
             </div>
           </div>
+          <div class="form-group">
+            <label for="remark">備考</label>
+            <textarea name="remark" class="form-control" id="remark" readonly>{{ $quote['remark'] }}</textarea>
+          </div>
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="created_at">登録日</label>
@@ -67,10 +67,6 @@
               <label for="user_name">登録者（最終更新者）</label>
               <input type="text" class="form-control" id="user_name" name="user_name" value="{{$quote->user->name }}" readonly>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="remark">備考</label>
-            <textarea name="remark" class="form-control" id="remark" readonly>{{ $quote['remark'] }}</textarea>
           </div>
           <button class="btn btn-success mt-3" onclick="location.href='{{route('order.quoteCreate', $quote)}}';">発注画面へ</button>
           <br>

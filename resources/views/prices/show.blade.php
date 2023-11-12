@@ -38,6 +38,10 @@
               </div>
             </div>
           </div>
+          <div class="form-group">
+            <label for="remark">備考</label>
+            <textarea name="remark" class="form-control" id="remark" readonly>{{ $price->remark }}</textarea>
+          </div>
           <div class="form-row">
             <div class="col-md-4">
               <div class="form-group">
@@ -57,10 +61,6 @@
                 <input type="text" class="form-control" id="user_name" name="user_name" value="{{$price->user->name }}" readonly>
               </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="remark">備考</label>
-            <textarea name="remark" class="form-control" id="remark" readonly>{{ $price->remark }}</textarea>
           </div>
           <button class="btn btn-primary mt-3" onclick="location.href='{{route('order.create', $price)}}';">発注画面へ</button>
           <br>

@@ -23,7 +23,7 @@
           <th class="font-weight-normal">見積期限</th>
           <th class="font-weight-normal">作成日</th>
           <th class="font-weight-normal">登録者</th>
-          <th class="font-weight-normal">詳細</th>
+          <th class="font-weight-normal">詳細・発注</th>
         </tr>
       </thead>
       <tbody>
@@ -42,7 +42,7 @@
               <td class="text-left">{{ $quote->user->name }}</td>
               <td>
                 <a href="{{route('quote.show', $quote)}}">
-                <button class="btn btn-info btn-sm">詳細</button>
+                <button class="btn btn-info btn-sm">詳細・発注</button>
                 </a>
               </td>
             </tr>

@@ -50,6 +50,10 @@
               </div>
             </div>
           </div>
+          <div class="form-group">
+            <label for="remark">備考</label>
+            <textarea name="remark" class="form-control" id="remark" readonly>{{ $order->remark }}</textarea>
+          </div>
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="created_at">登録日</label>
@@ -63,10 +67,6 @@
               <label for="user_name">登録者（最終更新者）</label>
               <input type="text" class="form-control" id="user_name" name="user_name" value="{{$order->user->name }}" readonly>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="remark">備考</label>
-            <textarea name="remark" class="form-control" id="remark" readonly>{{ $order->remark }}</textarea>
           </div>
           <button class="btn btn-outline-primary mt-3" onclick="location.href=#">再発注
             <span class="badge badge-pill btn-info">準備中</span>

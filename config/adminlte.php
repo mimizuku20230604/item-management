@@ -333,24 +333,24 @@ return [
             'icon' => 'fas fa-file-alt',
         ],
         [
-            'text' => '見積一覧',
+            'text' => '見積一覧・ご発注',
             'url'  => 'quotes/index',
             'icon' => 'fas fa-file-alt',
         ],
         ['header' => 'account_settings'], //アカウント設定
         [
             'key'  => 'profile_index_admin_only', //[user]には表示されない。
-            'text' => 'ユーザー一覧',
+            'text' => 'アカウント一覧',
             'url'  => 'profiles/index',
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
-            'text' => 'profile',
+            'text' => 'ユーザープロフィール',
             'url'  => 'users/show',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'change_password',
+            'text' => 'ユーザーパスワード変更',
             'url'  => 'users/passwordEdit',
             'icon' => 'fas fa-fw fa-lock',
         ],

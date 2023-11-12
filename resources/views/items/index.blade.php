@@ -24,7 +24,7 @@
           <table class="table table-hover text-center">
             <thead>
               <tr class="text-center table-secondary">
-                <th class="font-weight-normal">ID</th>
+                <th class="font-weight-normal">商品番号</th>
                 <th class="font-weight-normal">名前</th>
                 <th class="font-weight-normal">種別</th>
                 <th class="font-weight-normal">作成日</th>

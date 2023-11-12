@@ -4,7 +4,7 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-  <h4>アカウント情報</h4>
+  <h4>ユーザープロフィール情報</h4>
   <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
 @stop
 
@@ -19,7 +19,7 @@
             <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" readonly>
           </div>
           <div class="form-group">
-            <label for="email">email</label>
+            <label for="email">メールアドレス</label>
             <input type="text" class="form-control" id="email" name="email" value="{{ $user->email }}" readonly>
           </div>
           <div class="form-row">
