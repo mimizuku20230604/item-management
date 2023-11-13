@@ -5,7 +5,7 @@
     <div class="card-header">
       <form action="{{ route('quote.ambiguousSearch') }}" method="GET">
         @csrf
-        <p class="text-sm">（検索対象：見積番号・ユーザー名・商品名・数量・単価・合計金額・備考）</p>
+        <p class="text-sm">（検索対象：見積番号・顧客名・商品名・数量・単価・合計金額・登録者・備考）</p>
         <div class="input-group">
           <div class="form-check">
             <input type="radio" id="within_deadline" name="filter" value="within_deadline" {{ (old('filter') == 'within_deadline' || session('filter') == 'within_deadline') ? 'checked' : '' }}>

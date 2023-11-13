@@ -64,7 +64,7 @@
               <label for="remark">備考</label>
               <textarea name="remark" class="form-control" id="remark" cols="30" rows="5" maxlength="500">{{ !empty($request["remark"]) ? $request["remark"] : old('remark', $quote->remark) }}</textarea>
             </div>
-            <button type="submit" class="btn btn-success mt-3">確認する</button>
+            <button type="submit" class="btn btn-primary mt-3">確認する</button>
           </div>
         </div>
       </div>

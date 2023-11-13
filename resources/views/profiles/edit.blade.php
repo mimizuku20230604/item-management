@@ -4,7 +4,7 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-  <h4>アカウント編集（管理者用）</h4>
+  <h4>アカウント情報編集（管理者用）</h4>
   <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
   <button class="btn btn-secondary  ml-2 btn-sm" onclick="location.href='{{route('profile.index')}}';">一覧へ戻る</button>
   <button class="btn btn-secondary  ml-2 btn-sm" onclick="location.href='{{route('profile.show', $user)}}';">詳細へ戻る</button>
