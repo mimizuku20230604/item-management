@@ -4,9 +4,9 @@
 @section('title', 'H-Laravel社')
 
 @section('content_header')
-  <h4>ユーザープロフィール編集</h4>
+  <h4>ユーザー情報編集</h4>
   <button class="btn btn-secondary btn-sm" onclick="location.href='{{route('home')}}';">ホームへ戻る</button>
-  <button class="btn btn-secondary ml-2 btn-sm" onclick="location.href='{{route('user.show')}}';">ユーザープロフィール情報へ戻る</button>
+  <button class="btn btn-secondary ml-2 btn-sm" onclick="location.href='{{route('user.show')}}';">ユーザー情報へ戻る</button>
 @stop
 
 @section('content')

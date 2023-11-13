@@ -68,7 +68,7 @@
               <input type="text" class="form-control" id="user_name" name="user_name" value="{{$quote->user->name }}" readonly>
             </div>
           </div>
-          <button class="btn btn-success mt-3" onclick="location.href='{{route('order.quoteCreate', $quote)}}';">発注画面へ</button>
+          <button class="btn btn-primary mt-3" onclick="location.href='{{route('order.quoteCreate', $quote)}}';">発注画面へ</button>
           <br>
           <button class="btn btn-outline-primary mt-3" onclick="location.href=#">再発行
             <span class="badge badge-pill btn-info">準備中</span>

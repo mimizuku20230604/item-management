@@ -85,7 +85,7 @@
                 <div class="invalid-feedback">{{ $errors->first('remark') }}</div>
               @endif
             </div>
-            <button type="submit" class="btn btn-success mt-3">確定する</button>
+            <button type="submit" class="btn btn-primary mt-3">確定する</button>
             <p class="card-text text-sm">（確定後、お客様へメール配信します。）
           </form>
             <!-- a hrefだと、未入力の初期画面に戻る。 -->

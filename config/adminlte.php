@@ -345,7 +345,7 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
-            'text' => 'ユーザープロフィール',
+            'text' => 'ユーザー情報',
             'url'  => 'users/show',
             'icon' => 'fas fa-fw fa-user',
         ],
