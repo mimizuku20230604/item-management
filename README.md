@@ -111,7 +111,7 @@ https://item-management20231012-de20a6daf45a.herokuapp.com/
 <br>
 
 ## ER図
-準備中
+<img width="800" alt="ER図" src="/public/img/Greenshot_ER1.png">
 <br>
 <br>
 
