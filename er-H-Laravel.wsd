@@ -1,0 +1,111 @@
+
+' VSCode上で⌥(option) + Dを入力することで、プレビューを表示
+' .wsd, .pu, .puml, .plantuml, .iumlの拡張子をサポート
+'一度プレビューを表示すれば、後はリアルタイムで更新が反映されていくので確認しつつ修正ができる。
+' -- 画像として保存する場合 -- 
+' ⌘(command) + ⇧(shift)+ P でコマンドパレットを開き、 Export Current File Diagrams を選択。
+' ファイル形式を聞かれるので、好きな形式を選択。
+' 画像データが作成される。
+' /Users/laravel/out/item-management/er-test/er-test.png
+
+
+@startuml
+
+' サークルマークを隠す
+hide circle
+
+entity users as "users\nユーザー" {
+  *id [PK]
+  --
+  name [名前]
+  email [メールアドレス]
+  password [パスワード]
+  remark [備考]
+  created_at [作成日]
+  updated_at [更新日]
+}
+
+entity items as "items\n商品" {
+  *id [PK]
+  --
+  *user_id [ユーザーID] [FK]
+  name [名前]
+  type [種別]
+  remark [備考]
+  created_at [作成日]
+  updated_at [更新日]
+}
+
+entity orders as "orders\n発注" {
+  *id [PK]
+  --
+  *user_id [ユーザーID] [FK]
+  *customer_id [顧客ID] [FK]
+  *item_id [商品ID] [FK]
+  unit_price [単価]
+  quantity [数量]
+  total_amount [合計金額]
+  request_date [希望納期]
+  remark [備考]
+  created_at [作成日]
+  updated_at [更新日]
+}
+
+entity prices as "prices\n単価" {
+  *id [PK]
+  --
+  *user_id [ユーザーID] [FK]
+  *customer_id [顧客ID] [FK]
+  *item_id [商品ID] [FK]
+  registration_price [単価]
+  deadline_date [適用期限]
+  remark [備考]
+  created_at [作成日]
+  updated_at [更新日]
+}
+
+entity quotes as "quotes\n見積" {
+  *id [PK]
+  --
+  *user_id [ユーザーID] [FK]
+  *customer_id [顧客ID] [FK]
+  *item_id [商品ID] [FK]
+  unit_price [単価]
+  quantity [数量]
+  total_amount [合計金額]
+  expiration_date [見積期限]
+  remark [備考]
+  created_at [作成日]
+  updated_at [更新日]
+}
+
+entity roles as "roles\n役割" {
+  *id [PK]
+  --
+  name [名前]
+  created_at [作成日]
+  updated_at [更新日]
+}
+
+entity role_user as "role_user\nユーザー権限" {
+  *id [PK]
+  --
+  *user_id [ユーザーID] [FK]
+  *role_id [役割ID] [FK]
+  created_at [作成日]
+  updated_at [更新日]
+}
+
+role_user }--r--|| roles
+users ||--r--{ role_user
+orders }o--r--|| users
+items ||--r--o{ orders
+items }o--r--|| users
+users ||--u--o{ prices
+items ||--u--o{ prices
+users ||--d--o{ quotes
+items ||--d--o{ quotes
+
+
+
+@enduml

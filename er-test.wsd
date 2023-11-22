@@ -1,0 +1,45 @@
+
+' VSCode上で⌥(option) + Dを入力することで、プレビューを表示
+' .wsd, .pu, .puml, .plantuml, .iumlの拡張子をサポート
+'一度プレビューを表示すれば、後はリアルタイムで更新が反映されていくので確認しつつ修正ができる。
+' -- 画像として保存する場合 -- 
+' ⌘(command) + ⇧(shift)+ P でコマンドパレットを開き、 Export Current File Diagrams を選択。
+' ファイル形式を聞かれるので、好きな形式を選択。
+' 画像データが作成される。
+' /Users/laravel/out/item-management/er-test/er-test.png
+
+
+@startuml
+
+entity user as "user\nユーザー" {
+  *user_id [PK]
+  --
+  created_at [作成日]
+  updated_at [更新日]
+}
+
+entity user_profile as "user_profile\nユーザープロフィール" {
+  *user_profile_id [PK]
+  --
+  *user_id [FK]
+  name [名前]
+  email [メールアドレス]
+  password [パスワード]
+  created_at [作成日]
+  updated_at [更新日]
+}
+
+entity post as "post\n投稿" {
+  *post_id [PK]
+  --
+  *user_id[FK]
+  title [タイトル]
+  body [内容]
+  created_at [作成日]
+  updated_at [更新日]
+}
+
+user ||-d-|| user_profile
+user ||-r--o{ post
+
+@enduml
