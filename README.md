@@ -111,7 +111,8 @@ https://item-management20231012-de20a6daf45a.herokuapp.com/
 <br>
 
 ## ER図
-<img width="700" alt="ER図" src="/public/img/Greenshot_ER1.png">
+<img width="700" alt="ER図" src="/public/img/er-H-Laravel.png">
+（UML描画ツール：PlantUML使用）
 <br>
 <br>
 
